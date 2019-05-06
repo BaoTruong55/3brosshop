@@ -1,0 +1,159 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Shop.Models.Domain
+@using Shop.Models.Domain.Interface
+@using System.Security.Claims;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IUserRepository UserRepository
+
+@{
+    ViewData["Title"] = "Order";
+    var user = await UserManager.GetUserAsync(User);
+}
+
+<!-- –––––––––––––––[ PAGE CONTENT ]––––––––––––––– -->
+<main id="mainContent" class="main-content">
+    <!-- Page Container -->
+    <div class="page-container ptb-40">
+        <div class="container">
+            <div class="section explain-process-area ptb-10">
+                <div class="row row-rl-10">
+                    <div class="col-md-4">
+                        <div class="item panel prl-15 ptb-20">
+                            <div class="row row-rl-5 row-xs-cell">
+                                <div class="col-xs-4 valign-middle">
+                                    <img class="pr-10" src="~/images/icons/pijlers/tablet.png" alt="">
+                                </div>
+                                <div class="col-xs-8">
+                                    <h5 class="mb-10 pt-5">Tùy chỉnh biên lai</h5>
+                                    <p class="color-mid">Chọn phiếu quà tặng lý tưởng từ người bán hàng địa phương của bạn.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="item panel prl-15 ptb-20">
+                            <div class="row row-rl-5 row-xs-cell">
+                                <div class="col-xs-4 valign-middle">
+                                    <img class="pr-10" src="~/images/icons/pijlers/money.png" alt="">
+                                </div>
+                                <div class="col-xs-8">
+                                    <h5 class="mb-10 pt-5">Thanh toán an toàn</h5>
+                                    <p class="color-mid">Phương thức thanh toán khác nhau, có hoặc không có đăng ký.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="item panel prl-15 ptb-20">
+                            <div class="row row-rl-5 row-xs-cell">
+                                <div class="col-xs-4 valign-middle">
+                                    <img class="pr-10" src="~/images/icons/pijlers/giftcard.png" alt="">
+                                </div>
+                                <div class="col-xs-8">
+                                    <h5 class="mb-10 pt-5">3Bros Shop</h5>
+                                    <p class="color-mid">In biên lai và xem!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-rl-10 row-tb-20">
+                <div class="page-content col-xs-12 col-sm-8 col-md-9">
+
+                    <!-- Checkout Area -->
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        IList<Claim> claims = await UserManager.GetClaimsAsync(user);
+                        if (claims.Any(c => c.Value == "seller"))
+                        {
+                            <section class="section checkout-area panel prl-30 pt-20 pb-40">
+                                <h2 class="h3 mb-20 h-title">Payment niet mogelijk</h2>
+                                <div class="mb-30">
+                                    <p>Là một người bán, bạn không thể mua hàng. Vui lòng đăng nhập bằng tài khoản người dùng bình thường.</p>
+                                </div>
+                                <a asp-controller="Home" asp-action="Index" class="btn btn-lg btn-warning btn-rounded">Trở về trang chủ</a>
+                            </section>
+                        }
+                        else
+                        {
+                            var gebruiker = UserRepository.GetBy(user.Email);
+                            <section class="section checkout-area panel prl-30 pt-20 pb-40">
+                                <h2 class="h3 mb-20 h-title">Tiếp tục thanh toán</h2>
+                                <div class="mb-30">
+                                    <p>Lệnh sẽ được thực hiện với tên @gebruiker.FirstName @gebruiker.FamilyName.</p>
+                                    <form asp-controller="Account" asp-action="Logout" method="post" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+                                        <label class="color-mid">
+                                            Có phải bạn không
+?                                            <button class="btntop3" type="submit">Đăng xuất</button>.
+                                        </label>
+                                    </form>
+                                </div>
+                                <a asp-controller="ShoppingCart" asp-action="Index" class="btn btn-lg btn-warning btn-rounded">Hủy bỏ</a>
+                                <a asp-controller="Checkout" asp-action="PlacingOrder" class="btn btn-lg btn-rounded mr-10">Tiếp tục</a>
+                            </section>
+                        }
+                    }
+                    else
+                    {
+                        <section class="section checkout-area panel prl-30 pt-20 pb-40">
+                            <h2 class="h3 mb-20 h-title">Thanh toán</h2>
+                            <form asp-controller="Checkout" asp-action="Index" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+                                <div class="custom-radio mb-10">
+                                    <input type="radio" name="checkoutId" id="Guest" value="Guest" checked="checked">
+                                    <label class="color-mid" for="Guest">Tiếp tục tài khoản khách</label>
+                                </div>
+                                <div class="custom-radio mb-10">
+                                    <input type="radio" name="checkoutId" id="New" value="New">
+                                    <label class="color-mid" for="New">Tạo một tài khoản mới</label>
+                                </div>
+                                <div class="custom-radio mb-20">
+                                    <input type="radio" name="checkoutId" id="LogIn" value="LogIn">
+                                    <label class="color-mid" for="LogIn">Đăng nhập bằng tài khoản hiện có</label>
+                                </div>
+                                <a asp-controller="ShoppingCart" asp-action="Index" class="btn btn-lg btn-warning btn-rounded">Hủy bỏ</a>
+                                <button type="submit" class="btn btn-lg btn-rounded mr-10">Tiếp tục mua sắm</button>
+                            </form>
+                        </section>
+                    }
+                    <!-- End Checkout Area -->
+                </div>
+                <div class="page-sidebar col-xs-12 col-sm-4 col-md-3">
+                    <!-- Blog Sidebar -->
+                    <aside class="sidebar blog-sidebar">
+                        <div class="row row-tb-10">
+                            <div class="col-xs-12">
+                                <!-- Recent Posts -->
+                                <div class="widget checkout-widget panel p-20">
+                                    <div class="widget-body">
+                                        <table class="table mb-15">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="color-mid">Số biên lai:</td>
+                                                    <td>@ViewData["Number"]</td>
+                                                </tr>
+                                                <tr class="font-15">
+                                                    <td class="color-mid">Total:</td>
+                                                    <td class="color-blue">@($"{ViewData["Total"]:N2} vnđ")</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <a asp-controller="ShoppingCart" asp-action="Index" class="btn btn-info btn-block btn-sm">Chỉnh sửa giỏ hàng</a>
+                                    </div>
+                                </div>
+                                <!-- End Recent Posts -->
+                            </div>
+                        </div>
+                    </aside>
+                    <!-- End Blog Sidebar -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Page Container -->
+
+
+</main>
+<!-- –––––––––––––––[ END PAGE CONTENT ]––––––––––––––– -->

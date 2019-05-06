@@ -1,0 +1,32 @@
+﻿@model Shop.Models.ShoppingCartViewModels.ThanksViewModel
+
+@using Shop.Models.Domain
+
+﻿@{
+    ViewData["Title"] = "Cảm ơn";
+
+}
+<div class="bedankt panel mb-40">
+    <div class="col-xs-12 center-block  mtb-40">
+        <h1 class="mb-15 text-center">Cảm ơn bạn đã đặt hàng tại 3Bros Shop!</h1>
+        <h3 class="mb-15">
+            Bạn đã nhận được một Email với tất cả các biên lai đặt hàng
+        </h3>
+        <h5>
+            Nếu bạn đã chọn điều này, <br> người nhận cũng sẽ nhận được biên lai nhận của mình qua Email.
+        </h5>
+        @if (((IList<OrderItem>)ViewData["OrderItem"]) != null)
+        {
+            @if (((IList<OrderItem>)ViewData["OrderItem"]).Count == 1)
+            {
+                <p class="mt-20"><a class="btn btn-sm btn-small" target="_blank" href="~/pdf/c_@(((IList<OrderItem>)ViewData["OrderItem"])[0].QRCode).pdf">Tải xuống mã quà tặng đã mua.</a></p>
+            }
+            else
+            {
+                <p class="mt-20"><a class="btn btn-sm btn-small" target="_blank" href="~/pdf/merged_@(((IList<OrderItem>)ViewData["OrderItem"])[0].QRCode).pdf">Tải về mã biên lai quà tặng đã mua</a></p>
+            }
+        }
+        <p><a asp-controller="Home" asp-action="Index"><img src="~/images/icons/home/home.png"></a></p>
+        <p><a asp-controller="Home" asp-action="Index">Trở về trang chủ.</a></p>
+    </div>
+</div>

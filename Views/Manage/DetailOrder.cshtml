@@ -1,0 +1,57 @@
+﻿@using Shop.Models.Domain
+
+@{
+    ViewData["Title"] = "Chi tiết đặt hàng";
+    int count = 1;
+}
+
+
+<div class="page-container ptb-10">
+    <div class="container width-100">
+        <section class="sign-area panel p-40 mr-10">
+            <div class="button-back">
+                <a asp-controller="Manage" asp-action="PersonalOrder" class="btn btn-sm btn-block mb-10">
+                    <i class="fas fa-arrow-left"></i>
+                    Quay lại đơn hàng
+                </a>
+
+            </div>
+            
+            <h4 class="mb-10">@ViewData["Title"] @ViewData["orderId"]</h4>
+            @if (ViewData["OrderItem"] == null)
+            {
+            <p>Đơn hàng của bạn không thể nhận được.</p>
+            }
+            else
+            {
+
+                <table style="width:100%" class="spacing-10">
+                    <tr>
+                        <th>STT</th>
+                        <th>
+                            Tên mặt hàng
+                        </th>
+                        <th>Số tiền</th>
+                        <th>
+                            Hiệu lực
+                        </th>
+                    </tr>
+                    @foreach (OrderItem b in (IEnumerable<OrderItem>)ViewData["OrderItem"])
+                    {
+                    <tr>
+                        <td>@(count++)</td>
+                        <td>@b.Receipt.Name</td>
+                        <td>@b.Price vnđ</td>
+                        <td>@b.OrderItemId</td>
+                        <td><a target="_blank" href="~/pdf/c_@(b.QRCode).pdf" class="btn btn-sm btn-block">
+    Tải về phiếu quà tặng
+</a></td>
+                        <td><a asp-controller="Home" asp-action="Detail" asp-route-id="@b.Receipt.ReceiptId" class="btn btn-sm btn-block m-lg-10">Chi tiết</a></td>
+                    </tr>
+                    }
+
+                </table>
+            }
+        </section>
+    </div>
+</div>

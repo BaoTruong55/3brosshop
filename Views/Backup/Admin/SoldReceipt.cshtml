@@ -1,0 +1,57 @@
+﻿@model Shop.Models.AdminViewModels.OverviewSoldOrderViewModel
+@{
+    ViewData["Title"] = "Hóa đơn";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    @if (Model.SoldOrderList == null || !Model.SoldOrderList.Any())
+    {
+        <h1 class="text-center mtb-40 color-white">Hiện tại không có hóa đơn</h1>
+    }
+    else
+    {
+        <div class="text-center">
+            <h1><i class="fas fa-search"></i> Tìm kiếm theo tên</h1>
+            <input onkeyup="searchInTableFunction()" type="text" class="ggg max-width-500px" id="searchInTableTextField" placeholder="nhập tên trong hóa đơn">
+        </div>
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Verkochte Cadeaureceiptnen
+                </div>
+                <div>
+                    <table class="table" id="tableToSearch">
+                        <thead>
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Hóa đơn</th>
+                                <th>Số tiền</th>
+                                <th>Trạng thái</th>
+                                <th>Chi tiế</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var bon in Model.SoldOrderList)
+                            {
+                                <tr>
+                                    <th scope="row">@bon.Date</th>
+                                    <td>
+                                        @bon.Name
+                                    </td>
+                                    <td>
+                                        <h5>&euro; @bon.Amount</h5>
+                                    </td>
+                                    <td>
+                                        <span class="label @bon.StatusClass">@bon.Status</span>
+                                    </td>
+                                    <td><a asp-controller="Admin" asp-action="SoldReceiptView" asp-route-id="@bon.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</section>

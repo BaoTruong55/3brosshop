@@ -1,0 +1,36 @@
+﻿@model LoginWith2faViewModel
+@{
+    ViewData["Title"] = "Xác thực hai yếu tố";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+<p>Đăng nhập của bạn được bảo vệ với mã xác thực. Nhập mã xác thực của bạn dưới đây.</p>
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+            <input asp-for="RememberMe" type="hidden" />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TwoFactorCode"></label>
+                <input asp-for="TwoFactorCode" class="form-control" autocomplete="off" />
+                <span asp-validation-for="TwoFactorCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="RememberMachine">
+                        <input asp-for="RememberMachine" />
+                        @Html.DisplayNameFor(m => m.RememberMachine)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-default">Đăng nhập</button>
+            </div>
+        </form>
+    </div>
+</div>
+<p>
+    Không có quyền truy cập vào thiết bị xác thực của bạn? Bạn có thể
+    <a asp-action="LoginWithRecoveryCode" asp-route-returnUrl="@ViewData["ReturnUrl"]">đăng nhập bằng mã khôi phục</a>.
+</p>

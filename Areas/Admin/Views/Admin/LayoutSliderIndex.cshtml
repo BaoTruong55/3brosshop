@@ -1,0 +1,87 @@
+﻿@model Shop.Models.AdminViewModels.ReceiptOverviewViewModel
+
+@{
+    ViewData["Title"] = "Receipt in aanbiedingen";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    @if (Model.AllReceiptSortedById == null || !Model.AllReceiptSortedById.Any())
+    {
+        <h1 class="force-whiteColor text-center mtb-40">Er zijn momenteel geen cadeaureceiptnen als slider ingesteld!</h1>
+        <br>
+        <a asp-controller="Admin" asp-action="SellerOverview"><h3 class="force-whiteColor text-center">Nếu bạn muốn thêm biên nhận vào thanh trượt trên trang chủ (và do đó cũng vào tab phiếu mua hàng), bạn có thể tìm kiếm ở đây và đặt loại phiếu mua hàng thành "thanh trượt".</h3></a>
+    }
+    else
+    {
+        <a asp-controller="Admin" asp-action="SellerOverview"><h3 class="force-whiteColor text-center">Nếu bạn muốn thêm biên nhận vào thanh trượt trên trang chủ (và do đó cũng vào tab phiếu mua hàng), bạn có thể tìm kiếm ở đây và đặt loại phiếu mua hàng thành "thanh trượt".</h3></a>
+        <br>
+        <h3 class="force-whiteColor text-center">Nếu bạn muốn xóa biên lai khỏi thanh trượt, hãy đặt loại phiếu mua hàng thành "No" hoặc "Standard" thông qua trang chi tiết. Nếu bạn chọn tiêu chuẩn, nó sẽ vẫn hiển thị trên tab ưu đãi..</h3>
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Ưu đãi trên 3Bros Shop
+                </div>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tên người bán</th>
+                                <th>Tên trong hóa đơn</th>
+                                <th>Thành phố</th>
+                                <th>Số lượng đã bán</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        @foreach (var receipt in Model.AllReceiptSortedById)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@receipt.Name</td>
+                                    <td>@receipt.ReceiptName</td>
+                                    <td>@receipt.Ciy</td>
+                                    <td>@receipt.NumberofReceiptinSystem</td>
+                                    <td><a asp-controller="Admin" asp-action="ReceiptEdit" asp-route-id="@receipt.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <div class="pagination-section prl-30 ptb-30"></div>
+            </div>
+        </div>
+    }
+</section>
+
+<script>
+    jQuery(function ($) {
+        // determine all items by counting TRs
+        var items = $("table tbody tr");
+
+        var aantItems = items.length;
+        var perPagina = 10;
+
+        // only show the first x (perPage)
+        items.slice(perPagina).hide();
+
+        // paste pagination into div
+        $(".pagination-section").pagination({
+            items: aantItems,
+            itemsOnPage: perPagina,
+            // default theme da ok cooperates with bootstrap
+            cssStyle: "light-theme",
+
+            // page click
+            onPageClick: function (pageNumber) {
+                // determine from where to where
+                var showFrom = perPagina * (pageNumber - 1);
+                var showTo = showFrom + perPagina;
+
+                // everything hiden
+                items.hide()
+                    // show back the one you must show
+                    .slice(showFrom, showTo).show();
+            }
+        });
+    });
+</script>

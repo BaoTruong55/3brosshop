@@ -1,0 +1,336 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Shop.Models.Domain;
+@using System.Security.Claims;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> 3Bros Shop - @ViewData["Title"]</title>
+    <meta name="description" content="3BrosShop là một webshop trực tuyến để đặt giày một cách dễ dàng và an toàn.">
+    <meta name="author" content="The 3Bros">
+    <link rel="icon" href="/images/favicon/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/vendors/font-awesome/css/fontawesome-all.min.css" rel="stylesheet">
+    <link href="/vendors/linearicons/css/linearicons.css" rel="stylesheet">
+    <link href="/vendors/owl-carousel/owl.carousel.min.css" rel="stylesheet">
+    <link href="/vendors/owl-carousel/owl.theme.min.css" rel="stylesheet">
+    <link href="/vendors/flexslider/flexslider.css" rel="stylesheet">
+    <link href="/css/base.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/vendors/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="/vendors/slick/slick-theme.css" />
+</head>
+<body id="body" class="wide-layout preloader-active">
+    <script src="~/js/jquery-1.12.3.min.js"></script>
+    <div id="preloader" class="preloader">
+        <div class="loader-cube">
+            <div class="loader-cube__item1 loader-cube__item"></div>
+            <div class="loader-cube__item2 loader-cube__item"></div>
+            <div class="loader-cube__item4 loader-cube__item"></div>
+            <div class="loader-cube__item3 loader-cube__item"></div>
+        </div>
+    </div>
+    <div id="paginaWrapperVoorBlur">
+        <div id="pageWrapper" class="page-wrapper">
+            <header id="mainHeader" class="main-header">
+                <div class="header-header bg-white">
+                    <div class="container">
+                        <div class="row row-rl-0 row-tb-20 row-md-cell">
+                            <div class="brand col-md-3 t-xs-center t-md-left valign-middle">
+                                <a asp-controller="Home" asp-action="Index" class="logo">
+                                    <img src="/images/logo.png" alt="" width="150">
+                                </a>
+                            </div>
+                            <div class="header-search col-xs-12">
+                                <div class="row row-tb-10 ">
+                                    <div class="col-sm-8">
+                                        <div class="search-form">
+                                            <div class="input-group">
+                                                <input type="text" name="SearchKey" id="SearchKey" class="form-control input-lg search-input" placeholder="Tìm kiếm ..">
+                                                <div class="input-group-btn">
+                                                    <div class="input-group">
+                                                        <select name="SearchType" id="SearchType" class="form-control input-lg search-select">
+                                                            <option value="All">Tất cả</option>
+                                                            <option value="FirstName">Tên</option>
+                                                            <option value="Location">Địa điểm</option>
+                                                        </select>
+                                                        <div class="input-group-btn">
+                                                            <a onclick='Search();' id="searchButton" class="btn btn-lg btn-search btn-block">
+                                                                <i class="fa fa-search font-16"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="float-right">
+                                                <a onclick="ChangeAdvancedSearch()" data-toggle="collapse" id="AdvancedSearchExpander" data-target="#advancedSearch">Tìm kiếm nâng cao <i class="fas fa-arrow-down"></i></a>
+                                            </div>
+                                            <div id="advancedSearch" class="collapse mt-15">
+                                                <select name="Category" id="Category" class="input-sm">
+                                                    <option value="">Category</option>
+                                                    @foreach (Category category in (IEnumerable<Category>)ViewData["AllCategories"])
+                                                    {
+                                                        <option value="@category.Name">@category.Name</option>
+                                                    }
+                                                </select>
+                                                <input type="number" name="MaxStartPrice" id="MaxStartPrice" class="input-sm" style="width: 90px" min="1" max="100000" placeholder="tầm giá">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="hidden-xs">
+                                        @await Html.PartialAsync("_LoginPartial")
+                                    </div>
+                                    <div class="col-xs-4 t-xs-center t-md-right hidden-xs">
+                                        <div class="header-cart">
+                                            <a asp-controller="ShoppingCart" asp-action="Index">
+                                                <span class="icon lnr lnr-cart font-40"></span>
+                                                <div class="layout-shoppingCart-count">
+                                                    @await Html.PartialAsync("shoppingCartCountPartial")
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="header-menu bg-light-blue">
+                    <div class="container">
+                        <nav class="nav-bar">
+                            <div class="nav-header">
+                                <span class="nav-toggle" data-toggle="#header-navbar">
+                                    <i></i>
+                                    <i></i>
+                                    <i></i>
+                                </span>
+                            </div>
+                            <div id="header-navbar" class="nav-collapse">
+                                <ul class="nav-menu">
+                                    <li class="Home-List-Item">
+                                        <a asp-controller="Home" asp-action="Index">Trang chủ</a>
+                                    </li>
+                                    <li class="Categoryen-List-Item">
+                                        <a>Thể loại</a>
+                                        <ul>
+                                            @foreach (Category category in (IEnumerable<Category>)ViewData["AllCategories"])
+                                            {
+                                                <li>
+                                                    <a asp-controller="Home" asp-action="Search" asp-route-SearchType="Category" asp-route-SearchKey="@category.Name"><i class="fa @category.Icon"></i> - @category.Name</a>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li class="BestSeller-List-Item">
+                                        <a href="#">Bán nhiều nhất</a>
+                                        <ul>
+                                            <li>
+                                                <a asp-controller="Home" asp-action="Search" asp-route-SearchType="*" asp-route-MaxStartPrice="500000">giá 500.000 vnđ</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Home" asp-action="Search" asp-route-SearchType="*" asp-route-MaxStartPrice="1000000">giá 1.000.000 vnđ</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Home" asp-action="Search" asp-route-SearchType="*" asp-route-MaxStartPrice="1500000">giá 1.500.000 vnđ</a>
+                                            </li>
+                                            <li>
+                                                <a asp-controller="Home" asp-action="Search" asp-route-SearchType="*" asp-route-MaxStartPrice="2000000">giá 1.500.000 vnđ</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="Offeren-List-Item">
+                                        <a asp-controller="Home" asp-action="Offers">Nhà cung cấp</a>
+                                    </li>
+                                    <li class="Over-List-Item">
+                                        <a asp-controller="Home" asp-action="About">Giới thiệu</a>
+                                    </li>
+                                    @await Html.PartialAsync("_LoginPartialMobile")
+                                </ul>
+                            </div>
+                            <div class="nav-menu nav-menu-fixed Seller-List-Item hidden-sm background-blue-xs">
+                                <div class="header-cart visible-xs">
+                                    <a asp-controller="ShoppingCart" asp-action="Index">
+                                        <i class="icon lnr lnr-cart font-40 cart-icon-xs color-white"></i>
+                                        <div class="cart-number-xs color-white layout-shoppingCart-count">
+                                            @await Html.PartialAsync("shoppingCartCountPartial")
+                                        </div>
+                                    </a>
+                                </div>
+                                @if (SignInManager.IsSignedIn(User))
+                                {
+                                    IList<Claim> claims = await UserManager.GetClaimsAsync(user);
+                                    if (claims.Any(claim => claim.Value == "admin"))
+                                    {
+                                        <a asp-controller="Admin" asp-action="Dashboard" class="hidden-xs">Admin quản lý<i class="fas fa-long-arrow-alt-right ml-10"></i></a>
+                                    }
+                                    else if (claims.Any(claim => claim.Value == "seller"))
+                                    {
+                                        <a asp-controller="Manage" asp-action="UsedOrderItemOverview" class="hidden-xs">Người bán hàng quản lý<i class="fas fa-long-arrow-alt-right ml-10"></i></a>
+                                    }
+                                    else if (claims.Any(claim => claim.Value == "customers")) { }
+                                    else
+                                    {
+                                        <a asp-controller="Account" asp-action="RegisterSeller" class="hidden-xs">Trở thành người bán hàng<i class="fas fa-long-arrow-alt-right ml-10"></i></a>
+                                    }
+                                }
+                                else
+                                {
+                                    <a asp-controller="Account" asp-action="RegisterSeller" class="hidden-xs">Trở thành người bán hàng<i class="fas fa-long-arrow-alt-right ml-10"></i></a>
+                                }
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+            @switch (ViewData["Navbar"])
+            {
+                case "Home":
+                    <script>$(".Home-List-Item").addClass("active");</script>
+                    break;
+                case "Search":
+                    <script>$(".Aanbiedingen-List-Item").addClass("active");</script>
+                    break;
+                case "Offers":
+                    <script>$(".Aanbiedingen-List-Item").addClass("active");</script>
+                    break;
+                case "Over":
+                    <script>$(".Over-List-Item").addClass("active");</script>
+                    break;
+                case "Account":
+                    <script>
+                        $(".Account-List-Item").addClass("active");</script>
+                    break;
+                case "Seller":
+                    <script>$(".Handelaar-List-Item").addClass("active");</script>
+                    break;
+                case "BestSellers":
+                    <script>$(".BestSellers-List-Item").addClass("active");</script>
+                    break;
+                case "None":
+                    break;
+                default:
+                    <script>$(".Home-List-Item").addClass("active");</script>
+                    break;
+            }
+            @RenderBody()
+        </div>
+        <section class="footer-top-area pt-30 pb-10 pos-r bg-blue">
+            <div class="container">
+                <div class="row row-tb-20">
+                    <div class="col-xs-12">
+                        <p class="text-center" style="color: white">Chúng tôi chấp nhận các phương thức thanh toán sau:</p>
+                        <div class="payment-methods t-center">
+                            <span><img src="~/images/icons/payment/paypal.jpg" alt=""></span>
+                            <span><img src="~/images/icons/payment/visa.jpg" alt=""></span>
+                            <span><img src="~/images/icons/payment/mastercard.jpg" alt=""></span>
+                            <span><img src="~/images/icons/payment/bancontact.jpg" alt=""></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer id="mainFooter" class="main-footer">
+            <div class="container">
+                <div class="row">
+                    <p>
+                        Copyright &copy;
+                        <script language="javascript" type="text/javascript">
+                            var today = new Date()
+                            var year = today.getFullYear()
+                            document.write(year)
+                        </script> Nice and Local. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div id="backTop" class="back-top is-hidden-sm-down">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+    </div>
+    <script>
+        function ChangeAdvancedSearch() {
+            if (document.getElementById("AdvancedSearchExpander").innerHTML != 'tìm kiếm nâng cao <i class="fas fa-arrow-up"></i>') {
+                document.getElementById("AdvancedSearchExpander").innerHTML = 'tìm kiếm nâng cao <i class="fas fa-arrow-up"></i>'
+            }
+            else {
+                document.getElementById("AdvancedSearchExpander").innerHTML = 'tìm kiếm nâng cao <i class="fas fa-arrow-down"></i>'
+            }
+        }
+    </script>
+    <script type="text/javascript" src="/vendors/slick/slick.min.js"></script>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/vendors/modernizr/modernizr-2.6.2.min.js"></script>
+    <script type="text/javascript" src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="~/vendors/flexslider/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="~/js/wow.js"></script>
+    <script type="text/javascript" src="~/js/customFunctions.js"></script>
+    <script type="text/javascript" src="~/js/main.js"></script>
+    <script type='text/javascript'>
+        function Search() {
+            var SearchType = "";
+            var SearchKey = "";
+            var Categorie = "";
+            var MaxStartPrice = "";
+
+            if (document.getElementById("SearchType").value != "")
+                SearchType = document.getElementById("SearchType").value;
+            if (document.getElementById("SearchKey").value != "")
+                SearchKey = "&SearchKey=" + document.getElementById("SearchKey").value;
+            if (document.getElementById("Category").value != "")
+                Categorie = "&Category=" + document.getElementById("Category").value;
+            if (document.getElementById("MaxStartPrice").value != "")
+                MaxStartPrice = "&MaxStartPrice=" + document.getElementById("MaxStartPrice").value;
+            window.location.href = "/Home/Search?SearchType=" + SearchType + SearchKey + Categorie + MaxStartPrice;
+        }
+    </script>
+    <script>
+        $("#SearchKey").keyup(function (event) {
+            if (event.keyCode === 13) {
+                $("#searchButton").click();
+            }
+        });
+        $("#MaxStartPrice").keyup(function (event) {
+            if (event.keyCode === 13) {
+                $("#searchButton").click();
+            }
+        });
+    </script>
+    <div class="addedToShopPopupContainerBackground">
+        <div id="addedToShoppingCartPopup" class="modal addedToStoreModal">
+            <div id="addedToShopModalContent" class="addedToShopModalContent">
+                <span class="closeShopBasketPopup" id="closeShopBasketPopup">&times;</span>
+                <img id="shopBasketPopupReceiptImage" class="hidden-xs hidden-sm hidden-md col-lg-7">
+                <div class="col-xs-12 col-lg-5">
+                    <h3 class="color-blue shopBasketPopupReceiptName" id="shopBasketPopupReceiptName"> <i class="far fa-check-circle font-26"></i> Titel</h3>
+                    <br>
+                    <h4 id="shopBasketPopupReceiptValue">- Giá : 250.000 vnđ</h4>
+                    <br>
+                    <h4 id="shopBasketPopupReceiptNumber">- STT: 1</h4>
+                    <div class="col-xs-12 showcode mt-20">
+                        <a asp-controller="ShoppingCart" asp-action="Index" class="btn btn-sm btn-block"> Đặt hàng <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="col-xs-12 showcode mt-20">
+                        <a class="btn btn-sm btn-block" onclick="hideAddedToShoppingBasketPopup();"><i class="fas fa-arrow-left"></i> Tiếp tục mua sắm</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- Continue shopping modal -->
+</html>
+@section Scripts {
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

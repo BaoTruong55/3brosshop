@@ -1,0 +1,26 @@
+﻿@model ShowRecoveryCodesViewModel
+@{
+    ViewData["Title"] = "Mã khôi phục";
+    ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
+}
+
+<h4>@ViewData["Title"]</h4>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <strong>
+            Đặt các mã an toàn tại đây.
+        </strong>
+    </p>
+    <p>
+        Nếu bạn mất thiết bị và không có mã khôi phục, bạn sẽ mất quyền truy cập vào tài khoản của mình.
+    </p>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        @for (var row = 0; row < Model.RecoveryCodes.Length; row += 2)
+        {
+            <code>@Model.RecoveryCodes[row]</code><text>&nbsp;</text><code>@Model.RecoveryCodes[row + 1]</code><br />
+        }
+    </div>
+</div>

@@ -1,0 +1,139 @@
+﻿@model Shop.Models.ManageViewModels.GiftReceiptAddViewModel
+@{
+    ViewData["Title"] = "Thêm mặt hàng";
+}
+
+<div class="page-container pt-10 pb-40">
+    <div class="container width-100">
+        <section class="sign-area panel p-40 mr-10">
+            <h3 class="pb-20 text-center">@ViewData["Title"]</h3>
+            <div class="row">
+                <div>
+                    <form class="form-horizontal bucket-form" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Mặt hàng
+                            </label>
+                            <div class="col-sm-6">
+                                <input class="form-control" required="required" asp-for="Name">
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Mô tả</label>
+                            <div class="col-sm-6">
+                                <input class="form-control" required="required" asp-for="Description">
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Giá
+                            </label>
+                            <div class="col-sm-6">
+                                <input class="form-control" required="required" asp-for="Price">
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label" asp-for="Category"></label>
+                            <div class="col-sm-6">
+                                <select class="form-control" asp-for="Category" asp-items="@(ViewData["categorieen"] as SelectList)">
+                                    <option value="">--- Selecteer category ---</option>
+                                </select>
+                                <span asp-validation-for="Category" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Tên đường
+                            </label>
+                            <div class="col-sm-6">
+                                <input class="form-control" required="required" asp-for="Street">
+                                <span asp-validation-for="Street" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Căn hộ số
+                            </label>
+                            <div class="col-sm-6">
+                                <input class="form-control" required="required" asp-for="ApartmentNumber">
+                                <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Mã bưu điện
+                            </label>
+                            <div class="col-sm-6">
+                                <input class="form-control" required="required" asp-for="Postcode">
+                                <span asp-validation-for="Postcode" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Thành phố
+                            </label>
+                            <div class="col-sm-6">
+                                <input class="form-control" required="required" asp-for="City">
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Hình thu nhỏ
+                            </label>
+                            <div class="col-sm-6">
+                                <label class="btn btn-default" id="fileselection">
+                                    <a class="force-whiteColor" id="fileselectionText">Selecteer een thumbnail</a><input asp-for="Thumbnail" accept=".jpg" id="fileToUpload" style="display: none;">
+                                </label>
+                                <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">
+                                Hình ảnh
+                            </label>
+                            <div class="col-sm-6">
+                                <label class="btn btn-default" id="fileselection2">
+                                    <a class="force-whiteColor" id="fileselectionTekst2">Selecteer afbeeldingen</a><input asp-for="Image" accept=".jpg" id="fileToUpload2" style="display: none;">
+                                </label>
+                                <span asp-validation-for="Image" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-9 col-md-offset-3 pl-5">
+                            <a asp-controller="Admin" asp-action="Dashboard" class="btn btn-danger mr-20 mt-20">
+                                Hủy bỏ
+                            </a>
+                            <button type="submit" class="btn btn-success mt-20">Yêu cầu phê duyệt</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script>
+    $("#fileToUpload").change(function () {
+        document.getElementById('fileselectionText').innerHTML = 'U heeft een thumbnail geselecteerd';
+    });
+</script>
+
+<script>
+    $("#fileToUpload2").change(function () {
+        document.getElementById('fileselectionTekst2').innerHTML = 'U heeft afbeeldingen geselecteerd';
+    });
+</script>

@@ -1,0 +1,53 @@
+﻿@using Shop.Views.Manage
+@using Microsoft.AspNetCore.Identity
+@using System.Security.Claims;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+    var user = await UserManager.GetUserAsync(User);
+    IList<Claim> claims = await UserManager.GetClaimsAsync(user);
+}
+
+<div class="page-container ptb-10">
+    <div class="container width-100">
+        <section class="sign-area panel p-40 mr-10">
+            <ul class="nav nav-pills nav-stacked">
+                @if (claims.Any(c => c.Value == "seller"))
+                {
+                    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-action="IndexSeller">
+    Thông tin cá nhân
+</a></li>
+                    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a asp-action="ChangePassword">
+    Thay đổi mật khẩu
+</a></li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "UsedOrderItemOverview" ? "active" : "")"><a asp-action="UsedOrderItemOverview">
+    Biên lai đã xuất
+</a></li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "ReceiptRequest" ? "active" : "")"><a asp-action="ReceiptRequest">Thêm mặt hàng </a></li>
+                }
+                else
+                {
+                    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-action="Index">
+    Thông tin cá nhân của bạn
+</a></li>
+                    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a asp-action="ChangePassword">
+    Thay đổi mật khẩu
+</a></li>
+                    <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "PersonalOrder" ? "active" : "")"><a asp-action="PersonalOrder">
+    Đơn hàng của bạn
+</a></li>
+                    if (hasExternalLogins)
+                    {
+                        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-action="ExternalLogins">
+    Liên kết mạng xã hội của bạn
+</a></li>
+                    }
+                }
+            </ul>
+        </section>
+    </div>
+</div>
+

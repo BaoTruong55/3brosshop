@@ -1,0 +1,12 @@
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\bin\Debug\netcoreapp2.0\LekkerLokaal.deps.json
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\bin\Debug\netcoreapp2.0\LekkerLokaal.runtimeconfig.json
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\bin\Debug\netcoreapp2.0\LekkerLokaal.runtimeconfig.dev.json
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\bin\Debug\netcoreapp2.0\LekkerLokaal.dll
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\bin\Debug\netcoreapp2.0\LekkerLokaal.pdb
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\obj\Debug\netcoreapp2.0\LekkerLokaal.csprojAssemblyReference.cache
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\obj\Debug\netcoreapp2.0\LekkerLokaal.csproj.CoreCompileInputs.cache
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\obj\Debug\netcoreapp2.0\LekkerLokaal.AssemblyInfoInputs.cache
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\obj\Debug\netcoreapp2.0\LekkerLokaal.AssemblyInfo.cs
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\obj\Debug\netcoreapp2.0\LekkerLokaal.dll
+I:\Lab345-master\lekker-lokaal-master\LekkerLokaal\LekkerLokaal\obj\Debug\netcoreapp2.0\LekkerLokaal.pdb

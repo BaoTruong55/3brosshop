@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "ShoppingCart";
+}
+
+<main id="mainContent" class="main-content">
+    <div class="page-container">
+        <div class="container">
+            <div class="cart-area ptb-60">
+                <div class="container" id="winkelwagen-list-partial">
+                    @await Html.PartialAsync("IndexPartialItemsList")
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

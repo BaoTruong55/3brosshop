@@ -1,0 +1,80 @@
+﻿@model Shop.Models.AdminViewModels.SellerReviewsViewModel
+
+@{
+    ViewData["Title"] = "Seller verzoeken";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    @if (Model.AllDealersRequestsSortedById == null || !Model.AllDealersRequestsSortedById.Any() )
+    {
+        <h1 class="text-center mtb-40 color-white">Er zijn momenteel geen sellersverzoeken!</h1>
+        <a asp-controller="Admin" asp-action="SellerAdd"><h3 class="text-center color-darkblue">Voeg manueel een seller toe.</h3></a>
+    }
+    else
+    {
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Sellerverzoeken
+                </div>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>FirstName seller</th>
+                                <th>Postcode</th>
+                                <th>City</th>
+                                <th>Detail</th>
+                            </tr>
+                        </thead>
+                        @foreach (var handelaar in Model.AllDealersRequestsSortedById)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@handelaar.Name</td>
+                                    <td>@handelaar.Postcode</td>
+                                    <td>@handelaar.City</td>
+                                    <td><a asp-controller="Admin" asp-action="SellerRequestEvaluation" asp-route-id="@handelaar.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <div class="pagination-section prl-30 ptb-20"></div>
+            </div>
+        </div>
+    }
+</section>
+<script>
+    jQuery(function ($) {
+        // alle items bepalen door tr's te tellen
+        var items = $("table tbody tr");
+
+        var aantItems = items.length;
+        var perPagina = 10;
+
+        // alleen de eerste x (perPagina) tonen
+        items.slice(perPagina).hide();
+
+        // paginatie in div plakken
+        $(".pagination-section").pagination({
+            items: aantItems,
+            itemsOnPage: perPagina,
+            //default theme da ok met bootstrap samenwerkt
+            cssStyle: "light-theme",
+
+            // pageklik
+            onPageClick: function (pageNumber) {
+                // bepalen van waar tot waar
+                var showFrom = perPagina * (pageNumber - 1);
+                var showTo = showFrom + perPagina;
+
+                // alles hiden
+                items.hide()
+                    // degene die je wel moet tonen terug showen
+                    .slice(showFrom, showTo).show();
+            }
+        });
+    });
+</script>

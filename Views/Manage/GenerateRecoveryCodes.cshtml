@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Tạo mã khôi phục xác thực";
+    ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <strong>
+            Hành động này tạo mã khôi phục mới.
+        </strong>
+    </p>
+    <p>
+        Nếu bạn mất thiết bị và không có mã khôi phục, bạn sẽ mất quyền truy cập vào tài khoản của mình.
+    </p>
+    <p>
+        Tạo mã khôi phục mới không thay đổi các khóa được sử dụng trong các ứng dụng xác thực. Nếu bạn muốn thay đổi chìa khóa
+        được sử dụng trong một ứng dụng xác thực bạn nên <a asp-action="ResetAuthenticatorWarning">đặt lại khóa xác thực của bạn.</a>
+    </p>
+</div>
+
+<div>
+    <form asp-action="GenerateRecoveryCodes" method="post" class="form-group">
+        <button class="btn btn-danger" type="submit">
+            Tạo mã khôi phục
+        </button>
+    </form>
+</div>

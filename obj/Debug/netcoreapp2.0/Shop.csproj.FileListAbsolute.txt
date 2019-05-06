@@ -1,0 +1,72 @@
+I:\DoAn1\Shop\bin\Debug\netcoreapp2.0\Shop.dll
+I:\DoAn1\Shop\bin\Debug\netcoreapp2.0\Shop.deps.json
+I:\DoAn1\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.json
+I:\DoAn1\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.dev.json
+I:\DoAn1\Shop\obj\Debug\netcoreapp2.0\Shop.csprojAssemblyReference.cache
+I:\DoAn1\Shop\obj\Debug\netcoreapp2.0\Shop.csproj.CoreCompileInputs.cache
+I:\DoAn1\Shop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+I:\DoAn1\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfoInputs.cache
+I:\DoAn1\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfo.cs
+I:\DoAn1\Shop\obj\Debug\netcoreapp2.0\Shop.dll
+I:\DoAn1\Shop\obj\Debug\netcoreapp2.0\Shop.pdb
+I:\DoAn1\Shop\bin\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\Shop\bin\Debug\netcoreapp2.0\Shop.deps.json
+F:\Năm 3\D.A.1\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.json
+F:\Năm 3\D.A.1\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.dev.json
+F:\Năm 3\D.A.1\Shop\bin\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\Shop\bin\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\Shop\obj\Debug\netcoreapp2.0\Shop.csprojAssemblyReference.cache
+F:\Năm 3\D.A.1\Shop\obj\Debug\netcoreapp2.0\Shop.csproj.CoreCompileInputs.cache
+F:\Năm 3\D.A.1\Shop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+F:\Năm 3\D.A.1\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfoInputs.cache
+F:\Năm 3\D.A.1\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfo.cs
+F:\Năm 3\D.A.1\Shop\obj\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\Shop\obj\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\backup\Shop\bin\Debug\netcoreapp2.0\Shop.deps.json
+F:\Năm 3\D.A.1\backup\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.json
+F:\Năm 3\D.A.1\backup\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.dev.json
+F:\Năm 3\D.A.1\backup\Shop\bin\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\backup\Shop\bin\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\backup\Shop\obj\Debug\netcoreapp2.0\Shop.csprojAssemblyReference.cache
+F:\Năm 3\D.A.1\backup\Shop\obj\Debug\netcoreapp2.0\Shop.csproj.CoreCompileInputs.cache
+F:\Năm 3\D.A.1\backup\Shop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+F:\Năm 3\D.A.1\backup\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfoInputs.cache
+F:\Năm 3\D.A.1\backup\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfo.cs
+F:\Năm 3\D.A.1\backup\Shop\obj\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\backup\Shop\obj\Debug\netcoreapp2.0\Shop.pdb
+I:\DoAn1\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.deps.json
+I:\DoAn1\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.json
+I:\DoAn1\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.dev.json
+I:\DoAn1\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.dll
+I:\DoAn1\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.pdb
+I:\DoAn1\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.csprojAssemblyReference.cache
+I:\DoAn1\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.csproj.CoreCompileInputs.cache
+I:\DoAn1\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfoInputs.cache
+I:\DoAn1\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfo.cs
+I:\DoAn1\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.dll
+I:\DoAn1\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.pdb
+I:\DoAn1\backup\backup\Shop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.deps.json
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.json
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.dev.json
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.csprojAssemblyReference.cache
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.csproj.CoreCompileInputs.cache
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfoInputs.cache
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfo.cs
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\Backup 030519 02\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.deps.json
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.json
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.dev.json
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\bin\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.csprojAssemblyReference.cache
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.csproj.CoreCompileInputs.cache
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfoInputs.cache
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfo.cs
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\Backup 050519 03\backup\backup\Shop\obj\Debug\netcoreapp2.0\Shop.pdb

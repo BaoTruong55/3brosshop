@@ -1,0 +1,143 @@
+﻿@using Shop.Models.Domain;
+@model IEnumerable<Shop.Models.HomeViewModels.SearchViewModel>
+
+@{
+    ViewData["Title"] = "Search: " + ViewData["SearchAssignment"];
+    if (ViewData["Navbar"] == null || (string)ViewData["Navbar"] == "")
+    {
+        ViewData["Navbar"] = "Search";
+    }
+}
+
+
+<main id="mainContent" class="main-content">
+    <div class="page-container ptb-15">
+        <div class="container">
+            <div class="section coupons-area coupons-area-grid">
+                @if (Model.Count() == 0)
+                {
+                    <div class="col-xs-12 text-center mt-30">
+                        <h4>
+                            Thật không may, không có gì được tìm thấy : @ViewData["SearchAssignment"]
+                        </h4>
+                        <br>
+                        <img src="~/images/icons/zoeken/notFound.png">
+                    </div>
+                }
+                else
+                {
+                    <section class="section latest-deals-area ptb-30">
+                        <header style="background-color: #1E90FF" class="panel ptb-15 prl-20 pos-r mb-30">
+                            <h3 style="color: white" class="section-title font-18">
+                                Tìm kiếm: @ViewData["SearchAssignment"]
+                                <element class="slide-navigation-brosshop slide-navigation-brosshop-hideOnOneSlide">
+                                    <a class="vorige-slide-index-grid">
+                                        <i class="fa fa-arrow-circle-left"></i> trước đó
+                                    </a> | <a class="volgende-slide-index-grid">
+                                        tiếp theo <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </element>
+                            </h3>
+                        </header>
+                        <div class="row row-masnory row-tb-20 lekkerLokaal-driexdrierow">
+                            @foreach (var receipt in Model)
+                            {
+                                <div class="slick-lekker-lokaal">
+                                    <div class="col-xs-12">
+                                        <div class="coupon-item">
+                                            <div class="coupon-single panel t-center">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="text-center p-20">
+                                                            <img class="store-logo foto" src="~/@receipt.GetThumbPath" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <div class="panel-body">
+                                                            <ul class="deal-meta list-inline mb-10">
+                                                                <li class="color-muted"><i class="ico fab fa-periscope mr-5"></i>@receipt.City</li>
+                                                                <li class="color-muted"><i class="ico lnr lnr-users mr-5"></i>@receipt.QuantityOrdered</li>
+                                                            </ul>
+
+                                                            <div class="height-70px">
+                                                                <h4 class="color-blue mb-10 t-uppercase">@receipt.Name</h4>
+                                                            </div>
+                                                            <div class="height-70px">
+                                                                <h5 class="deal-title mb-10">
+                                                                    <a>@receipt.Description</a>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="DynamicAddCartRegionCart height-150px" style="display: none;" id="@(receipt.ReceiptId.ToString() + "card")">
+                                                                <form name="WinkelmandjeAdder" onsubmit='return AddToShoppingCartBasket(@receipt.ReceiptId, "@receipt.GetThumbPath.Replace("\\","\\\\")", "@receipt.Name");'>
+                                                                    <div class="PopupAddToCart-line">
+                                                                        <div class="col-xs-4 no-padding">
+                                                                            <label class="float-left ">Giá:</label>
+                                                                        </div>
+                                                                        <div class="col-xs-offset-1 col-xs-7 no-padding">
+                                                                            <input required id="@(receipt.ReceiptId.ToString() + "PriceField")" class="form-control winkelmand-register-enter" type="number" step="0.01" value="@(receipt.Price.ToString().Replace(",","."))">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="PopupAddToCart-line">
+                                                                        <div class="col-xs-4 no-padding">
+                                                                            <label class="float-left">Số lượng:</label>
+                                                                        </div>
+                                                                        <div class="col-xs-offset-1 col-xs-7 no-padding">
+                                                                            <input required id="@(receipt.ReceiptId.ToString() + "QuantityField")" class="form-control winkelmand-register-enter" type="number" min="1" max="100" value="1">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xs-4 showcode no-padding">
+                                                                        <a onclick="DynamicAddCartRegion(@receipt.ReceiptId);" class="btn btn-sm btn-block" id="@(receipt.ReceiptId.ToString() + "TerugKnop")">
+                                                                            Quay lại
+                                                                        </a>
+                                                                    </div>
+                                                                    <div class="col-xs-offset-1 col-xs-7 showcode no-padding">
+                                                                        <input name="Submit" type="submit" value="Xác nhận" class="btn btn-sm btn-block" id="@(receipt.ReceiptId.ToString() + "BevestigKnop")" />
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="DynamicAddCartRegionDefault height-150px" id="@(receipt.ReceiptId.ToString() + "default")">
+                                                                <p class="color-muted font-12"><i class="fa @receipt.CategoryIcon"></i> @receipt.CategoryName</p>
+                                                                <p class="mb-15 color-muted mb-20 font-12">
+                                                                    <i class="fa fa-credit-card-alt"></i>
+                                                                    Từ &euro; @receipt.Price
+                                                                </p>
+                                                                <div class="showcode">
+                                                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@receipt.ReceiptId" class="btn btn-sm btn-block">
+                                                                        Xem chi tiết
+                                                                    </a>
+                                                                </div>
+                                                                <div style="margin-top: 10px" class="showcode">
+                                                                    <a onclick="DynamicAddCartRegion(@receipt.ReceiptId);" class="btn btn-sm btn-block">
+                                                                        Thêm vào giỏ
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </section>
+                    <header style="background-color: #1E90FF" class="panel ptb-15 prl-20 pos-r mb-30 slide-navigation-brosshop-hideOnOneSlide">
+                        <h3 style="color: white" class="section-title font-18">
+
+                            Tìm kiếm: @ViewData["SearchAssignment"]
+                            <element class="slide-navigation-brosshop">
+                                <a class="vorige-slide-index-grid">
+                                    <i class="fa fa-arrow-circle-left"></i>
+                                    trước đó
+                                </a> | <a class="volgende-slide-index-grid">
+                                    tiếp theo <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </element>
+                        </h3>
+                    </header>
+                }
+            </div>
+        </div>
+    </div>
+</main>

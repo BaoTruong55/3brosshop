@@ -1,0 +1,184 @@
+﻿@using Shop.Models.Domain
+@using Shop.Models.Domain.Interface
+
+@{
+    String[] sellerSubMenu = { "SellerRequest", "SellerAdd", "SellerOverview", "SellerEdit", "SellerRequestEvaluation" };
+    String[] receiptSubMenu = { "ReceiptRequests", "AddReceipt", "ReceiptOverview", "ReceiptEdit", "ReceiptRequest" };
+    String[] layoutSubMenu = { "LayoutSliderIndex", "LayoutOffers" };
+    String[] soldReceipt = { "SoldReceiptView", "SoldReceipt" };
+    var user = UserManager.GetUserAsync(User);
+}
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IUserRepository userRepository
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>3Bros Shop - @ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <!-- bootstrap-css -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <!-- //bootstrap-css -->
+    <!-- Custom CSS -->
+    <link href="~/admin/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="~/admin/css/style-responsive.css" rel="stylesheet" />
+    <!-- font CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" href="~/admin/css/font.css" type="text/css" />
+    <link href="~/vendors/font-awesome/css/fontawesome-all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/admin/css/morris.css" type="text/css" />
+    <!-- //font-awesome icons -->
+    <script src="~/admin/js/jquery2.0.3.min.js"></script>
+    <script src="~/admin/js/raphael-min.js"></script>
+    <script src="~/admin/js/morris.js"></script>
+    <!-- paginatie voor tabelen -->
+    <link rel="stylesheet" href="~/admin/css/simplePagination.css" type="text/css" />
+</head>
+
+<body>
+    <section id="container">
+        <!--header start-->
+        <header class="header fixed-top clearfix">
+            <!--logo start-->
+            <div class="brand">
+                <a asp-controller="Admin" asp-action="Dashboard" class="logo">L L</a>
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars"></div>
+                </div>
+            </div>
+            <!--logo end-->
+            <div class="top-nav clearfix">
+                <!--search & user info start-->
+                <ul class="nav pull-right top-menu">
+                    <!-- user login dropdown start-->
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img src="@(userRepository.GetBy(user.Result.Email).Image)">
+                            <span class="username">@userRepository.GetBy(user.Result.Email).FirstName</span>
+                            <b class="caret"></b>
+                        </a>
+                        <form id="logout" asp-controller="Admin" asp-action="Logout" method="post"></form>
+                        <ul class="dropdown-menu extended logout">
+                            <li><a asp-controller="Manage" asp-action="Index"><i class=" fas fa-cogs"></i> Tùy chọn</a></li>
+                            <li><a onclick="document.getElementById('logout').submit();" class="clickable"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->
+                </ul>
+                <!--search & user info end-->
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse">
+                <!-- sidebar menu start-->
+                <div class="leftside-navigation">
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li>
+                            <a asp-controller="Admin" asp-action="Dashboard" class="@(ViewContext.RouteData.Values["Action"].ToString() == "Dashboard" ? "active" : "")">
+                                <i class="fas fa-home"></i>
+                                <span>Trang chủ</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="#" class="@(sellerSubMenu.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
+                                <i class="fas fa-handshake"></i>
+                                <span>Quản lý người bán hàng</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a asp-controller="Admin" asp-action="SellerRequest" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SellerRequest" ? "active" : (ViewContext.RouteData.Values["Action"].ToString() == "SellerRequestEvaluation" ? "active" : ""))"><i class="fas fa-user-plus"></i> người bán hàng</a></li>
+                                <li><a asp-controller="Admin" asp-action="SellerAdd" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SellerAdd" ? "active" : "")"><i class="fas fa-plus-square"></i> Thêm người bán hàng</a></li>
+                                <li><a asp-controller="Admin" asp-action="SellerOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ZoekHandelaar" ? "active" : "")"><i class="fas fa-search"></i> Tìm người bán hàng</a></li>
+                                <li><a asp-controller="Admin" asp-action="SellerOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SellerOverview" ? "active" : "")"><i class="fas fas fa-ellipsis-h"></i> Tổng quan người bán hàng</a></li>
+                                <li><a asp-controller="Admin" asp-action="SellerEdit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SellerEdit" ? "active" : "")"><i class="fas fa-edit"></i> Chỉnh sửa thông tin người bán hàng</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="#" class="@(receiptSubMenu.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
+                                <i class="fas fa-gift"></i>
+                                <span>Quản lý biên lai</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a asp-controller="Admin" asp-action="ReceiptRequests" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ReceiptRequests" ? "active" : (ViewContext.RouteData.Values["Action"].ToString() == "ReceiptRequest" ? "active" : ""))"><i class="fas fa-user-plus"></i> yêu cầu biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="AddReceipt" class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddReceipt" ? "active" : "")"><i class="fas fa-plus-square"></i> Thêm biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="ReceiptOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchReceipt" ? "active" : "")"><i class="fas fa-search"></i> Tìm biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="ReceiptOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ReceiptOverview" ? "active" : "")"><i class="fas fas fa-ellipsis-h"></i> Thông tin biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="ReceiptEdit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ReceiptEdit" ? "active" : "")"><i class="fas fa-edit"></i> Chỉnh sửa biên lai</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a asp-controller="Admin" asp-action="SoldReceipt" class="@(soldReceipt.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
+                                <i class="fas fa-cloud-download-alt"></i>
+                                <span>biên lai đã xuất</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Admin" asp-action="UsedReceipt" class="@(ViewContext.RouteData.Values["Action"].ToString() == "UsedReceipt" ? "active" : "")">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>biên lai</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a asp-controller="Admin" asp-action="SoldReceipt" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchSoldReceipt" ? "active" : "")">
+                                <i class="fas fa-search"></i>
+                                <span>Tìm kiếm biên lai đã xuất</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="#" class="@(layoutSubMenu.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
+                                <i class="fas fa-eye"></i>
+                                <span>Layout website</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a asp-controller="Admin" asp-action="LayoutSliderIndex" class="@(ViewContext.RouteData.Values["Action"].ToString() == "LayoutSliderIndex" ? "active" : "")"><i class="fas fa-star"></i> Quản lý slider</a></li>
+                                <li><a asp-controller="Admin" asp-action="LayoutOffers" class="@(ViewContext.RouteData.Values["Action"].ToString() == "LayoutOffers" ? "active" : "")"><i class="fab fa-slideshare"></i> Quản lý ưu đãi</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+
+            @RenderBody()
+
+
+            <!-- footer -->
+            <div class="footer">
+                <div class="wthree-copyright">
+                    <p>
+                        Copyright &copy;
+                        <script language="javascript" type="text/javascript">
+                            var today = new Date()
+                            var year = today.getFullYear()
+                            document.write(year)
+                        </script> Nice and Local. All rights reserved.
+                    </p>
+                </div>
+            </div>
+            <!-- / footer -->
+        </section>
+        <!--main content end-->
+    </section>
+    <script type="text/javascript" src="~/js/bootstrap.min.js"></script>
+    <script src="~/admin/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="~/admin/js/scripts.js"></script>
+    <script src="~/admin/js/jquery.slimscroll.js"></script>
+    <script src="~/admin/js/jquery.nicescroll.js"></script>
+    <script src="~/admin/js/jquery.scrollTo.js"></script>
+    <script src="~/admin/js/CustomScripts.js"></script>
+    <!-- pagination for tables -->
+    <script src="~/admin/js/jquery.simplePagination.js"></script>
+</body>
+
+</html>
+

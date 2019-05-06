@@ -1,0 +1,166 @@
+﻿@model Shop.Models.AdminViewModels.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard ahihi";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    <!-- //market-->
+    <div class="market-updates">
+        <div class="col-md-3 market-update-gd">
+            <div class="market-update-block clr-block-2 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("SellerRequest", "Admin", null)';">
+                <div class="col-md-4 market-update-right">
+                    <i class="fas fa-handshake font-size-60"> </i>
+                </div>
+                <div class="col-md-8 market-update-left">
+                    <h4>Yêu cầu người bán</h4>
+                    <h3>@Model.NumberofSellerRequests</h3>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="col-md-3 market-update-gd">
+            <div class="market-update-block clr-block-4 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("ReceiptRequests", "Admin", null)';">
+                <div class="col-md-4 market-update-right">
+                    <i class="fas fa-gift font-size-60"></i>
+                </div>
+                <div class="col-md-8 market-update-left">
+                    <h4>Yêu cầu biên lai</h4>
+                    <h3>@Model.NumberofReceiptRequests</h3>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="col-md-3 market-update-gd">
+            <div class="market-update-block clr-block-1 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("SoldReceipt", "Admin", null)';">
+                <div class="col-md-4 market-update-right">
+                    <i class="fas fa-cloud-download-alt font-size-60"></i>
+                </div>
+                <div class="col-md-8 market-update-left">
+                    <h4>Biên lai bán</h4>
+                    <h3>@Model.NumberofReceiptSold1M</h3>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="col-md-3 market-update-gd">
+            <div class="market-update-block clr-block-3 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("UsedReceipt", "Admin", null)';">
+                <div class="col-md-4 market-update-right">
+                    <i class="fas fa-cloud-upload-alt font-size-60" aria-hidden="true"></i>
+                </div>
+                <div class="col-md-8 market-update-left">
+                    <h4>Biên lai đã xuất</h4>
+                    <h3>@Model.NumberUsedReceipt1M</h3>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <!-- //market-->
+    <div class="row">
+        <div class="panel-body">
+            <div class="col-md-12 w3ls-graph">
+                <div class="panel-heading">
+                    biên lai bán và biên lai đã xuất
+                </div>
+                <!--agileinfo-grap-->
+                <div class="agileinfo-grap">
+                    <div class="agileits-box">
+
+                        <header class="agileits-box-header clearfix">
+                            <div class="toolbar">
+                            </div>
+                        </header>
+                        <div class="agileits-box-body clearfix">
+                            <div id="hero-area"></div>
+                        </div>
+                    </div>
+                </div>
+                <!--//agileinfo-grap-->
+
+            </div>
+        </div>
+    </div>
+    <div class="agileits-w3layouts-stats">
+        <div class="col-md-12 stats-info stats-last widget-shadow">
+            <div class="panel-heading">
+                Biên lai cuối
+            </div>
+            <div class="stats-last-agile">
+                <table class="table stats-table ">
+                    <thead>
+                        <tr>
+                            <th>NGÀY</th>
+                            <th>BIÊN LAI</th>
+                            <th>SỐ TIỀN</th>
+                            <th>TÌNH TRẠNG</th>
+                            <th>CHI TIẾT</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var receipt in Model.RecentlySoldList)
+                        {
+                            <tr>
+                                <th scope="row">@receipt.Date</th>
+                                <td>
+                                    @receipt.Name
+                                </td>
+                                <td>
+                                    &euro; @receipt.Amount
+                                </td>
+                                <td>
+                                    <span class="label @receipt.StatusClass">@receipt.Status</span>
+                                </td>
+                                <td><a asp-controller="Admin" asp-action="SoldReceiptView" asp-route-id="@receipt.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</section>
+
+<!-- grafiek -->
+<script>
+    $(document).ready(function () {
+        graphArea2 = Morris.Area({
+            element: 'hero-area',
+            padding: 10,
+            behaveLikeLine: true,
+            gridEnabled: false,
+            axes: true,
+            resize: true,
+            smooth: true,
+            pointSize: 0,
+            lineWidth: 0,
+            fillOpacity: 0.65,
+            data:
+            [
+            @foreach (var graphData in Model.GraphDataList)
+                {
+                <Text>
+                    {
+                        date: "@graphData.Date",
+                        verkocht: "@graphData.AmountSold",
+                        gebruikt: "@graphData.NumberUsed",
+                    },
+                </Text>
+                }
+            ],
+            lineColors: ['#53d769', '#147efb'],
+            xkey: 'date',
+            redraw: true,
+            xLabels: "week",
+            xLabelFormat: function (x) { return x.toLocaleDateString("nl-BE"); },
+            ykeys: ['sold', 'used'],
+            labels: ['Sold', 'Used'],
+            pointSize: 2,
+            hideHover: 'auto',
+            resize: true
+        });
+    });
+</script>

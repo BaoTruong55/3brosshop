@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Shop.Models.Domain
+@using Shop.Models.Domain.Interface
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IUserRepository UserRepository
+@inject ISellerRepository SellerRepository
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right" asp-route-returnUrl="@ViewData["ReturnUrl"]">
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @if (UserRepository.GetBy(user.Email) != null)
+                {
+                    <a asp-area="" asp-controller="Manage" asp-action="Index">
+                        <p>Xin chào, @UserRepository.GetBy(user.Email).FirstName</p>
+                    </a>
+                }
+                else if (SellerRepository.GetByEmail(user.Email) != null)
+                {
+                    <a asp-area="" asp-controller="Manage" asp-action="IndexSeller">
+                        <p>Xin chào!</p>
+                    </a>
+                }
+                else
+                {
+                    <a asp-area="" asp-controller="Manage" asp-action="Index">
+                        <p>Xin chào!</p>
+                    </a>
+                }
+            </li>
+            <li>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">Đăng xuất</button>
+            </li>
+        </ul>
+    </form>
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li><a asp-area="" asp-controller="Account" asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]">Tạo tài khoản</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]">Đăng nhập </a></li>
+    </ul>
+}

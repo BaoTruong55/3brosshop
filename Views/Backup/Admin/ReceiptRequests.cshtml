@@ -1,0 +1,80 @@
+﻿@model Shop.Models.AdminViewModels.ReceiptRequestsViewModel
+
+@{
+    ViewData["Title"] = "Nhận yêu cầu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    @if (Model.AllReceiptRequestsSortedById == null || !Model.AllReceiptRequestsSortedById.Any())
+    {
+    <h1 class="text-center mtb-40 color-white">Hiện tại không có yêu cầu!</h1>
+        <a asp-controller="Admin" asp-action="AddReceipt"><h3 class="text-center color-darkblue">Thêm một biên lai thủ công.</h3></a>
+    }
+    else
+    {
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Yêu cầu người bán
+                </div>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tên người bán</th>
+                                <th>Tên trong biên lai</th>
+                                <th>Thành phố</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        @foreach (var receipt in Model.AllReceiptRequestsSortedById)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@receipt.Name</td>
+                                    <td>@receipt.ReceiptName</td>
+                                    <td>@receipt.City</td>
+                                    <td><a asp-controller="Admin" asp-action="ReceiptRequest" asp-route-id="@receipt.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <div class="pagination-section prl-30 ptb-20"></div>
+            </div>
+        </div>
+    }
+</section>
+<script>
+    jQuery(function ($) {
+        // determine all items by counting TRs
+        var items = $("table tbody tr");
+
+        var aantItems = items.length;
+        var perPagina = 10;
+
+        // only show the first x (perPage)
+        items.slice(perPagina).hide();
+
+        // paste pagination into div
+        $(".pagination-section").pagination({
+            items: aantItems,
+            itemsOnPage: perPagina,
+            // default theme da ok cooperates with bootstrap
+            cssStyle: "light-theme",
+
+            // page click
+            onPageClick: function (pageNumber) {
+                // determine from where to where
+                var showFrom = perPagina * (pageNumber - 1);
+                var showTo = showFrom + perPagina;
+
+                // everything hiden
+                items.hide()
+                    // show back the one you must show
+                    .slice(showFrom, showTo).show();
+            }
+        });
+    });
+</script>

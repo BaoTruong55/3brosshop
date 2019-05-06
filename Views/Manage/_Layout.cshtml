@@ -1,0 +1,28 @@
+﻿@{ 
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+
+<!-- paginatie voor tabelen -->
+<link rel="stylesheet" href="~/css/simplePagination.css" type="text/css" />
+
+<center><h2 class="mt-30">
+    Quản lý tài khoản
+</h2></center>
+
+<div>
+    <center><h4>
+    Xem dữ liệu của bạn và quản lý tài khoản của bạn
+</h4></center>
+    <hr />
+    <div class="row">
+        <div class="col-md-3">
+            @await Html.PartialAsync("_ManageNav")
+        </div>
+        <div class="col-md-6">
+            @RenderBody()
+        </div>
+    </div>
+</div>   
+
+<!-- paginatie voor tabelen -->
+<script src="~/js/jquery.simplePagination.js"></script>

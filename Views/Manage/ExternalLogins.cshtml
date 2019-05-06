@@ -1,0 +1,65 @@
+﻿@model ExternalLoginsViewModel
+@{
+    ViewData["Title"] = "Liên kết mạng xã hội của bạn";
+    ViewData.AddActivePage(ManageNavPages.ExternalLogins);
+}
+
+@Html.Partial("_StatusMessage", Model.StatusMessage)
+@if (Model.CurrentLogins?.Count > 0)
+{
+    <div class="page-container ptb-10">
+        <div class="container width-100">
+            <section class="sign-area panel p-40 mr-10">
+                <h4>Mạng xã hội được liên kết</h4>
+                <table class="table">
+                    <tbody>
+                        @foreach (var login in Model.CurrentLogins)
+                        {
+                            <tr>
+                                <td>@login.LoginProvider</td>
+                                <td>
+                                    @if (Model.ShowRemoveButton)
+                                    {
+                                        <form asp-action="RemoveLogin" method="post">
+                                            <div>
+                                                <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
+                                                <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
+                                                <button type="submit" class="btn btn-default" title="Verwijder @login.LoginProvider van uw account"> 
+                                                    Xóa
+                                                </button>
+                                            </div>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        @: &nbsp;
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                
+                @if (Model.OtherLogins?.Count > 0)
+                {
+                <h4>
+                    Liên kết mạng xã hội với tài khoản của bạn
+                </h4>
+                    <hr />
+                    <form asp-action="LinkLogin" method="post" class="form-horizontal">
+                        <div id="socialLoginList">
+                            <p>
+                                @foreach (var provider in Model.OtherLogins)
+                                {
+                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Koppel @provider.DisplayName aan uw account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            </section>
+        </div>
+    </div>
+}
+

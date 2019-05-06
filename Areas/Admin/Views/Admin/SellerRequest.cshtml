@@ -1,0 +1,80 @@
+﻿@model Shop.Models.AdminViewModels.SellerReviewsViewModel
+
+@{
+    ViewData["Title"] = "Xác nhận người bán";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    @if (Model.AllDealersRequestsSortedById == null || !Model.AllDealersRequestsSortedById.Any() )
+    {
+    <h1 class="text-center mtb-40 color-white">Hiện tại không có yêu cầu người bán!</h1>
+        <a asp-controller="Admin" asp-action="SellerAdd"><h3 class="text-center color-darkblue">Thêm người bán bằng tay</h3></a>
+    }
+    else
+    {
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Xác nhận người bán
+                </div>
+                <div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tên người bán</th>
+                                <th>Postcode</th>
+                                <th>Thành phố</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        @foreach (var handelaar in Model.AllDealersRequestsSortedById)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@handelaar.Name</td>
+                                    <td>@handelaar.Postcode</td>
+                                    <td>@handelaar.City</td>
+                                    <td><a asp-controller="Admin" asp-action="SellerRequestEvaluation" asp-route-id="@handelaar.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <div class="pagination-section prl-30 ptb-20"></div>
+            </div>
+        </div>
+    }
+</section>
+<script>
+    jQuery(function ($) {
+        // determine all items by counting tr's
+        var items = $("table tbody tr");
+
+        var countOfItem = items.length;
+        var perPage = 10;
+
+        // only show the first x (perPage)
+        items.slice(perPage).hide();
+
+        // paste pagination into div
+        $(".pagination-section").pagination({
+            items: countOfItem,
+            itemsOnPage: perPage,
+            //default theme da ok cooperates with bootstrap
+            cssStyle: "light-theme",
+
+            // pageklik
+            onPageClick: function (pageNumber) {
+                // bepalen van waar tot waar
+                var showFrom = perPage * (pageNumber - 1);
+                var showTo = showFrom + perPage;
+
+                // all hiden
+                items.hide()
+                    // show back the one you must show
+                    .slice(showFrom, showTo).show();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,120 @@
+﻿@model Shop.Models.AdminViewModels.SellerEditViewModel
+
+@{
+    ViewData["Title"] = "Đánh giá người bán hàng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    <h1 class="text-center"></h1>
+
+    <section class="panel">
+        <header class="panel-heading">Chi tiết người bán hàng: @Model.Name</header>
+        <div class="panel-body">
+            <form method="post" enctype="multipart/form-data" class="form-horizontal bucket-form">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">ID (không thể chỉnh sửa)</label>
+                    <div class="col-sm-6">
+                        <input type="text" asp-for="SellerId" class="form-control" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Email (không thể chỉnh sửa)</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="3" asp-for="Email" readonly>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Tên người bán hàng</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="2" asp-for="Name" readonly>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('2')" class="clickable"><i id="2icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Tên đường</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="4" asp-for="Street" readonly>
+                        <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('4')" class="clickable"><i id="4icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Số nhà</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="5" asp-for="ApartmentNumber" readonly>
+                        <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('5')" class="clickable"><i id="5icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Postcode</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="6" asp-for="Postcode" readonly>
+                        <span asp-validation-for="Postcode" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('6')" class="clickable"><i id="6icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Thành phố</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="7" asp-for="City" readonly>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('7')" class="clickable"><i id="7icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Mô tả ngắn</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="9" asp-for="Description" readonly>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('9')" class="clickable"><i id="9icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Logo</label>
+                    <div class="col-sm-6">
+                        <img src="@Model.LogoPath" alt="Logo" class="img-thumbnail max-height-350px">
+                        <label class="btn btn-default" id="fileselection">
+                            <a class="" id="fileselectionText">Selecteer een nieuw logo</a><input asp-for="Image" accept=".jpg" id="fileToUpload" style="display: none;">
+                        </label>
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-9 col-md-offset-3">
+                    <a asp-controller="Admin" asp-action="SellerOverview" class="btn btn-warning mr-20">Annuleer</a>
+                    <button type="submit" class="btn btn-success">Pas de wijzigingen aan</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</section>
+
+<script>
+    $("#fileToUpload").change(function () {
+        document.getElementById('fileselectionText').innerHTML = 'U heeft een nieuw logo geselecteerd';
+    });
+</script>

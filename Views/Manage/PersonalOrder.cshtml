@@ -1,0 +1,52 @@
+﻿@using Shop.Models.Domain
+
+@{
+    ViewData["Title"] = "Đơn hàng của bạn";
+}
+
+
+<div class="page-container ptb-10">
+    <div class="container width-100">
+        <section class="sign-area panel p-40 mr-10">
+            <h4 class="mb-10">@ViewData["Title"]</h4>
+            @if (ViewData["order"] == null)
+            {
+            <p>
+                Bạn chưa có đơn đặt hàng nào
+            </p>
+            }
+            else
+            {
+                <table style="width:100%" class="spacing-10">
+                    <tr>
+                        <th>
+                            Số thứ tự
+                        </th>
+                        <th>
+                            Đặt hàng
+                        </th>
+                        <th>
+                            Tổng số tiền
+                        </th>
+                    </tr>
+                    @foreach (Order b in (IEnumerable<Order>)ViewData["order"])
+                    {
+
+                    <tr>
+                        <td>@b.BillId</td>
+                        <td>@b.BillDate.ToString("dd/MM/yyyy")</td>
+                        <td>@b.BillTotal vnđ</td>
+                        <td><a asp-controller="Manage" asp-action="DetailOrder" asp-route-id="@b.BillId" class="btn btn-sm btn-block">
+    Xem chi tiết
+</a></td>
+                    </tr>
+
+
+                    }
+
+                </table>
+
+            }
+        </section>
+    </div>
+</div>

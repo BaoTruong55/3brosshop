@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Shop.Models.Domain
+@using Shop.Models.Domain.Interface
+@using System.Security.Claims;
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@inject IUserRepository UserRepository
+@inject ISellerRepository SellerRepository
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+<hr class="dotted-hr mrl-20 visible-xs">
+@if (SignInManager.IsSignedIn(User))
+{
+    IList<Claim> claims = await UserManager.GetClaimsAsync(user);
+    <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right" asp-route-returnUrl="@ViewData["ReturnUrl"]"></form>
+    <li class="visible-xs">
+        @if (UserRepository.GetBy(user.Email) != null)
+        {
+            <a asp-area="" asp-controller="Manage" asp-action="Index">
+                <p>Xin chào, @UserRepository.GetBy(user.Email).FirstName</p>
+            </a>
+        }
+        else if (SellerRepository.GetByEmail(user.Email) != null)
+        {
+            <a asp-area="" asp-controller="Manage" asp-action="IndexSeller">
+                <p>Xin chào!</p>
+            </a>
+        }
+        else
+        {
+            <a asp-area="" asp-controller="Manage" asp-action="Index">
+                <p>Xin chào!</p>
+            </a>
+        }
+    </li>
+
+
+    if (claims.Any(claimpje => claimpje.Value == "admin"))
+    {
+        <li class="visible-xs">
+            <a asp-controller="Admin" asp-action="Dashboard">Bảng quản trị<i class="fas fa-long-arrow-alt-right ml-10"></i></a>
+        </li>
+    }
+    else if (claims.Any(claimpje => claimpje.Value == "seller"))
+    {
+        <li class="visible-xs">
+            <a asp-controller="Manage" asp-action="UsedOrderItemOverview">Quản lý người bán hàng<i class="fas fa-long-arrow-alt-right ml-10"></i></a>
+        </li>
+    }
+    else if (claims.Any(claim => claim.Value == "customers")) { }
+    else
+    {
+        <li class="visible-xs">
+            <a asp-controller="Account" asp-action="RegisterSeller">Trở thành người bán hàng<i class="fas fa-long-arrow-alt-right ml-10"></i></a>
+        </li>
+    }
+
+    <li class="visible-xs">
+        <a onclick="document.getElementById('logoutForm').submit();">Đăng xuất</a>
+    </li>
+
+}
+else
+{
+    <li class="visible-xs"><a asp-area="" asp-controller="Account" asp-action="Register" asp-route-returnUrl="@ViewData["ReturnUrl"]">Tạo tài khoản</a></li>
+    <li class="visible-xs"><a asp-area="" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]">Đăng nhập</a></li>
+    <li class="visible-xs"><a asp-area="" asp-controller="Account" asp-action="RegisterSeller" asp-route-returnUrl="@ViewData["ReturnUrl"]">Trở thành người bán hàng</a></li>
+}

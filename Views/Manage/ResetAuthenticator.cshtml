@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Đặt lại khóa xác thực";
+    ViewData.AddActivePage(ManageNavPages.TwoFactorAuthentication);
+}
+
+<h4>@ViewData["Title"]</h4>
+<div class="alert alert-warning" role="alert">
+    <p>
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        <strong>
+            Nếu bạn đặt lại khóa xác thực, ứng dụng xác thực của bạn sẽ không hoạt động cho đến khi bạn cấu hình lại nó.
+        </strong>
+    </p>
+    <p>
+        Quá trình này vô hiệu hóa cho đến khi bạn xác minh ứng dụng xác thực của mình và cũng sẽ đặt lại mã khôi phục .
+        Nếu bạn không hoàn thành cấu hình ứng dụng xác thực, bạn có thể mất quyền truy cập vào tài khoản của mình.
+    </p>
+</div>
+<div>
+    <form asp-action="ResetAuthenticator" method="post" class="form-group">
+        <button class="btn btn-danger" type="submit">
+            Đặt lại khóa xác thực
+        </button>
+    </form>
+</div>

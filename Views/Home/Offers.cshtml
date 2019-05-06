@@ -1,0 +1,147 @@
+﻿@using Shop.Models.Domain;
+@model IEnumerable<Shop.Models.HomeViewModels.SearchViewModel>
+@{
+    ViewData["Title"] = "Ưu đãi";
+    if (ViewData["Navbar"] == null || (string)ViewData["Navbar"] == "")
+    {
+        ViewData["Navbar"] = "Offers";
+    }
+}
+
+<main id="mainContent" class="main-content">
+    <div class="page-container ptb-15">
+        <div class="container">
+            <div class="section coupons-area coupons-area-grid">
+                @if (Model.Count() == 0)
+                {
+                    <div class="col-xs-12 text-center mt-30">
+                        <h4>
+                            Thật không may, không có đề nghị nào được tìm thấy
+                        </h4>
+                        <br>
+                        <img src="~/images/icons/zoeken/notFound.png">
+                    </div>
+                }
+                else
+                {
+                    <section class="section latest-deals-area ptb-30">
+                        <header style="background-color: #1E90FF" class="panel ptb-15 prl-20 pos-r mb-30">
+                            <h3 style="color: white" class="section-title font-18">
+                                Ưu đãi
+                                <element class="slide-navigation-brosshop slide-navigation-brosshop-hideOnOneSlide">
+                                    <a class="vorige-slide-index-grid"><i class="fa fa-arrow-circle-left"></i> vorige </a> | <a class="volgende-slide-index-grid">
+                                        tiếp theo <i class="fa fa-arrow-circle-right"></i>
+                                    </a>
+                                </element>
+                            </h3>
+                        </header>
+                        <div class="row row-masnory row-tb-20 lekkerLokaal-driexdrierow">
+                            @foreach (var bon in Model)
+                            {
+                                <div class="slick-lekker-lokaal">
+                                    <div class="col-xs-12">
+                                        <div class="coupon-item">
+                                            <div class="coupon-single panel t-center">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="text-center p-20 foto">
+                                                            <img class="store-logo foto" src="~/@bon.GetThumbPath" alt="">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <div class="panel-body">
+                                                            <ul class="deal-meta list-inline mb-10">
+                                                                <li class="color-muted"><i class="ico fab fa-periscope mr-5"></i>@bon.City</li>
+                                                                <li class="color-muted"><i class="ico lnr lnr-users mr-5"></i>@bon.QuantityOrdered</li>
+                                                            </ul>
+                                                            <div class="height-70px">
+                                                                <h4 class="color-blue mb-10 t-uppercase">@bon.Name</h4>
+                                                            </div>
+                                                            <div class="height-70px">
+                                                                <h5 class="deal-title mb-10">
+                                                                    <a>@bon.Description</a>
+                                                                </h5>
+                                                            </div>
+                                                            <div class="DynamicAddCartRegionCart height-150px" style="display: none;" id="@(bon.ReceiptId.ToString() + "card")">
+                                                                <form name="WinkelmandjeAdder" onsubmit="return AddToShoppingCartBasket(@bon.ReceiptId);">
+                                                                    <div class="PopupAddToCart-line">
+                                                                        <div class="col-xs-4 no-padding">
+                                                                            <label class="float-left ">Giá :</label>
+                                                                        </div>
+                                                                        <div class="col-xs-offset-1 col-xs-7 no-padding">
+                                                                            <input id="@(bon.ReceiptId.ToString() + "PriceField")" class="form-control" type="number" step="0.01" value="@(bon.Price.ToString().Replace(",","."))" readonly="">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="PopupAddToCart-line">
+                                                                        <div class="col-xs-4 no-padding">
+                                                                            <label class="float-left">Số lượng :</label>
+                                                                        </div>
+                                                                        <div class="col-xs-offset-1 col-xs-7 no-padding">
+                                                                            <input id="@(bon.ReceiptId.ToString() + "QuantityField")" class="form-control" type="number" min="1" max="100" value="1">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-xs-4 showcode no-padding">
+                                                                        <a onclick="DynamicAddCartRegion(@bon.ReceiptId);" class="btn btn-sm btn-block">Terug</a>
+                                                                    </div>
+                                                                    <div class="col-xs-offset-1 col-xs-7 showcode no-padding">
+                                                                        <input name="Submit" type="submit" value="Xác nhận" class="btn btn-sm btn-block" />
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="DynamicAddCartRegionDefault height-150px" id="@(bon.ReceiptId.ToString() + "default")">
+                                                                <p class="color-muted font-12"><i class="fa @bon.CategoryIcon"></i> @bon.CategoryName</p>
+                                                                <p class="mb-15 color-muted mb-20 font-12"><i class="fa fa-credit-card-alt"></i> Giá @bon.Price vnđ</p>
+                                                                <div class="showcode">
+                                                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@bon.ReceiptId" class="btn btn-sm btn-block">
+                                                                        Xem chi tiết
+                                                                    </a>
+                                                                </div>
+                                                                <div style="margin-top: 10px" class="showcode">
+                                                                    <a onclick="DynamicAddCartRegion(@bon.ReceiptId);" class="btn btn-sm btn-block">Thêm vào giỏ</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </section>
+                    <header style="background-color: #1E90FF" class="panel ptb-15 prl-20 pos-r mb-30 slide-navigation-brosshop-hideOnOneSlide">
+                        <h3 style="color: white" class="section-title font-18">
+                            Tìm kiếm: @ViewData["SearchAssignment"]
+                            <element class="slide-navigation-brosshop">
+                                <a class="vorige-slide-index-grid"><i class="fa fa-arrow-circle-left"></i>trước đó </a> | <a class="volgende-slide-index-grid">
+                                    tiếp theo <i class="fa fa-arrow-circle-right"></i>
+                                </a>
+                            </element>
+                        </h3>
+                    </header>
+                }
+            </div>
+        </div>
+    </div>
+    <script>
+        function DynamicAddCartRegion(id) {
+            $('#' + id + "default").slideToggle('slow', function () {
+                $('#' + id + "default").toggleClass('selecionado', $(this).is(':visible'));
+            });
+            $('#' + id + "card").slideToggle('slow', function () {
+                $('#' + id + "card").toggleClass('selecionado', $(this).is(':visible'));
+            });
+        }
+
+        function AddToShoppingCartBasket(id) {
+            var id = id;
+            var price = document.getElementById(id + "PriceField").value;
+            var number = document.getElementById(id + "NumberField").value;
+
+            window.location.href = "/ShoppingCart/Add?id=" + id + "&price=" + price + "&number=" + number;
+
+            return false;
+        }
+    </script>
+</main>

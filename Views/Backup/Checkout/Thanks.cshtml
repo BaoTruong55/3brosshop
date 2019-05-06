@@ -1,0 +1,32 @@
+﻿@model Shop.Models.ShoppingCartViewModels.ThanksViewModel
+
+@using Shop.Models.Domain
+
+﻿@{
+    ViewData["Title"] = "Thanks";
+
+}
+<div class="bedankt panel mb-40">
+    <div class="col-xs-12 center-block  mtb-40">
+        <h1 class="mb-15 text-center">Thanks voor uw order bij Lekker Lokaal!</h1>
+        <h3 class="mb-15">
+            U heeft een e-mail ontvangen met alle bestelde receiptnen.
+        </h3>
+        <h5>
+            Indien u hiervoor gekozen heeft, <br> zal de ontvanger zijn receipt ook via e-mail ontvangen hebben.
+        </h5>
+        @if (((IList<OrderItem>)ViewData["OrderItem"]) != null)
+        {
+            @if (((IList<OrderItem>)ViewData["OrderItem"]).Count == 1)
+            {
+                <p class="mt-20"><a class="btn btn-sm btn-small" target="_blank" href="~/pdf/c_@(((IList<OrderItem>)ViewData["OrderItem"])[0].QRCode).pdf">Download gekochte cadeaureceipt</a></p>
+            }
+            else
+            {
+                <p class="mt-20"><a class="btn btn-sm btn-small" target="_blank" href="~/pdf/merged_@(((IList<OrderItem>)ViewData["OrderItem"])[0].QRCode).pdf">Download gekochte cadeaureceiptnen</a></p>
+            }
+        }
+        <p><a asp-controller="Home" asp-action="Index"><img src="~/images/icons/home/home.png"></a></p>
+        <p><a asp-controller="Home" asp-action="Index">keer terug naar de home pagina.</a></p>
+    </div>
+</div>

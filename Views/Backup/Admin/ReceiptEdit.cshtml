@@ -1,0 +1,175 @@
+﻿@model Shop.Models.AdminViewModels.ReceiptProcessViewModel
+
+@{
+    ViewData["Title"] = "Chỉnh sửa hóa đơn";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    <h1 class="text-center"></h1>
+
+    <section class="panel">
+        <header class="panel-heading">Chỉnh sửa hóa đơn</header>
+        <div class="panel-body">
+            <form onsubmit="PrepareFormForSubmit()" class="form-horizontal bucket-form" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Mã biên lai (không điều chỉnh)</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" asp-for="ReceiptId" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Tên Người bán(không thể tùy chỉnh)</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" asp-for="NameSeller" readonly>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Tên trong biên lai</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="0" asp-for="Name" readonly>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('0')" class="clickable"><i id="0icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Mô tả</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="1" asp-for="Description" readonly>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('1')" class="clickable"><i id="1icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Giá</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="2" asp-for="Price" readonly>
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('2')" class="clickable"><i id="2icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" asp-for="Category"></label>
+                    <div class="col-sm-6">
+                        <select class="form-control" asp-for="Category" id="4" asp-items="@(ViewData["category"] as SelectList)" disabled>
+                            <option value="">--- Chọn danh mục ---</option>
+                        </select>
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleDisabled('4')" class="clickable"><i id="4icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Tên đường</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="5" asp-for="Street" readonly>
+                        <span asp-validation-for="Street" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('5')" class="clickable"><i id="5icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Số nhà</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="6" asp-for="ApartmentNumber" readonly>
+                        <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('6')" class="clickable"><i id="6icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Postcode</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="7" asp-for="Postcode" readonly>
+                        <span asp-validation-for="Postcode" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('7')" class="clickable"><i id="7icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">City</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="8" asp-for="City" readonly>
+                        <span asp-validation-for="City" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('8')" class="clickable"><i id="8icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" asp-for="Offer"></label>
+                    <div class="col-sm-6">
+                        <select class="form-control" asp-for="Offer" id="9" asp-items="@(ViewData["offer"] as SelectList)" disabled>
+                            <option value="">--- Chọn loại ---</option>
+                        </select>
+                        <span asp-validation-for="Offer" class="text-danger"></span>
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleDisabled('9')" class="clickable"><i id="9icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Thumbnail</label>
+                    <div class="col-sm-6">
+                        <img src="@Model.GetThumbPath" alt="Logo" class="img-thumbnail max-height-350px">
+                        <label class="btn btn-default" id="fileselection">
+                            <a class="" id="fileselectionText">Chọn hình thu nhỏ</a><input asp-for="Thumbnail" accept=".jpg" id="fileToUpload" style="display: none;">
+                        </label>
+                        <span asp-validation-for="Thumbnail" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Imageen</label>
+                    <div class="col-sm-6">
+                        <a href="@Url.Action("Detail", "Home", new { Id = Model.ReceiptId})" target="_blank">Bekijk hier de huidige imageen</a>
+                        <label class="btn btn-default" id="fileselection2">
+                            <a class="" id="fileselectionTekst2">chọn hình ảnh</a><input asp-for="Image" accept=".jpg" id="fileToUpload2" style="display: none;">
+                        </label>
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-9 col-md-offset-3">
+                    <a asp-controller="Admin" asp-action="ReceiptOverview" class="btn btn-danger mr-20">Annuleer</a>
+                    <button type="submit" class="btn btn-success">Thay đổi</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</section>
+
+<script>
+    $("#fileToUpload").change(function () {
+        document.getElementById('fileselectionText').innerHTML = 'Bạn đã chọn một tập tin';
+    });
+</script>
+
+<script>
+    $("#fileToUpload2").change(function () {
+        document.getElementById('fileselectionTekst2').innerHTML = 'Bạn đã chọn một tập tin';
+    });
+</script>

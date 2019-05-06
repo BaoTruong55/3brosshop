@@ -1,0 +1,16 @@
+﻿@using Shop.Models.Domain;
+@using Microsoft.AspNetCore.Http;
+@using Newtonsoft.Json;
+
+@{
+    ShoppingCart shoppingCart = Context.Session.GetString("shoppingCart") == null ? null : JsonConvert.DeserializeObject<ShoppingCart>(Context.Session.GetString("shoppingCart"));
+}
+
+@if (shoppingCart == null)
+{
+    <span class="cart-number">0</span>
+}
+else
+{
+    <span class="cart-number">@shoppingCart.NumberofVouchers</span>
+}

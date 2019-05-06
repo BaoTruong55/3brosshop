@@ -1,0 +1,77 @@
+﻿@model Shop.Models.ShoppingCartViewModels.IndexViewModel
+
+<div class="cart-wrapper">
+    @if (Model.ShoppingCartList.Count() == 0)
+    {
+        <div class="col-xs-12 text-center">
+            <h4>Mặt hàng trống!</h4>
+            <img src="~/images/icons/winkelmand/emptycart.png">
+        </div>
+    }
+    else
+    {
+        <h3 class="h-title mb-30 t-uppercase">Giỏ hàng</h3>
+        <table id="cart_list" class="table cart-list mb-30">
+            <thead class="panel t-uppercase">
+                <tr>
+                    <th>Hóa đơn</th>
+                    <th class="text-center">Giá</th>
+                    <th class="text-center">Số lượng</th>
+                    <th class="text-center">Tổng</th>
+                    <th class="text-center">Xóa</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var line in Model.ShoppingCartList)
+                {
+                    <tr class="panel alert">
+                        <td>
+                            <div class="media-left is-hidden-sm-down">
+                                <figure class="product-thumb">
+                                    <img src="@line.GetThumbPath" alt="product">
+                                </figure>
+                            </div>
+                            <div class="media-body valign-middle">
+                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@line.ReceiptId"><h6 class="title mb-15 t-uppercase">@($"{line.ReceiptName}")</h6></a>
+                                <div class="type font-12"><a asp-controller="Home" asp-action="Search" asp-route-ZoekSoort="Category" asp-route-ZoekKey="@line.CategoryName">Danh mục: @($"{line.CategoryName}")</a></div>
+                            </div>
+                        </td>
+                        <td class="text-center">@($" {line.Price:N2} vnđ")</td>
+                        <td class="text-center">
+                            <a onclick="winkelmandAantalVerlagen(@(line.ReceiptId), @(line.Price.ToString().Replace(",",".")))">
+                                <i class="fas fa-minus"></i>
+                            </a>
+                            <input class="quantity-label text-center" type="number" value="@($"{line.Count}")">
+                            <a onclick="winkelmandAantalVerhogen(@(line.ReceiptId), @(line.Price.ToString().Replace(",",".")))">
+                                <i class="fas fa-plus"></i>
+                            </a>
+                        </td>
+                        <td class="text-center">
+                            <div class="sub-total">@($" {line.Total:N2} vnđ")</div>
+                        </td>
+                        <td class="text-center">
+                            <a onclick="winkelmandItemVerwijderen(@(line.ReceiptId), @(line.Price.ToString().Replace(",",".")))">
+                                <i class="fas fa-trash-alt font-26"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="cart-price">
+            <ul class="panel mb-20">
+                <li>
+                    <div class="item-name">
+                        <strong class="t-uppercase">Total</strong>
+                    </div>
+                    <div class="price">
+                        <span>@($" {Model.Total:N2} vnđ")</span>
+                    </div>
+                </li>
+            </ul>
+            <div class="t-right">
+                <a asp-controller="ShoppingCart" asp-action="Checkout" class="btn btn-rounded btn-lg">Đặt hàng</a>
+            </div>
+        </div>
+    }
+</div>
