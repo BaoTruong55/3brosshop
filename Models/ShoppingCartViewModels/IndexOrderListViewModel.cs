@@ -10,11 +10,11 @@ namespace Shop.Models.ShoppingCartViewModels
     public class IndexOrderListViewModel
     {
         [HiddenInput]
-        public int ReceiptId { get; }
+        public int ItemsId { get; }
 
         public int Count { get; }
 
-        public string ReceiptName { get; }
+        public string ItemsName { get; }
 
         public String GetThumbPath { get; }
 
@@ -26,13 +26,13 @@ namespace Shop.Models.ShoppingCartViewModels
 
         public IndexOrderListViewModel(ShoppingCartItem shoppingCartItem)
         {
-            ReceiptId = shoppingCartItem.Receipt.ReceiptId;
+            ItemsId = shoppingCartItem.Items.ItemsId;
             Count = shoppingCartItem.Count;
-            ReceiptName = shoppingCartItem.Receipt.Name;
-            CategoryName = shoppingCartItem.Receipt.Category.Name;
+            ItemsName = shoppingCartItem.Items.Name;
+            CategoryName = shoppingCartItem.Items.Category.Name;
             Price = shoppingCartItem.Price;
             Total = shoppingCartItem.Total;
-            GetThumbPath = shoppingCartItem.Receipt.GetThumbPath();
+            GetThumbPath = shoppingCartItem.Items.GetThumbPath();
         }
     }
 }

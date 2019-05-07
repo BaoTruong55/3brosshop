@@ -1,7 +1,7 @@
 ﻿@model Shop.Models.AdminViewModels.SellerEditViewModel
 
 @{
-    ViewData["Title"] = "Đánh giá người bán hàng";
+    ViewData["Title"] = "Người bán hàng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -99,14 +99,14 @@
                     <div class="col-sm-6">
                         <img src="@Model.LogoPath" alt="Logo" class="img-thumbnail max-height-350px">
                         <label class="btn btn-default" id="fileselection">
-                            <a class="" id="fileselectionText">Selecteer een nieuw logo</a><input asp-for="Image" accept=".jpg" id="fileToUpload" style="display: none;">
+                            <a class="" id="fileselectionText">Chọn logo mới</a><input asp-for="Image" accept=".jpg" id="fileToUpload" style="display: none;">
                         </label>
                         <span asp-validation-for="Image" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="col-md-9 col-md-offset-3">
-                    <a asp-controller="Admin" asp-action="SellerOverview" class="btn btn-warning mr-20">Annuleer</a>
-                    <button type="submit" class="btn btn-success">Pas de wijzigingen aan</button>
+                    <a asp-controller="Admin" asp-action="SellerOverview" class="btn btn-warning mr-20">Hủy bỏ</a>
+                    <button type="submit" class="btn btn-success">Thay đổi</button>
                 </div>
             </form>
         </div>
@@ -115,6 +115,6 @@
 
 <script>
     $("#fileToUpload").change(function () {
-        document.getElementById('fileselectionText').innerHTML = 'U heeft een nieuw logo geselecteerd';
+        document.getElementById('fileselectionText').innerHTML = 'Bạn đã chọn một logo mới';
     });
 </script>

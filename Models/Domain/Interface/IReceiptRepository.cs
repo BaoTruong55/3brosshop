@@ -2,26 +2,26 @@
 
 namespace Shop.Models.Domain.Interface
 {
-    public interface IReceiptRepository
+    public interface IItemsRepository
     {
-        IEnumerable<Receipt> GetAllApproved();
-        int getNumberofReceiptRequests();
-        IEnumerable<Receipt> GetAll();
-        IEnumerable<Receipt> GetTop30(IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetCouponOfferSlider(IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetReceiptOfferStandard(IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetReceiptOfferStandardAndSlider(IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetAll(string searchKey, IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetByLocation(string searchKey, IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetByName(string searchKey, IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetByCategory(string searchKey, IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetByPrice(int searchKey, IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetReceiptNotyetApproved(IEnumerable<Receipt> inputList);
-        IEnumerable<Receipt> GetReceiptApproved(IEnumerable<Receipt> inputList);
-        Receipt GetByReceiptId(int receiptId);
-        void Remove(int receiptId);
-        Receipt GetByReceiptIdNotAccepted(int receiptId);
-        void Add(Receipt receipt);
+        IEnumerable<Items> GetAllApproved();
+        int getNumberofItemsRequests();
+        IEnumerable<Items> GetAll();
+        IEnumerable<Items> GetTop30(IEnumerable<Items> inputList);
+        IEnumerable<Items> GetCouponOfferSlider(IEnumerable<Items> inputList);
+        IEnumerable<Items> GetItemsOfferStandard(IEnumerable<Items> inputList);
+        IEnumerable<Items> GetItemsOfferStandardAndSlider(IEnumerable<Items> inputList);
+        IEnumerable<Items> GetAll(string searchKey, IEnumerable<Items> inputList);
+        IEnumerable<Items> GetByLocation(string searchKey, IEnumerable<Items> inputList);
+        IEnumerable<Items> GetByName(string searchKey, IEnumerable<Items> inputList);
+        IEnumerable<Items> GetByCategory(string searchKey, IEnumerable<Items> inputList);
+        IEnumerable<Items> GetByPrice(int searchKey, IEnumerable<Items> inputList);
+        IEnumerable<Items> GetItemsNotyetApproved(IEnumerable<Items> inputList);
+        IEnumerable<Items> GetItemsApproved(IEnumerable<Items> inputList);
+        Items GetByItemsId(int itemsId);
+        void Remove(int itemsId);
+        Items GetByItemsIdNotAccepted(int itemsId);
+        void Add(Items items);
         void SaveChanges();
     }
 }

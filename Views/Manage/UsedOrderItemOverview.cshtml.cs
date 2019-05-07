@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Shop.Views.Manage
 {
-    public class ScannedUsedReceiptCertificatesViewModel : PageModel
+    public class ScannedUsedItemsCertificatesViewModel : PageModel
     {
         public void OnGet()
         {

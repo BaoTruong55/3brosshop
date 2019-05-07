@@ -18,7 +18,7 @@
         <div class="table-agile-info">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Gebruikte Cadeaureceiptnen
+                    Gebruikte Cadeauitemsnen
                 </div>
                 <div>
                     <table class="table" id="tableToSearch">
@@ -45,7 +45,7 @@
                                     <td>
                                         <span class="label @bon.StatusClass">@bon.Status</span>
                                     </td>
-                                    <td><a asp-controller="Admin" asp-action="SoldReceiptView" asp-route-id="@bon.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                    <td><a asp-controller="Admin" asp-action="SoldItemsView" asp-route-id="@bon.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
                                 </tr>
                             }
                         </tbody>

@@ -31,10 +31,10 @@ namespace Shop.Models.Domain
                 _name = value;
             }
         }
-        public ICollection<Receipt> Coupons { get; private set;  }
+        public ICollection<Items> Coupons { get; private set;  }
 
         protected Category() {
-            Coupons = new HashSet<Receipt>();
+            Coupons = new HashSet<Items>();
         }
 
         public Category(string name, String icon) : this()

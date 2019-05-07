@@ -33,23 +33,23 @@ namespace Shop.Models.Domain
             {
                 for (int i = 1; i <= cart.Count; i++)
                 {
-                    cart.Receipt.QuantityOrdered++;
+                    cart.Items.QuantityOrdered++;
                     string qrcode = String.Format(Guid.NewGuid().ToString() + DateTime.Now.ToString("yyyyMMddhhmmssffffff"));
                     Orders.Add(new OrderItem
                     {
-                        Receipt = cart.Receipt,
+                        Items = cart.Items,
                         Count = 1,
                         Price = cart.Price,
                         Validity = Validity.Invalid,
                         CreationDate = DateTime.Today,
-                        Seller = cart.Receipt.Seller,
+                        Seller = cart.Items.Seller,
                         QRCode = qrcode
                     });
                 }
             }
         }
 
-        public bool HasOrdered(Receipt receipt) => Orders.Any(b => b.Receipt.Equals(receipt));
+        public bool HasOrdered(Items items) => Orders.Any(b => b.Items.Equals(items));
 
 }
 }

@@ -43,7 +43,7 @@ namespace Shop.Controllers
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderItemRepository _orderItemRepository;
         private readonly ISellerRepository _sellerRepository;
-        private readonly IReceiptRepository _receiptRepository;
+        private readonly IItemsRepository _itemsRepository;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
@@ -59,7 +59,7 @@ namespace Shop.Controllers
           IOrderRepository orderRepository,
           IOrderItemRepository orderItemRepository,
           ISellerRepository sellerRepository,
-          IReceiptRepository receiptRepository)
+          IItemsRepository itemsRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -71,7 +71,7 @@ namespace Shop.Controllers
             _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
             _sellerRepository = sellerRepository;
-            _receiptRepository = receiptRepository;
+            _itemsRepository = itemsRepository;
         }
 
         [TempData]
@@ -141,14 +141,14 @@ namespace Shop.Controllers
             var user = await _userManager.GetUserAsync(User);
             var seller = _sellerRepository.GetByEmail(user.Email);
 
-            var orderItemList = _orderItemRepository.getUsedReceiptFromSellerId(seller.SellerId);
+            var orderItemList = _orderItemRepository.getUsedItemsFromSellerId(seller.SellerId);
 
             return View(new UsedOrderOverviewViewModel(orderItemList));
         }
 
 
         [HttpGet]
-        public IActionResult ReceiptRequest()
+        public IActionResult ItemsRequest()
         {
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
             ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
@@ -157,7 +157,7 @@ namespace Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ReceiptRequest(GiftReceiptAddViewModel model)
+        public async Task<IActionResult> ItemsRequest(GiftItemsAddViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -167,14 +167,14 @@ namespace Shop.Controllers
                     throw new ApplicationException($"Không thể lấy thông tin người dùng '{_userManager.GetUserId(User)}'.");
                 }
                 var seller = _sellerRepository.GetByEmail(user.Email);
-                Receipt newReceipt = new Receipt(model.Name, model.Price, model.Description, 0, @"temp", _categoryRepository.GetByName(model.Category), model.Street, model.ApartmentNumber, model.Postcode, model.City, _sellerRepository.GetBySellerId(seller.SellerId), Offer.No, false);
-                _receiptRepository.Add(newReceipt);
-                _receiptRepository.SaveChanges();
+                Items newItems = new Items(model.Name, model.Price, model.Description, 0, @"temp", _categoryRepository.GetByName(model.Category), model.Street, model.ApartmentNumber, model.Postcode, model.City, _sellerRepository.GetBySellerId(seller.SellerId), Offer.No, false);
+                _itemsRepository.Add(newItems);
+                _itemsRepository.SaveChanges();
 
-                newReceipt.Image = @"images\receipt\" + newReceipt.ReceiptId + @"\";
-                _receiptRepository.SaveChanges();
+                newItems.Image = @"images\items\" + newItems.ItemsId + @"\";
+                _itemsRepository.SaveChanges();
 
-                var filePath = @"wwwroot/images/receipt/" + newReceipt.ReceiptId + "/thumb.jpg";
+                var filePath = @"wwwroot/images/items/" + newItems.ItemsId + "/thumb.jpg";
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                 var fileStream = new FileStream(filePath, FileMode.Create);
                 await model.Thumbnail.CopyToAsync(fileStream);
@@ -182,7 +182,7 @@ namespace Shop.Controllers
 
                 for (int i = 0; i < model.Image.Count; i++)
                 {
-                    filePath = @"wwwroot/images/receipt/" + newReceipt.ReceiptId + "/Image/" + (i + 1) + ".jpg";
+                    filePath = @"wwwroot/images/items/" + newItems.ItemsId + "/Image/" + (i + 1) + ".jpg";
                     Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                     fileStream = new FileStream(filePath, FileMode.Create);
                     await model.Image[i].CopyToAsync(fileStream);
@@ -195,7 +195,7 @@ namespace Shop.Controllers
             }
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
             ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
-            return View(nameof(ReceiptRequest), model);
+            return View(nameof(ItemsRequest), model);
         }
 
 
@@ -599,25 +599,25 @@ namespace Shop.Controllers
 
         public void GenerateQR(string qrcode)
         {
-            var receiptPath = @"wwwroot/images/temp/";
+            var itemsPath = @"wwwroot/images/temp/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrcode, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://"+ Request.Host  + "/pdf/c_" + qrcode + ".pdf", QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
-            qrCodeImage.Save(receiptPath + qrcode + ".png", ImageFormat.Png);
+            qrCodeImage.Save(itemsPath + qrcode + ".png", ImageFormat.Png);
         }
 
         public void GeneratePDF(int Id)
         {
             var orderItem = _orderItemRepository.GetById(Id);
-            var receipt = _receiptRepository.GetByReceiptId(orderItem.Receipt.ReceiptId);
-            var seller = _sellerRepository.GetBySellerId(receipt.Seller.SellerId);
+            var items = _itemsRepository.GetByItemsId(orderItem.Items.ItemsId);
+            var seller = _sellerRepository.GetBySellerId(items.Seller.SellerId);
             var user = _userManager.GetUserAsync(User);
             var _user = _userRepository.GetBy(user.Result.Email);
 
             ViewData["path"] = @"/pdf/c_" + orderItem.QRCode + ".pdf";
 
-            string value = String.Format("€ " + orderItem.Price.ToString());
+            string value = String.Format(orderItem.Price.ToString() + " vnđ");
             string date = orderItem.CreationDate.AddYears(1).ToString("dd/MM/yyyy");
             string valid = String.Format("Hiệu lực: " + date);
             var pdf = new Document(PageSize.A5.Rotate(), 81, 225, 25, 0);
@@ -645,7 +645,7 @@ namespace Shop.Controllers
 
             Paragraph amount = new Paragraph(value, arial);
             amount.SpacingAfter = 50;
-            Paragraph nameSeller = new Paragraph(receipt.Name, arial);
+            Paragraph nameSeller = new Paragraph(items.Name, arial);
             nameSeller.SpacingAfter = 0;
             Paragraph givenBy = new Paragraph("Tặng bởi: " + _user.FirstName, arial18);
             Paragraph _valid = new Paragraph(valid, arial18);

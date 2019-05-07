@@ -26,9 +26,9 @@
                         <h2 class="h2 mb-20 h-title">
                             Biên lai
                             <br>
-                            @(index + 1)/@orderItems.Count: @orderItems[index].Receipt.Name - @orderItems[index].Price vnđ
+                            @(index + 1)/@orderItems.Count: @orderItems[index].Items.Name - @orderItems[index].Price vnđ
                         </h2>
-                        <form asp-controller="Checkout" asp-action="CreateReceipt" asp-route-index="@index" class="mb-30">
+                        <form asp-controller="Checkout" asp-action="CreateItems" asp-route-index="@index" class="mb-30">
                             @if (SignInManager.IsSignedIn(User) && UserRepository.GetBy(user.Email) != null)
                             {
                                 <div class="form-group">
@@ -88,7 +88,7 @@
                             }
                             else
                             {
-                                <a asp-controller="Checkout" asp-action="CreateReceipt" asp-route-index="@(index - 1)" class="btn btn-lg btn-rounded ml-5 mt-20"><i class="fas fa-arrow-left"></i> Tạo biên lai</a>
+                                <a asp-controller="Checkout" asp-action="CreateItems" asp-route-index="@(index - 1)" class="btn btn-lg btn-rounded ml-5 mt-20"><i class="fas fa-arrow-left"></i> Tạo biên lai</a>
                             }
 
                             @if ((index + 1) == orderItems.Count)

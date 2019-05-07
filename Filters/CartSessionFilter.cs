@@ -13,12 +13,12 @@ namespace Shop.Filters
     [AttributeUsage(AttributeTargets.All, AllowMultiple = false)]
     public class CartSessionFilter : ActionFilterAttribute
     {
-        private readonly IReceiptRepository _receiptRepository;
+        private readonly IItemsRepository _itemsRepository;
         private ShoppingCart _shoppingCart;
 
-        public CartSessionFilter(IReceiptRepository receiptRepository)
+        public CartSessionFilter(IItemsRepository itemsRepository)
         {
-            _receiptRepository = receiptRepository;
+            _itemsRepository = itemsRepository;
         }
 
         public override void OnActionExecuting(ActionExecutingContext context)
@@ -39,7 +39,7 @@ namespace Shop.Filters
             ShoppingCart shoppingCart = context.Session.GetString("shoppingCart") == null ?
                 new ShoppingCart() : JsonConvert.DeserializeObject<ShoppingCart>(context.Session.GetString("shoppingCart"));
             foreach (var l in shoppingCart.ShoppingCartItems)
-                l.Receipt = _receiptRepository.GetByReceiptId(l.Receipt.ReceiptId);
+                l.Items = _itemsRepository.GetByItemsId(l.Items.ItemsId);
             return shoppingCart;
         }
 

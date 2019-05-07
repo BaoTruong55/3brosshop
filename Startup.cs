@@ -86,14 +86,14 @@ namespace Shop
  
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
-                googleOptions.ClientId = "318681636119-smuvti1h8h1grnm3ro5bcje7emart30n.apps.googleusercontent.com";
-                googleOptions.ClientSecret = "l6S7HMI888QbcPMMhe4UCc4o";
+                googleOptions.ClientId = "691114390080-b0d3c071g15urhs6at72fbgd9n9ndrh9.apps.googleusercontent.com";
+                googleOptions.ClientSecret = "B2qyzjZZ9jHJvF2EIcz3nGL2";
             });
 
             services.AddScoped<CartSessionFilter>();
             services.AddScoped<ThreeBrosDataInitializer>();
             services.AddSession();
-            services.AddScoped<IReceiptRepository, ReceiptRepository>();
+            services.AddScoped<IItemsRepository, ItemsRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ISellerRepository, SellerRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -141,7 +141,7 @@ namespace Shop
                     template: "{controller=Home}/{action=Detail}/{Id?}");
 
                 routes.MapRoute(
-                    name: "receipt",
+                    name: "items",
                     template: "{controller=Home}/{action=Detail}/{Id?}");
 
                 routes.MapRoute(
@@ -149,46 +149,46 @@ namespace Shop
                     template: "{area:exists}/{controller=Admin}/{action=SellerRequestEvaluation}/{Id?}");
 
                 routes.MapRoute(
-                    name: "receiptRequestEvaluation",
-                    template: "{area:exists}/{controller=Admin}/{action=ReceiptRequest}/{Id?}");
+                    name: "itemsRequestEvaluation",
+                    template: "{area:exists}/{controller=Admin}/{action=ItemsRequest}/{Id?}");
 
                 routes.MapRoute(
                     name: "sellerEdit",
                     template: "{area:exists}/{controller=Admin}/{action=SellerEdit}/{Id?}");
 
                 routes.MapRoute(
-                    name: "receiptEdit",
-                    template: "{area:exists}/{controller=Admin}/{action=ReceiptEdit}/{Id?}");
+                    name: "itemsEdit",
+                    template: "{area:exists}/{controller=Admin}/{action=ItemsEdit}/{Id?}");
 
                 routes.MapRoute(
-                    name: "soldReceiptView",
-                    template: "{area:exists}/{controller=Admin}/{action=SoldReceiptView}/{Id?}");
+                    name: "soldItemsView",
+                    template: "{area:exists}/{controller=Admin}/{action=SoldItemsView}/{Id?}");
 
                 routes.MapRoute(
                     name: "shoppingCart",
                     template: "{controller=ShoppingCart}/{action=Add}/{Id}/{Price}/{Count}");
 
                 routes.MapRoute(
-                    name: "createReceipt",
-                    template: "{controller=Manage}/{action=CreateReceipt}/{Id}");
+                    name: "createItems",
+                    template: "{controller=Manage}/{action=CreateItems}/{Id}");
 
                 routes.MapRoute(
                     name: "Account",
                     template: "{controller=Account}/{action=CheckoutMethode}/{checkoutId}/{returnUrl}");
 
                 routes.MapRoute(
-                    name: "createCheckoutReceipt",
-                    template: "{controller=Checkout}/{action=CreateReceipt}/{index}");
+                    name: "createCheckoutitems",
+                    template: "{controller=Checkout}/{action=CreateItems}/{index}");
 
                 routes.MapRoute(
                    name: "Payment",
                    template: "{controller=Checkout}/{action=Payment}/{Id}");
 
                 routes.MapRoute(
-                   name: "MakeReceiptsUsable",
-                   template: "{controller=Checkout}/{action=MakeReceiptsUsable}/{Id}");
+                   name: "MakeItemsUsable",
+                   template: "{controller=Checkout}/{action=MakeItemsUsable}/{Id}");
 
-            });
+            }); 
             datainit.InitializeData().Wait();
         }
     }

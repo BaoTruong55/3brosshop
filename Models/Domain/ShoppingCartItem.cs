@@ -10,7 +10,7 @@ namespace Shop.Models.Domain
     public class ShoppingCartItem
     {
         [JsonProperty]
-        public Receipt Receipt { get; set; }
+        public Items Items { get; set; }
         [JsonProperty]
         public int Count { get; set; }
         [JsonProperty]

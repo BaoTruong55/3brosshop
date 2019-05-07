@@ -1,4 +1,4 @@
-﻿@model Shop.Models.AdminViewModels.ReceiptProcessViewModel
+﻿@model Shop.Models.AdminViewModels.ItemsProcessViewModel
 
 @{
     ViewData["Title"] = "Biên lai ";
@@ -9,13 +9,13 @@
     <h1 class="text-center"></h1>
 
     <section class="panel">
-        <header class="panel-heading">Cadeaureceipt verzoek aanvaarden</header>
+        <header class="panel-heading">Cadeauitems verzoek aanvaarden</header>
         <div class="panel-body">
             <form onsubmit="PrepareFormForSubmit()" class="form-horizontal bucket-form" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Mã biên lai</label>
                     <div class="col-sm-6">
-                        <input class="form-control" required="required" asp-for="ReceiptId" readonly>
+                        <input class="form-control" required="required" asp-for="ItemsId" readonly>
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Tên trong biên lai</label>
+                    <label class="col-sm-3 control-label">Tên mặt hàng</label>
                     <div class="col-sm-6">
                         <input class="form-control" required="required" id="1" asp-for="Name" readonly>
                         <span asp-validation-for="Name" class="text-danger"></span>
@@ -120,7 +120,7 @@
                     <label class="col-sm-3 control-label" asp-for="Offer"></label>
                     <div class="col-sm-6">
                         <select class="form-control" asp-for="Offer" id="10" asp-items="@(ViewData["offer"] as SelectList)" disabled>
-                            <option value="">--- Selecteer type ---</option>
+                            <option value="">--- Chọn loại ---</option>
                         </select>
                         <span asp-validation-for="Offer" class="text-danger"></span>
                     </div>
@@ -143,7 +143,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Hình ảnh</label>
                     <div class="col-sm-6">
-                        <a href="@Url.Action("Detail", "Home", new { Id = Model.ReceiptId})" target="_blank">Xem hình ảnh hiện tại tại đây</a>
+                        <a href="@Url.Action("Detail", "Home", new { Id = Model.ItemsId})" target="_blank">Xem hình ảnh hiện tại tại đây</a>
                         <label class="btn btn-default" id="fileselection2">
                             <a id="fileselectionTekst2">Chọn hinh ảnh mới</a><input asp-for="Image" accept=".jpg" id="fileToUpload2" style="display: none;">
                         </label>
@@ -162,9 +162,9 @@
 
 
                 <div class="col-md-9 col-md-offset-3">
-                    <a asp-controller="Admin" asp-action="ReceiptRequests" class="btn btn-warning mr-20">Hủy bỏ</a>
-                    <button type="submit" formaction="DeleteReceipt" class="btn btn-danger mr-20">Từ chối</button>
-                    <button type="submit" formaction="AcceptReceiptRequest" class="btn btn-success">Chấp nhận</button>
+                    <a asp-controller="Admin" asp-action="ItemsRequests" class="btn btn-warning mr-20">Hủy bỏ</a>
+                    <button type="submit" formaction="DeleteItems" class="btn btn-danger mr-20">Từ chối</button>
+                    <button type="submit" formaction="AcceptItemsRequest" class="btn btn-success">Chấp nhận</button>
                 </div>
             </form>
         </div>

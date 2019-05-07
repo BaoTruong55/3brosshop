@@ -10,7 +10,7 @@ namespace Shop.Models.HomeViewModels
     public class DetailViewModel
     {
         [HiddenInput]
-        public int ReceiptId { get; }
+        public int ItemsId { get; }
         public string Name { get; }
         public decimal Price { get; }
         public string Description { get; }
@@ -28,21 +28,21 @@ namespace Shop.Models.HomeViewModels
         {
         }
 
-        public DetailViewModel(Receipt receipt)
+        public DetailViewModel(Items items)
         {
-            ReceiptId = receipt.ReceiptId;
-            Name = receipt.Name;
-            Price = receipt.Price;
-            Description = receipt.Description;
-            QuantityOrdered = receipt.QuantityOrdered;
-            getImagePathList = receipt.getImagePathList();
-            SellerName = receipt.Seller.Name;
-            SellerDescription = receipt.Seller.Description;
-            FormatedAdress = receipt.Postcode + " " + receipt.City + ", " + receipt.Street + " " + receipt.ApartmentNumber;
-            City = receipt.City;
-            CategoryIcon = receipt.Category.Icon;
-            CategoryName = receipt.Category.Name;
-            GetThumbPath = receipt.GetThumbPath();
+            ItemsId = items.ItemsId;
+            Name = items.Name;
+            Price = items.Price;
+            Description = items.Description;
+            QuantityOrdered = items.QuantityOrdered;
+            getImagePathList = items.getImagePathList();
+            SellerName = items.Seller.Name;
+            SellerDescription = items.Seller.Description;
+            FormatedAdress = items.Postcode + " " + items.City + ", " + items.Street + " " + items.ApartmentNumber;
+            City = items.City;
+            CategoryIcon = items.Category.Icon;
+            CategoryName = items.Category.Name;
+            GetThumbPath = items.GetThumbPath();
         }
     }
 }

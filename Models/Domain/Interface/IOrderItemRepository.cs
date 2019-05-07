@@ -13,7 +13,7 @@ namespace Shop.Models.Domain.Interface
         IEnumerable<OrderItem> getSoldThisMonth();
         IEnumerable<OrderItem> getUsedThisMonth();
         IEnumerable<OrderItem> getUsedOrder();
-        IEnumerable<OrderItem> getUsedReceiptFromSellerId(int id);
+        IEnumerable<OrderItem> getUsedItemsFromSellerId(int id);
         IEnumerable<OrderItem> getSoldOrder();
         void SaveChanges();
         OrderItem GetById(int OrderItemId);

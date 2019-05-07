@@ -195,69 +195,9 @@ namespace Shop.Data.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Shop.Models.Domain.Order", b =>
+            modelBuilder.Entity("Shop.Models.Domain.Items", b =>
                 {
-                    b.Property<int>("BillId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("BillDate");
-
-                    b.Property<int?>("UserId");
-
-                    b.HasKey("BillId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("Shop.Models.Domain.OrderItem", b =>
-                {
-                    b.Property<int>("OrderItemId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Count");
-
-                    b.Property<DateTime>("CreationDate");
-
-                    b.Property<DateTime>("ExpirationDate");
-
-                    b.Property<string>("Message");
-
-                    b.Property<int?>("OrderBillId");
-
-                    b.Property<decimal>("Price");
-
-                    b.Property<string>("QRCode");
-
-                    b.Property<int?>("ReceiptId");
-
-                    b.Property<string>("RecipientEmail");
-
-                    b.Property<string>("RecipientName");
-
-                    b.Property<int?>("SellerId");
-
-                    b.Property<string>("SenderEmail");
-
-                    b.Property<string>("SenderName");
-
-                    b.Property<int>("Validity");
-
-                    b.HasKey("OrderItemId");
-
-                    b.HasIndex("OrderBillId");
-
-                    b.HasIndex("ReceiptId");
-
-                    b.HasIndex("SellerId");
-
-                    b.ToTable("OrderItem");
-                });
-
-            modelBuilder.Entity("Shop.Models.Domain.Receipt", b =>
-                {
-                    b.Property<int>("ReceiptId")
+                    b.Property<int>("ItemsId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("ApartmentNumber");
@@ -286,13 +226,73 @@ namespace Shop.Data.Migrations
 
                     b.Property<string>("Street");
 
-                    b.HasKey("ReceiptId");
+                    b.HasKey("ItemsId");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("SellerId");
 
-                    b.ToTable("Receipt");
+                    b.ToTable("Items");
+                });
+
+            modelBuilder.Entity("Shop.Models.Domain.Order", b =>
+                {
+                    b.Property<int>("BillId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("BillDate");
+
+                    b.Property<int?>("UserId");
+
+                    b.HasKey("BillId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("Shop.Models.Domain.OrderItem", b =>
+                {
+                    b.Property<int>("OrderItemId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Count");
+
+                    b.Property<DateTime>("CreationDate");
+
+                    b.Property<DateTime>("ExpirationDate");
+
+                    b.Property<int?>("ItemsId");
+
+                    b.Property<string>("Message");
+
+                    b.Property<int?>("OrderBillId");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<string>("QRCode");
+
+                    b.Property<string>("RecipientEmail");
+
+                    b.Property<string>("RecipientName");
+
+                    b.Property<int?>("SellerId");
+
+                    b.Property<string>("SenderEmail");
+
+                    b.Property<string>("SenderName");
+
+                    b.Property<int>("Validity");
+
+                    b.HasKey("OrderItemId");
+
+                    b.HasIndex("ItemsId");
+
+                    b.HasIndex("OrderBillId");
+
+                    b.HasIndex("SellerId");
+
+                    b.ToTable("OrderItem");
                 });
 
             modelBuilder.Entity("Shop.Models.Domain.Seller", b =>
@@ -388,6 +388,17 @@ namespace Shop.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("Shop.Models.Domain.Items", b =>
+                {
+                    b.HasOne("Shop.Models.Domain.Category", "Category")
+                        .WithMany("Coupons")
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("Shop.Models.Domain.Seller", "Seller")
+                        .WithMany("Items")
+                        .HasForeignKey("SellerId");
+                });
+
             modelBuilder.Entity("Shop.Models.Domain.Order", b =>
                 {
                     b.HasOne("Shop.Models.Domain.User")
@@ -397,27 +408,16 @@ namespace Shop.Data.Migrations
 
             modelBuilder.Entity("Shop.Models.Domain.OrderItem", b =>
                 {
+                    b.HasOne("Shop.Models.Domain.Items", "Items")
+                        .WithMany()
+                        .HasForeignKey("ItemsId");
+
                     b.HasOne("Shop.Models.Domain.Order")
                         .WithMany("Orders")
                         .HasForeignKey("OrderBillId");
 
-                    b.HasOne("Shop.Models.Domain.Receipt", "Receipt")
-                        .WithMany()
-                        .HasForeignKey("ReceiptId");
-
                     b.HasOne("Shop.Models.Domain.Seller", "Seller")
                         .WithMany()
-                        .HasForeignKey("SellerId");
-                });
-
-            modelBuilder.Entity("Shop.Models.Domain.Receipt", b =>
-                {
-                    b.HasOne("Shop.Models.Domain.Category", "Category")
-                        .WithMany("Coupons")
-                        .HasForeignKey("CategoryId");
-
-                    b.HasOne("Shop.Models.Domain.Seller", "Seller")
-                        .WithMany("Receipt")
                         .HasForeignKey("SellerId");
                 });
 #pragma warning restore 612, 618

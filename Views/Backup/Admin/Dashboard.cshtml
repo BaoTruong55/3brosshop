@@ -21,37 +21,37 @@
             </div>
         </div>
         <div class="col-md-3 market-update-gd">
-            <div class="market-update-block clr-block-4 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("ReceiptRequests", "Admin", null)';">
+            <div class="market-update-block clr-block-4 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("ItemsRequests", "Admin", null)';">
                 <div class="col-md-4 market-update-right">
                     <i class="fas fa-gift font-size-60"></i>
                 </div>
                 <div class="col-md-8 market-update-left">
                     <h4>Yêu cầu biên lai</h4>
-                    <h3>@Model.NumberofReceiptRequests</h3>
+                    <h3>@Model.NumberofItemsRequests</h3>
                 </div>
                 <div class="clearfix"> </div>
             </div>
         </div>
         <div class="col-md-3 market-update-gd">
-            <div class="market-update-block clr-block-1 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("SoldReceipt", "Admin", null)';">
+            <div class="market-update-block clr-block-1 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("SoldItems", "Admin", null)';">
                 <div class="col-md-4 market-update-right">
                     <i class="fas fa-cloud-download-alt font-size-60"></i>
                 </div>
                 <div class="col-md-8 market-update-left">
                     <h4>Biên lai bán</h4>
-                    <h3>@Model.NumberofReceiptSold1M</h3>
+                    <h3>@Model.NumberofItemsSold1M</h3>
                 </div>
                 <div class="clearfix"> </div>
             </div>
         </div>
         <div class="col-md-3 market-update-gd">
-            <div class="market-update-block clr-block-3 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("UsedReceipt", "Admin", null)';">
+            <div class="market-update-block clr-block-3 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("UsedItems", "Admin", null)';">
                 <div class="col-md-4 market-update-right">
                     <i class="fas fa-cloud-upload-alt font-size-60" aria-hidden="true"></i>
                 </div>
                 <div class="col-md-8 market-update-left">
                     <h4>Biên lai đã xuất</h4>
-                    <h3>@Model.NumberUsedReceipt1M</h3>
+                    <h3>@Model.NumberUsedItems1M</h3>
                 </div>
                 <div class="clearfix"> </div>
             </div>
@@ -100,20 +100,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var receipt in Model.RecentlySoldList)
+                        @foreach (var items in Model.RecentlySoldList)
                         {
                             <tr>
-                                <th scope="row">@receipt.Date</th>
+                                <th scope="row">@items.Date</th>
                                 <td>
-                                    @receipt.Name
+                                    @items.Name
                                 </td>
                                 <td>
-                                    &euro; @receipt.Amount
+                                    &euro; @items.Amount
                                 </td>
                                 <td>
-                                    <span class="label @receipt.StatusClass">@receipt.Status</span>
+                                    <span class="label @items.StatusClass">@items.Status</span>
                                 </td>
-                                <td><a asp-controller="Admin" asp-action="SoldReceiptView" asp-route-id="@receipt.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                <td><a asp-controller="Admin" asp-action="SoldItemsView" asp-route-id="@items.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
                             </tr>
                         }
                     </tbody>

@@ -15,12 +15,12 @@ namespace Shop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IReceiptRepository _receiptRepository;
+        private readonly IItemsRepository _itemsRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ISellerRepository _sellerRepository;
-        public HomeController(IReceiptRepository receiptRepository, ICategoryRepository categoryRepository, ISellerRepository sellerRepository)
+        public HomeController(IItemsRepository itemsRepository, ICategoryRepository categoryRepository, ISellerRepository sellerRepository)
         {
-            _receiptRepository = receiptRepository;
+            _itemsRepository = itemsRepository;
             _categoryRepository = categoryRepository;
             _sellerRepository = sellerRepository;
         }
@@ -29,13 +29,13 @@ namespace Shop.Controllers
         {
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
 
-            return View(new IndexViewModel(_receiptRepository.GetTop30(_receiptRepository.GetAllApproved().ToList()).ToList(), _receiptRepository.GetCouponOfferSlider(_receiptRepository.GetAllApproved().ToList()).ToList(), _categoryRepository.GetTop9WithAmount()));
+            return View(new IndexViewModel(_itemsRepository.GetTop30(_itemsRepository.GetAllApproved().ToList()).ToList(), _itemsRepository.GetCouponOfferSlider(_itemsRepository.GetAllApproved().ToList()).ToList(), _categoryRepository.GetTop9WithAmount()));
         }
 
         public IActionResult Offers()
         {
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
-            return View(_receiptRepository.GetReceiptOfferStandardAndSlider(_receiptRepository.GetAllApproved().ToList()).Select(b => new SearchViewModel(b)).ToList());
+            return View(_itemsRepository.GetItemsOfferStandardAndSlider(_itemsRepository.GetAllApproved().ToList()).Select(b => new SearchViewModel(b)).ToList());
         }
 
         public IActionResult About()
@@ -53,7 +53,7 @@ namespace Shop.Controllers
         public IActionResult Search(string SearchType = null, string SearchKey = null, string Categorie = null, string Location = null, string MaxStartPrice = null )
         {
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
-            IEnumerable<Receipt> filteredReceipt;
+            IEnumerable<Items> filteredItems;
 
 
             if (!string.IsNullOrEmpty(SearchKey))
@@ -62,19 +62,19 @@ namespace Shop.Controllers
                 switch (SearchType)
                 {
                     case "Everything":
-                        filteredReceipt = _receiptRepository.GetAll(SearchKey, _receiptRepository.GetAllApproved());
+                        filteredItems = _itemsRepository.GetAll(SearchKey, _itemsRepository.GetAllApproved());
                         break;
                     case "Location":
-                        filteredReceipt = _receiptRepository.GetByLocation(SearchKey, _receiptRepository.GetAllApproved());
+                        filteredItems = _itemsRepository.GetByLocation(SearchKey, _itemsRepository.GetAllApproved());
                         break;
                     case "FirstName":
-                        filteredReceipt = _receiptRepository.GetByName(SearchKey, _receiptRepository.GetAllApproved());
+                        filteredItems = _itemsRepository.GetByName(SearchKey, _itemsRepository.GetAllApproved());
                         break;
                     case "Category":
-                        filteredReceipt = _receiptRepository.GetByCategory(SearchKey, _receiptRepository.GetAllApproved());
+                        filteredItems = _itemsRepository.GetByCategory(SearchKey, _itemsRepository.GetAllApproved());
                         break;
                     default:
-                        filteredReceipt = _receiptRepository.GetAllApproved();
+                        filteredItems = _itemsRepository.GetAllApproved();
                         break;
                 }
                 ViewData["SearchAssignment"] = SearchKey + " trong " + SearchType;
@@ -82,63 +82,63 @@ namespace Shop.Controllers
                 if (!string.IsNullOrEmpty(Categorie) && Categorie != "*")
                 {
                     string input = Categorie;
-                    filteredReceipt = _receiptRepository.GetByCategory(input, filteredReceipt);
+                    filteredItems = _itemsRepository.GetByCategory(input, filteredItems);
                     ViewData["SearchAssignment"] = ViewData["SearchAssignment"] + ", với thể loại " + input;
                 }
                 if (!string.IsNullOrEmpty(Location) && Location != "*")
                 {
                     string input = Location;
-                    filteredReceipt = _receiptRepository.GetByLocation(input, filteredReceipt);
+                    filteredItems = _itemsRepository.GetByLocation(input, filteredItems);
                     ViewData["SearchAssignment"] = ViewData["SearchAssignment"] + ", với địa điểm " + input;
                 }
                 if (!string.IsNullOrEmpty(MaxStartPrice))
                 {
                     int input = int.Parse(MaxStartPrice);
-                    filteredReceipt = _receiptRepository.GetByPrice(input, filteredReceipt);
+                    filteredItems = _itemsRepository.GetByPrice(input, filteredItems);
                     ViewData["SearchAssignment"] = ViewData["SearchAssignment"] + ", với giá tối đa €" + input;
                 }
             }
             else
             {
-                filteredReceipt = _receiptRepository.GetAllApproved();
+                filteredItems = _itemsRepository.GetAllApproved();
                 ViewData["SearchAssignment"] = "Tổng quan";
 
                 if (!string.IsNullOrEmpty(Categorie) && Categorie != "*")
                 {
                     string input = Categorie;
-                    filteredReceipt = _receiptRepository.GetByCategory(input, filteredReceipt);
+                    filteredItems = _itemsRepository.GetByCategory(input, filteredItems);
                     ViewData["SearchAssignment"] = ViewData["SearchAssignment"] + ", với thể loại " + input;
                 }
                 if (!string.IsNullOrEmpty(Location) && Location != "*")
                 {
                     string input = Location;
-                    filteredReceipt = _receiptRepository.GetByLocation(input, filteredReceipt);
+                    filteredItems = _itemsRepository.GetByLocation(input, filteredItems);
                     ViewData["SearchAssignment"] = ViewData["SearchAssignment"] + ", với địa điểm " + input;
                 }
                 if (!string.IsNullOrEmpty(MaxStartPrice))
                 {
                     int input = int.Parse(MaxStartPrice);
-                    filteredReceipt = _receiptRepository.GetByPrice(input, filteredReceipt);
+                    filteredItems = _itemsRepository.GetByPrice(input, filteredItems);
                     ViewData["SearchAssignment"] = ViewData["SearchAssignment"] + ", với giá tối đa " + input;
                 }
             }
 
-            return View(filteredReceipt.Select(b => new SearchViewModel(b)).ToList());
+            return View(filteredItems.Select(b => new SearchViewModel(b)).ToList());
         }
 
         public IActionResult Detail(int Id)
         {
-            Receipt clickedReceipt = _receiptRepository.GetByReceiptId(Id);
-            if (clickedReceipt == null)
+            Items clickedItems = _itemsRepository.GetByItemsId(Id);
+            if (clickedItems == null)
             {
-                clickedReceipt = _receiptRepository.GetByReceiptIdNotAccepted(Id);
+                clickedItems = _itemsRepository.GetByItemsIdNotAccepted(Id);
             }
-            if (clickedReceipt == null)
+            if (clickedItems == null)
             {
                 return RedirectToAction("Index");
             }
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
-            return View(new DetailViewModel(clickedReceipt));
+            return View(new DetailViewModel(clickedItems));
         }
 
         [HttpPost]

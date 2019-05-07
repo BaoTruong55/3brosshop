@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-xs-12 col-md-8 col-lg-9">
                         <div class="header-deals-slider owl-slider owl-slider-index-header" data-loop="true" data-autoplay="true" data-autoplay-timeout="7500" data-smart-speed="1000" data-nav-speed="false" data-nav="true" data-xxs-items="1" data-xxs-nav="true" data-xs-items="1" data-xs-nav="true" data-sm-items="1" data-sm-nav="true" data-md-items="1" data-md-nav="true" data-lg-items="1" data-lg-nav="true">
-                            @foreach (var bon in Model.SliderReceipt)
+                            @foreach (var bon in Model.SliderItems)
                             {
                                 <div class="deal-single panel item">
                                     <figure class="deal-thumbnail embed-responsive embed-responsive-16by9" data-bg-img="@bon.GetThumbPath.Replace("\\","\\\\")">
@@ -49,10 +49,10 @@
                                                 </span>
                                             </div>
                                             <h3 class="deal-title mb-10">
-                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@bon.ReceiptId" class="btntop3 color-light color-h-lighter">@bon.Name</a>
+                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@bon.ItemsId" class="btntop3 color-light color-h-lighter">@bon.Name</a>
                                             </h3>
                                             <h8 class="deal-title mb-10">
-                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@bon.ReceiptId" class="btntop3 color-light color-h-lighter">Bekijk details</a>
+                                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@bon.ItemsId" class="btntop3 color-light color-h-lighter">Bekijk details</a>
                                             </h8>
                                         </div>
                                     </figure>
@@ -124,7 +124,7 @@
                     </h3>
                 </header>
                 <div class="row row-masnory row-tb-20 lekkerLokaal-driexdrierow">
-                    @foreach (var bon in Model.Top30Receipt)
+                    @foreach (var bon in Model.Top30Items)
                     {
                         <div class="slick-lekker-lokaal">
                             <div class="col-xs-12">
@@ -151,14 +151,14 @@
                                                             <a>@bon.Description</a>
                                                         </h5>
                                                     </div>
-                                                    <div class="DynamicAddCartRegionCart height-150px" style="display: none;" id="@(bon.ReceiptId.ToString() + "card")">
-                                                        <form name="WinkelmandjeAdder" onsubmit='return AddToShoppingCartBasket(@bon.ReceiptId, "@bon.GetThumbPath.Replace("\\","\\\\")", "@bon.Name");'>
+                                                    <div class="DynamicAddCartRegionCart height-150px" style="display: none;" id="@(bon.ItemsId.ToString() + "card")">
+                                                        <form name="WinkelmandjeAdder" onsubmit='return AddToShoppingCartBasket(@bon.ItemsId, "@bon.GetThumbPath.Replace("\\","\\\\")", "@bon.Name");'>
                                                             <div class="PopupAddToCart-line">
                                                                 <div class="col-xs-4 no-padding">
                                                                     <label class="float-left ">Giá :</label>
                                                                 </div>
                                                                 <div class="col-xs-offset-1 col-xs-7 no-padding">
-                                                                    <input required id="@(bon.ReceiptId.ToString() + "PriceField")" step="0.01" class="form-control winkelmand-register-enter" type="number" value="@(bon.Price.ToString().Replace(",","."))" readonly>
+                                                                    <input required id="@(bon.ItemsId.ToString() + "PriceField")" step="0.01" class="form-control winkelmand-register-enter" type="number" value="@(bon.Price.ToString().Replace(",","."))" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="PopupAddToCart-line">
@@ -166,29 +166,29 @@
                                                                     <label class="float-left">Số lượng :</label>
                                                                 </div>
                                                                 <div class="col-xs-offset-1 col-xs-7 no-padding">
-                                                                    <input required id="@(bon.ReceiptId.ToString() + "QuantityField")" class="form-control winkelmand-register-enter" type="number" min="1" max="100" value="1">
+                                                                    <input required id="@(bon.ItemsId.ToString() + "QuantityField")" class="form-control winkelmand-register-enter" type="number" min="1" max="100" value="1">
                                                                 </div>
                                                             </div>
                                                             <div class="col-xs-4 showcode no-padding">
-                                                                <a onclick="DynamicAddCartRegion(@bon.ReceiptId);" class="btn btn-sm btn-block" id="@(bon.ReceiptId.ToString() + "TerugKnop")" readonly>
+                                                                <a onclick="DynamicAddCartRegion(@bon.ItemsId);" class="btn btn-sm btn-block" id="@(bon.ItemsId.ToString() + "TerugKnop")" readonly>
                                                                     Quay lại
                                                                 </a>
                                                             </div>
                                                             <div class="col-xs-offset-1 col-xs-7 showcode no-padding">
-                                                                <input name="Submit" type="submit" value="Xác nhận" class="btn btn-sm btn-block" id="@(bon.ReceiptId.ToString() + "BevestigKnop")"/>
+                                                                <input name="Submit" type="submit" value="Xác nhận" class="btn btn-sm btn-block" id="@(bon.ItemsId.ToString() + "BevestigKnop")"/>
                                                             </div>
                                                         </form>
                                                     </div>
-                                                    <div class="DynamicAddCartRegionDefault height-150px" id="@(bon.ReceiptId.ToString() + "default")">
+                                                    <div class="DynamicAddCartRegionDefault height-150px" id="@(bon.ItemsId.ToString() + "default")">
                                                         <p class="color-muted font-12"><i class="fa @bon.CategoryIcon"></i> @bon.CategoryName</p>
                                                         <p class="mb-15 color-muted mb-20 font-12"><i class="fa fa-credit-card-alt"></i> Giá @bon.Price vnđ</p>
                                                         <div class="showcode">
-                                                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@bon.ReceiptId" class="btn btn-sm btn-block">
+                                                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@bon.ItemsId" class="btn btn-sm btn-block">
                                                                 Xem chi tiết
                                                             </a>
                                                         </div>
                                                         <div style="margin-top: 10px" class="showcode">
-                                                            <a onclick="DynamicAddCartRegion(@bon.ReceiptId);" class="btn btn-sm btn-block">
+                                                            <a onclick="DynamicAddCartRegion(@bon.ItemsId);" class="btn btn-sm btn-block">
                                                                 giỏ hàng
                                                             </a>
                                                         </div>

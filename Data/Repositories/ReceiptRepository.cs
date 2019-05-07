@@ -9,35 +9,35 @@ using Shop.Models.Domain.Interface;
 
 namespace Shop.Data.Repositories
 {
-    public class ReceiptRepository : IReceiptRepository
+    public class ItemsRepository : IItemsRepository
     {
         private readonly ApplicationDbContext _context;
-        private readonly DbSet<Receipt> _receipts;
-        public ReceiptRepository(ApplicationDbContext context)
+        private readonly DbSet<Items> _items;
+        public ItemsRepository(ApplicationDbContext context)
         {
             _context = context;
-            _receipts = context.Receipt;
+            _items = context.Items;
         }
-        public IEnumerable<Receipt> GetAllApproved()
+        public IEnumerable<Items> GetAllApproved()
         {
-            return GetReceiptApproved(_receipts.Include(b => b.Category).Include(b => b.Seller).Where(b => b.Approved).OrderByDescending(b => b.QuantityOrdered).AsNoTracking().ToList());
+            return GetItemsApproved(_items.Include(b => b.Category).Include(b => b.Seller).Where(b => b.Approved).OrderByDescending(b => b.QuantityOrdered).AsNoTracking().ToList());
         }
 
-        public int getNumberofReceiptRequests()
+        public int getNumberofItemsRequests()
         {
-            return _receipts.Count(b => !b.Approved);
+            return _items.Count(b => !b.Approved);
         }
 
-        public IEnumerable<Receipt> GetAll(string searchKey, IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetAll(string searchKey, IEnumerable<Items> inputList)
         {
             if (searchKey.Trim().Length != 0)
             {
                 string[] _words = searchKey.ToLower().Split(' ');
                 int _numberofWords = _words.Length;
-                List<Receipt> _advancedSearch = new List<Receipt>();
+                List<Items> _advancedSearch = new List<Items>();
 
 
-                foreach (Receipt b in inputList)
+                foreach (Items b in inputList)
                 {
                     int _numberofMatchesWord = 0;
                     foreach (String word in _words)
@@ -107,13 +107,13 @@ namespace Shop.Data.Repositories
             
         }
 
-        public IEnumerable<Receipt> GetByCategory(string searchKey, IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetByCategory(string searchKey, IEnumerable<Items> inputList)
         {
             string _searchKey = searchKey.ToLower();
             return inputList.Where(b => b.Category.Name.ToLower().Contains(_searchKey)).ToList();
         }
 
-        public IEnumerable<Receipt> GetByLocation(string searchKey, IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetByLocation(string searchKey, IEnumerable<Items> inputList)
         {
             string _searchKey = searchKey.ToLower();
             _searchKey = _searchKey.Replace("-", "");
@@ -122,7 +122,7 @@ namespace Shop.Data.Repositories
             return inputList.Where(b => RemoveAccents(b.City.ToLower().Replace("-", "").Replace("_", "")).Contains(_searchKey)).ToList();
         }
 
-        public IEnumerable<Receipt> GetByName(string searchKey, IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetByName(string searchKey, IEnumerable<Items> inputList)
         {
             string _searchKey = searchKey.ToLower();
             _searchKey = _searchKey.Replace("-", "");
@@ -131,7 +131,7 @@ namespace Shop.Data.Repositories
             return inputList.Where(b => RemoveAccents(b.Name.ToLower().Replace("-", "").Replace("_", "")).Contains(_searchKey)).ToList();
         }
 
-        public IEnumerable<Receipt> GetByPrice(int searchKey, IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetByPrice(int searchKey, IEnumerable<Items> inputList)
         {
             return inputList.Where(b => b.Price <= searchKey).ToList();
         }
@@ -152,67 +152,67 @@ namespace Shop.Data.Repositories
             return (sb.ToString().Normalize(NormalizationForm.FormC));
         }
 
-        public Receipt GetByReceiptId(int receiptId)
+        public Items GetByItemsId(int itemsId)
         {
-            return _receipts.Include(b => b.Category).Include(b=>b.Seller).SingleOrDefault(b => b.ReceiptId == receiptId && b.Approved);
+            return _items.Include(b => b.Category).Include(b=>b.Seller).SingleOrDefault(b => b.ItemsId == itemsId && b.Approved);
         }
 
-        public Receipt GetByReceiptIdNotAccepted(int receiptId)
+        public Items GetByItemsIdNotAccepted(int itemsId)
         {
-            return _receipts.Include(b => b.Category).Include(b => b.Seller).SingleOrDefault(b => b.ReceiptId == receiptId && !b.Approved);
+            return _items.Include(b => b.Category).Include(b => b.Seller).SingleOrDefault(b => b.ItemsId == itemsId && !b.Approved);
         }
 
-        public IEnumerable<Receipt> GetTop30(IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetTop30(IEnumerable<Items> inputList)
         {
             return inputList.OrderByDescending(b => b.QuantityOrdered).Take(30).ToList();
         }
 
-        public IEnumerable<Receipt> GetCouponOfferSlider(IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetCouponOfferSlider(IEnumerable<Items> inputList)
         {
             return inputList.Where(b => b.Offer == Offer.Slider).ToList();
         }
 
-        public IEnumerable<Receipt> GetReceiptOfferStandard(IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetItemsOfferStandard(IEnumerable<Items> inputList)
         {
             return inputList.Where(b => b.Offer == Offer.Standard).ToList();
         }
 
-        public IEnumerable<Receipt> GetReceiptOfferStandardAndSlider(IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetItemsOfferStandardAndSlider(IEnumerable<Items> inputList)
         {
-            return GetCouponOfferSlider(inputList).Union(GetReceiptOfferStandard(inputList)).ToList();
+            return GetCouponOfferSlider(inputList).Union(GetItemsOfferStandard(inputList)).ToList();
         }
         public void SaveChanges()
         {
             _context.SaveChanges();
         }
 
-        public void Add(Receipt receipt)
+        public void Add(Items items)
         {
-            _receipts.Add(receipt);
+            _items.Add(items);
         }
 
-        public IEnumerable<Receipt> GetReceiptNotyetApproved(IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetItemsNotyetApproved(IEnumerable<Items> inputList)
         {
-            return inputList.OrderBy(h => h.ReceiptId).Where(b => !b.Approved).ToList();
+            return inputList.OrderBy(h => h.ItemsId).Where(b => !b.Approved).ToList();
         }
 
-        public IEnumerable<Receipt> GetReceiptApproved(IEnumerable<Receipt> inputList)
+        public IEnumerable<Items> GetItemsApproved(IEnumerable<Items> inputList)
         {
-            return inputList.OrderBy(h => h.ReceiptId).Where(b => b.Approved).ToList();
+            return inputList.OrderBy(h => h.ItemsId).Where(b => b.Approved).ToList();
         }
 
-        public void Remove(int receiptId)
+        public void Remove(int itemsId)
         {
-            Receipt tempReceipt = GetByReceiptIdNotAccepted(receiptId);
-            if (tempReceipt == null)
+            Items tempItems = GetByItemsIdNotAccepted(itemsId);
+            if (tempItems == null)
             {
-                tempReceipt = GetByReceiptId(receiptId);
+                tempItems = GetByItemsId(itemsId);
             }
-            _receipts.Remove(tempReceipt);
+            _items.Remove(tempItems);
         }
-        public IEnumerable<Receipt> GetAll()
+        public IEnumerable<Items> GetAll()
         {
-            return _receipts.Include(b => b.Category).Include(b => b.Seller).OrderByDescending(b => b.QuantityOrdered).AsNoTracking().ToList();
+            return _items.Include(b => b.Category).Include(b => b.Seller).OrderByDescending(b => b.QuantityOrdered).AsNoTracking().ToList();
         }
     }
 }

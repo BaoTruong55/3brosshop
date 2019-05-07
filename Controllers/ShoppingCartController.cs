@@ -17,12 +17,12 @@ namespace Shop.Controllers
     public class ShoppingCartController : Controller
     {
         private readonly ICategoryRepository _categoryRepository;
-        private readonly IReceiptRepository _receiptRepository;
+        private readonly IItemsRepository _itemsRepository;
 
-        public ShoppingCartController(ICategoryRepository categoryRepository, IReceiptRepository receiptRepository)
+        public ShoppingCartController(ICategoryRepository categoryRepository, IItemsRepository itemsRepository)
         {
             _categoryRepository = categoryRepository;
-            _receiptRepository = receiptRepository;
+            _itemsRepository = itemsRepository;
         }
 
         public IActionResult Index(ShoppingCart shoppingCart)
@@ -35,10 +35,10 @@ namespace Shop.Controllers
         [HttpGet]
         public IActionResult Add(int id, decimal price, int number, ShoppingCart shoppingCart)
         {
-            Receipt receipt = _receiptRepository.GetByReceiptId(id);
-            if (receipt != null)
+            Items items = _itemsRepository.GetByItemsId(id);
+            if (items != null)
             {
-                shoppingCart.AddItem(receipt, number, price);
+                shoppingCart.AddItem(items, number, price);
             }
             return RedirectToAction(nameof(Index));
         }
@@ -46,9 +46,9 @@ namespace Shop.Controllers
         [HttpGet]
         public IActionResult Remove(int id, decimal price, ShoppingCart shoppingCart)
         {
-            Receipt receipt = _receiptRepository.GetByReceiptId(id);
-            shoppingCart.DeleteItem(receipt, price);
-            TempData["message"] = $"biên lai {receipt.Name} với số tiền {price} vnđ đã bị xóa khỏi giỏ hàng của bạn.";
+            Items items = _itemsRepository.GetByItemsId(id);
+            shoppingCart.DeleteItem(items, price);
+            TempData["message"] = $"Mặt hàng {items.Name} với số tiền {price} vnđ đã bị xóa khỏi giỏ hàng của bạn.";
             return PartialView("IndexPartialItemsList", new IndexViewModel(shoppingCart.ShoppingCartItems, shoppingCart.TotalValue));
         }
 

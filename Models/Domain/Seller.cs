@@ -13,7 +13,7 @@ namespace Shop.Models.Domain
         public string EmailAddress { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
-        public ICollection<Receipt> Receipt { get; private set; }
+        public ICollection<Items> Items { get; private set; }
         public string Street { get; set; }
         public string ApartmentNumber { get; set; }
         public string Postcode { get; set; }
@@ -35,12 +35,12 @@ namespace Shop.Models.Domain
             ApartmentNumber = apartmentNumber;
             Postcode = postcode;
             City = city;
-            Receipt = new HashSet<Receipt>();
+            Items = new HashSet<Items>();
         }
 
-        public void AddReceipt(Receipt receipt)
+        public void AddItems(Items items)
         {
-            Receipt.Add(receipt);
+            Items.Add(items);
         }
 
         public string GetLogoPath()

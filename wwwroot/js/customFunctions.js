@@ -139,17 +139,17 @@ function AddToShoppingCartBasket(id, image, name) {
 
 function hideAddedToShoppingBasketPopup() {
     document.getElementById('addedToShoppingCartPopup').style.display = 'none';
-    document.getElementById("paginaWrapperVoorBlur").classList.remove('blurOverlay');
+    document.getElementById("pageWrapperForBlur").classList.remove('blurOverlay');
     enableScroll();
 }
 
 function showAddShoppingCartPopup(image, name, price, number) {
-    document.getElementById("shopBasketPopupReceiptName").innerHTML = '<i class="far fa-check-circle font-26"></i> ' + name + ' werd toegevoegd aan uw winkelwagen!';
-    document.getElementById("shopBasketPopupReceiptImage").src = "/" + image;
-    document.getElementById("shopBasketPopupReceiptValue").innerHTML = "- Số tiền: " + price + "vnđ";
-    document.getElementById("shopBasketPopupReceiptNumber").innerHTML = "- Số lượng: " + number;
+    document.getElementById("shopBasketPopupItemsName").innerHTML = '<i class="far fa-check-circle font-26"></i> ' + name + ' werd toegevoegd aan uw winkelwagen!';
+    document.getElementById("shopBasketPopupItemsImage").src = "/" + image;
+    document.getElementById("shopBasketPopupItemsValue").innerHTML = "- Số tiền: " + price + "vnđ";
+    document.getElementById("shopBasketPopupItemsNumber").innerHTML = "- Số lượng: " + number;
 
-    document.getElementById("paginaWrapperVoorBlur").classList.add("blurOverlay");
+    document.getElementById("pageWrapperForBlur").classList.add("blurOverlay");
 
     document.getElementById('addedToShoppingCartPopup').style.display = 'block';
 

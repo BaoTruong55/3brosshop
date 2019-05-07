@@ -32,7 +32,7 @@ namespace Shop.Areas.Admin.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ISellerRepository _sellerRepository;
-        private readonly IReceiptRepository _receiptRepository;
+        private readonly IItemsRepository _itemsRepository;
         private readonly IUserRepository _userRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IOrderItemRepository _orderItemRepository;
@@ -43,7 +43,7 @@ namespace Shop.Areas.Admin.Controllers
             ILogger<AdminController> logger,
             SignInManager<ApplicationUser> signInManager,
             ISellerRepository sellerRepository,
-            IReceiptRepository receiptRepository,
+            IItemsRepository itemsRepository,
             IUserRepository userRepository,
             IOrderItemRepository orderItemRepository,
             ICategoryRepository categoryRepository)
@@ -53,7 +53,7 @@ namespace Shop.Areas.Admin.Controllers
             _signInManager = signInManager;
             _sellerRepository = sellerRepository;
             _userRepository = userRepository;
-            _receiptRepository = receiptRepository;
+            _itemsRepository = itemsRepository;
             _orderItemRepository = orderItemRepository;
             _categoryRepository = categoryRepository;
         }
@@ -119,7 +119,7 @@ namespace Shop.Areas.Admin.Controllers
 
         public IActionResult Dashboard()
         {
-            return View(new DashboardViewModel(_sellerRepository.getNumberOfSeller(), _receiptRepository.getNumberofReceiptRequests(), _orderItemRepository.getSoldThisMonth(), _orderItemRepository.getUsedThisMonth()));
+            return View(new DashboardViewModel(_sellerRepository.getNumberOfSeller(), _itemsRepository.getNumberofItemsRequests(), _orderItemRepository.getSoldThisMonth(), _orderItemRepository.getUsedThisMonth()));
         }
 
         [HttpGet]
@@ -291,16 +291,16 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult ReceiptRequest(int Id)
+        public IActionResult ItemsRequest(int Id)
         {
-            Receipt geselecteerdebonEvaluatie = _receiptRepository.GetByReceiptIdNotAccepted(Id);
-            if (geselecteerdebonEvaluatie == null)
+            Items selectedItemsEvaluation = _itemsRepository.GetByItemsIdNotAccepted(Id);
+            if ( selectedItemsEvaluation == null)
             {
-                return RedirectToAction("ReceiptRequests");
+                return RedirectToAction("ItemsRequests");
             }
             ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
             ViewData["offer"] = Offer();
-            return View(new ReceiptProcessViewModel(geselecteerdebonEvaluatie));
+            return View(new ItemsProcessViewModel(selectedItemsEvaluation));
         }
 
         [HttpGet]
@@ -451,14 +451,14 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult ReceiptRequests()
+        public IActionResult ItemsRequests()
         {
             //implement
-            return View(new ReceiptRequestsViewModel(_receiptRepository.GetReceiptNotyetApproved(_receiptRepository.GetAll())));
+            return View(new ItemsRequestsViewModel(_itemsRepository.GetItemsNotyetApproved(_itemsRepository.GetAll())));
         }
 
         [HttpGet]
-        public IActionResult AddReceipt()
+        public IActionResult AddItems()
         {
             ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
             ViewData["offer"] = Offer();
@@ -477,18 +477,18 @@ namespace Shop.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddReceipt(ManuallyNewReceiptViewModel model)
+        public async Task<IActionResult> AddItems(ManuallyNewItemsViewModel model)
         {
             if (ModelState.IsValid)
             {
-                Receipt newReceipt = new Receipt(model.Name, model.Price ,model.Description, 0, @"temp", _categoryRepository.GetByName(model.Category), model.Street, model.ApartmentNumber, model.Postcode, model.City, _sellerRepository.GetBySellerId(model.SellerId), model.Offer, true);
-                _receiptRepository.Add(newReceipt);
-                _receiptRepository.SaveChanges();
+                Items newItems = new Items(model.Name, model.Price ,model.Description, 0, @"temp", _categoryRepository.GetByName(model.Category), model.Street, model.ApartmentNumber, model.Postcode, model.City, _sellerRepository.GetBySellerId(model.SellerId), model.Offer, true);
+                _itemsRepository.Add(newItems);
+                _itemsRepository.SaveChanges();
 
-                newReceipt.Image = @"images\receipt\" + newReceipt.ReceiptId + @"\";
-                _receiptRepository.SaveChanges();
+                newItems.Image = @"images\items\" + newItems.ItemsId + @"\";
+                _itemsRepository.SaveChanges();
 
-                var filePath = @"wwwroot/images/receipt/" + newReceipt.ReceiptId + "/thumb.jpg";
+                var filePath = @"wwwroot/images/items/" + newItems.ItemsId + "/thumb.jpg";
                 Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                 var fileStream = new FileStream(filePath, FileMode.Create);
                 await model.Thumbnail.CopyToAsync(fileStream);
@@ -496,7 +496,7 @@ namespace Shop.Areas.Admin.Controllers
 
                 for (int i = 0; i < model.Image.Count; i++)
                 {
-                    filePath = @"wwwroot/images/receipt/" + newReceipt.ReceiptId + "/Image/" + (i + 1) + ".jpg";
+                    filePath = @"wwwroot/images/items/" + newItems.ItemsId + "/Image/" + (i + 1) + ".jpg";
                     Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                     fileStream = new FileStream(filePath, FileMode.Create);
                     await model.Image[i].CopyToAsync(fileStream);
@@ -504,93 +504,93 @@ namespace Shop.Areas.Admin.Controllers
                 }
 
 
-                return RedirectToAction("ReceiptOverview");
+                return RedirectToAction("ItemsOverview");
 
             }
             ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
             ViewData["offer"] = Offer();
-            return View(nameof(AddReceipt), model);
+            return View(nameof(AddItems), model);
         }
 
 
         [HttpGet]
-        public IActionResult ReceiptOverview()
+        public IActionResult ItemsOverview()
         {
-            return View(new ReceiptOverviewViewModel(_receiptRepository.GetAllApproved()));
+            return View(new ItemsOverviewViewModel(_itemsRepository.GetAllApproved()));
         }
 
         [HttpGet]
-        public IActionResult ReceiptEdit(int Id)
+        public IActionResult ItemsEdit(int Id)
         {
-            Receipt geselecteerdeReceipt = _receiptRepository.GetByReceiptId(Id);
-            if (geselecteerdeReceipt == null)
+            Items geselecteerdeItems = _itemsRepository.GetByItemsId(Id);
+            if (geselecteerdeItems == null)
             {
-                return RedirectToAction("ReceiptOverview");
+                return RedirectToAction("ItemsOverview");
             }
             ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
             ViewData["offer"] = Offer();
-            return View(new ReceiptProcessViewModel(geselecteerdeReceipt));
+            return View(new ItemsProcessViewModel(geselecteerdeItems));
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ReceiptEdit(ReceiptProcessViewModel model)
+        public async Task<IActionResult> ItemsEdit(ItemsProcessViewModel model)
         {
             if (ModelState.IsValid)
             {
-                Receipt receiptInDb = _receiptRepository.GetByReceiptId(model.ReceiptId);
+                Items itemsInDb = _itemsRepository.GetByItemsId(model.ItemsId);
 
-                if (receiptInDb.Name != model.Name)
+                if (itemsInDb.Name != model.Name)
                 {
-                    receiptInDb.Name = model.Name;
+                    itemsInDb.Name = model.Name;
                 }
 
-                if (receiptInDb.Description != model.Description)
+                if (itemsInDb.Description != model.Description)
                 {
-                    receiptInDb.Description = model.Description;
+                    itemsInDb.Description = model.Description;
                 }
 
-                if (receiptInDb.Price != model.Price)
+                if (itemsInDb.Price != model.Price)
                 {
-                    receiptInDb.Price = model.Price;
+                    itemsInDb.Price = model.Price;
                 }
 
 
-                if (receiptInDb.Category.Name != model.Category)
+                if (itemsInDb.Category.Name != model.Category)
                 {
-                    receiptInDb.Category = _categoryRepository.GetByName(model.Category);
+                    itemsInDb.Category = _categoryRepository.GetByName(model.Category);
                 }
 
-                if (receiptInDb.Street != model.Street)
+                if (itemsInDb.Street != model.Street)
                 {
-                    receiptInDb.Street = model.Street;
+                    itemsInDb.Street = model.Street;
                 }
 
-                if (receiptInDb.ApartmentNumber != model.ApartmentNumber)
+                if (itemsInDb.ApartmentNumber != model.ApartmentNumber)
                 {
-                    receiptInDb.ApartmentNumber = model.ApartmentNumber;
+                    itemsInDb.ApartmentNumber = model.ApartmentNumber;
                 }
 
-                if (receiptInDb.Postcode != model.Postcode)
+                if (itemsInDb.Postcode != model.Postcode)
                 {
-                    receiptInDb.Postcode = model.Postcode;
+                    itemsInDb.Postcode = model.Postcode;
                 }
 
-                if (receiptInDb.City != model.City)
+                if (itemsInDb.City != model.City)
                 {
-                    receiptInDb.City = model.City;
+                    itemsInDb.City = model.City;
                 }
 
-                if (receiptInDb.Offer != model.Offer)
+                if (itemsInDb.Offer != model.Offer)
                 {
-                    receiptInDb.Offer = model.Offer;
+                    itemsInDb.Offer = model.Offer;
                 }
 
-                _receiptRepository.SaveChanges();
+                _itemsRepository.SaveChanges();
 
                 if (model.Thumbnail != null)
                 {
-                    var filePath = @"wwwroot/" + receiptInDb.Image + "thumb.jpg";
+                    var filePath = @"wwwroot/" + itemsInDb.Image + "thumb.jpg";
                     Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                     var fileStream = new FileStream(filePath, FileMode.Create);
                     await model.Thumbnail.CopyToAsync(fileStream);
@@ -599,7 +599,7 @@ namespace Shop.Areas.Admin.Controllers
 
                 if (model.Image != null)
                 {
-                    System.IO.DirectoryInfo di = new DirectoryInfo(@"wwwroot/" + receiptInDb.Image + "Image/");
+                    System.IO.DirectoryInfo di = new DirectoryInfo(@"wwwroot/" + itemsInDb.Image + "Image/");
 
                     foreach (FileInfo file in di.GetFiles())
                     {
@@ -608,7 +608,7 @@ namespace Shop.Areas.Admin.Controllers
 
                     for (int i = 0; i < model.Image.Count; i++)
                     {
-                        var filePath = @"wwwroot/" + receiptInDb.Image + "Image/" + (i + 1) + ".jpg";
+                        var filePath = @"wwwroot/" + itemsInDb.Image + "Image/" + (i + 1) + ".jpg";
                         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                         var fileStream = new FileStream(filePath, FileMode.Create);
                         await model.Image[i].CopyToAsync(fileStream);
@@ -616,46 +616,46 @@ namespace Shop.Areas.Admin.Controllers
                     }
                 }
 
-                return RedirectToAction("ReceiptOverview");
+                return RedirectToAction("ItemsOverview");
             }
-            return View(nameof(ReceiptEdit), model);
+            return View(nameof(ItemsEdit), model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteReceipt(ReceiptProcessViewModel model)
+        public IActionResult DeleteItems(ItemsProcessViewModel model)
         {
             if (ModelState.IsValid)
             {
-                Receipt receiptInDb = _receiptRepository.GetByReceiptIdNotAccepted(model.ReceiptId);
-                _receiptRepository.Remove(model.ReceiptId);
-                _receiptRepository.SaveChanges();
+                Items itemsInDb = _itemsRepository.GetByItemsIdNotAccepted(model.ItemsId);
+                _itemsRepository.Remove(model.ItemsId);
+                _itemsRepository.SaveChanges();
 
-                var filePath = @"wwwroot/" + receiptInDb.Image;
+                var filePath = @"wwwroot/" + itemsInDb.Image;
                 Directory.Delete(filePath, true);
 
 
-                var emailadres = receiptInDb.Seller.EmailAddress;
+                var emailadres = itemsInDb.Seller.EmailAddress;
 
                 var message = new MailMessage();
                 message.From = new MailAddress("3bros.shop.suport@gmail.com");
                 message.To.Add(emailadres);
-                message.Subject = "Yêu cầu của bạn để thêm biên lai mới trên 3BrosShop đã bị từ chối.";
+                message.Subject = "Yêu cầu của bạn để thêm mặt hàng mới trên 3BrosShop đã bị từ chối.";
 
                 if (model.Note != null)
                 {
                     message.Body = String.Format("Kính gửi " + model.NameSeller + ", \n\n" +
-                   "Yêu cầu gần đây của bạn để thêm biên nhận vào 3BrosShop đã bị từ chối. \n\n" +
+                   "Yêu cầu gần đây của bạn để thêm mặt hàng vào 3BrosShop đã bị từ chối. \n\n" +
                    model.Note + "\n\n" +
-                   "Nếu bạn nghĩ rằng bạn vẫn có quyền thêm biên lai này vào 3BrosShop, chúng tôi khuyên bạn nên gửi yêu cầu mới. \n\n" +
+                   "Nếu bạn nghĩ rằng bạn vẫn có quyền thêm mặt hàng này vào 3BrosShop, chúng tôi khuyên bạn nên gửi yêu cầu mới. \n\n" +
                    "Trân trọng, \n" +
                   "3bros team");
                 }
                 else
                 {
                     message.Body = String.Format("Kính gửi " + model.NameSeller + ", \n\n" +
-                    "Yêu cầu gần đây của bạn để thêm biên nhận vào 3BrosShop đã bị từ chối. \n\n" +
-                    "Nếu bạn nghĩ rằng bạn vẫn có quyền thêm biên lai này vào 3BrosShop, chúng tôi khuyên bạn nên gửi yêu cầu mới. \n\n" +
+                    "Yêu cầu gần đây của bạn để thêm mặt hàng vào 3BrosShop đã bị từ chối. \n\n" +
+                    "Nếu bạn nghĩ rằng bạn vẫn có quyền thêm mặt hàng này vào 3BrosShop, chúng tôi khuyên bạn nên gửi yêu cầu mới. \n\n" +
                     "Trân trọng, \n" +
                     "3bros team");
                 }
@@ -666,71 +666,71 @@ namespace Shop.Areas.Admin.Controllers
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(message);
 
-                return RedirectToAction("ReceiptRequests");
+                return RedirectToAction("ItemsRequests");
             }
             return View(nameof(SellerRequestEvaluation), model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AcceptReceiptRequest(ReceiptProcessViewModel model)
+        public async Task<IActionResult> AcceptItemsRequest(ItemsProcessViewModel model)
         {
             if (ModelState.IsValid)
             {
-                Receipt receiptInDb = _receiptRepository.GetByReceiptIdNotAccepted(model.ReceiptId);
+                Items itemsInDb = _itemsRepository.GetByItemsIdNotAccepted(model.ItemsId);
 
-                if (receiptInDb.Name != model.Name)
+                if (itemsInDb.Name != model.Name)
                 {
-                    receiptInDb.Name = model.Name;
+                    itemsInDb.Name = model.Name;
                 }
 
-                if (receiptInDb.Description != model.Description)
+                if (itemsInDb.Description != model.Description)
                 {
-                    receiptInDb.Description = model.Description;
+                    itemsInDb.Description = model.Description;
                 }
 
-                if (receiptInDb.Price != model.Price)
+                if (itemsInDb.Price != model.Price)
                 {
-                    receiptInDb.Price = model.Price;
+                    itemsInDb.Price = model.Price;
                 }
 
-                if (receiptInDb.Category.Name != model.Category)
+                if (itemsInDb.Category.Name != model.Category)
                 {
-                    receiptInDb.Category = _categoryRepository.GetByName(model.Category);
+                    itemsInDb.Category = _categoryRepository.GetByName(model.Category);
                 }
 
-                if (receiptInDb.Street != model.Street)
+                if (itemsInDb.Street != model.Street)
                 {
-                    receiptInDb.Street = model.Street;
+                    itemsInDb.Street = model.Street;
                 }
 
-                if (receiptInDb.ApartmentNumber != model.ApartmentNumber)
+                if (itemsInDb.ApartmentNumber != model.ApartmentNumber)
                 {
-                    receiptInDb.ApartmentNumber = model.ApartmentNumber;
+                    itemsInDb.ApartmentNumber = model.ApartmentNumber;
                 }
 
-                if (receiptInDb.Postcode != model.Postcode)
+                if (itemsInDb.Postcode != model.Postcode)
                 {
-                    receiptInDb.Postcode = model.Postcode;
+                    itemsInDb.Postcode = model.Postcode;
                 }
 
-                if (receiptInDb.City != model.City)
+                if (itemsInDb.City != model.City)
                 {
-                    receiptInDb.City = model.City;
+                    itemsInDb.City = model.City;
                 }
 
-                if (receiptInDb.Offer != model.Offer)
+                if (itemsInDb.Offer != model.Offer)
                 {
-                    receiptInDb.Offer = model.Offer;
+                    itemsInDb.Offer = model.Offer;
                 }
 
-                receiptInDb.Approved = true;
+                itemsInDb.Approved = true;
 
-                _receiptRepository.SaveChanges();
+                _itemsRepository.SaveChanges();
 
                 if (model.Thumbnail != null)
                 {
-                    var filePath = @"wwwroot/" + receiptInDb.Image + "thumb.jpg";
+                    var filePath = @"wwwroot/" + itemsInDb.Image + "thumb.jpg";
                     Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                     var fileStream = new FileStream(filePath, FileMode.Create);
                     await model.Thumbnail.CopyToAsync(fileStream);
@@ -739,7 +739,7 @@ namespace Shop.Areas.Admin.Controllers
 
                 if (model.Image != null)
                 {
-                    System.IO.DirectoryInfo di = new DirectoryInfo(@"wwwroot/" + receiptInDb.Image + "Image/");
+                    System.IO.DirectoryInfo di = new DirectoryInfo(@"wwwroot/" + itemsInDb.Image + "Image/");
 
                     foreach (FileInfo file in di.GetFiles())
                     {
@@ -748,7 +748,7 @@ namespace Shop.Areas.Admin.Controllers
 
                     for (int i = 0; i < model.Image.Count; i++)
                     {
-                        var filePath = @"wwwroot/" + receiptInDb.Image + "Image/" + (i + 1) + ".jpg";
+                        var filePath = @"wwwroot/" + itemsInDb.Image + "Image/" + (i + 1) + ".jpg";
                         Directory.CreateDirectory(Path.GetDirectoryName(filePath));
                         var fileStream = new FileStream(filePath, FileMode.Create);
                         await model.Image[i].CopyToAsync(fileStream);
@@ -757,17 +757,17 @@ namespace Shop.Areas.Admin.Controllers
                 }
 
 
-                var emailadres = receiptInDb.Seller.EmailAddress;
+                var emailadres = itemsInDb.Seller.EmailAddress;
 
                 var message = new MailMessage();
                 message.From = new MailAddress("3bros.shop.suport@gmail.com");
                 message.To.Add(emailadres);
-                message.Subject = "Yêu cầu của bạn để thêm biên lai mới trên 3BrosShop đã được chấp nhận!";
+                message.Subject = "Yêu cầu của bạn để thêm mặt hàng mới trên 3BrosShop đã được chấp nhận!";
 
                 if (model.Note != null)
                 {
                     message.Body = String.Format("Kính gửi " + model.NameSeller + ", \n\n" +
-                   "Yêu cầu của bạn để thêm biên lai mới trên 3BrosShop đã được chấp nhận. \n\n" +
+                   "Yêu cầu của bạn để thêm mặt hàng mới trên 3BrosShop đã được chấp nhận. \n\n" +
                    model.Note + "\n\n" +
                    "Trân trọng, \n" +
                   "3Bros team");
@@ -786,38 +786,38 @@ namespace Shop.Areas.Admin.Controllers
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(message);
 
-                return RedirectToAction("ReceiptOverview");
+                return RedirectToAction("ItemsOverview");
             }
-            return View(nameof(ReceiptRequest), model);
+            return View(nameof(ItemsRequest), model);
         }
 
         [HttpGet]
         public IActionResult LayoutSliderIndex()
         {
-            return View(new ReceiptOverviewViewModel(_receiptRepository.GetCouponOfferSlider(_receiptRepository.GetAllApproved())));
+            return View(new ItemsOverviewViewModel(_itemsRepository.GetCouponOfferSlider(_itemsRepository.GetAllApproved())));
         }
 
         [HttpGet]
         public IActionResult LayoutOffers()
         {
-            return View(new ReceiptOverviewViewModel(_receiptRepository.GetReceiptOfferStandardAndSlider(_receiptRepository.GetAllApproved())));
+            return View(new ItemsOverviewViewModel(_itemsRepository.GetItemsOfferStandardAndSlider(_itemsRepository.GetAllApproved())));
         }
 
         [HttpGet]
-        public IActionResult SoldReceiptView(int Id)
+        public IActionResult SoldItemsView(int Id)
         {
             GeneratePDF(Id);
-            return View(new SoldReceiptViewModel(_orderItemRepository.GetById(Id)));
+            return View(new SoldItemsViewModel(_orderItemRepository.GetById(Id)));
         }
 
         [HttpGet]
-        public IActionResult SoldReceipt()
+        public IActionResult SoldItems()
         {
             return View(new OverviewSoldOrderViewModel(_orderItemRepository.getSoldOrder()));
         }
 
         [HttpGet]
-        public IActionResult UsedReceipt()
+        public IActionResult UsedItems()
         {
             return View(new OverviewUsedOrderViewModel(_orderItemRepository.getUsedOrder()));
         }
@@ -826,7 +826,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             var bonPath = @"wwwroot/images/temp/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrcode, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://" + Request.Host + "/pdf/c_" + qrcode + ".pdf", QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             qrCodeImage.Save(bonPath + qrcode + ".png", ImageFormat.Png);
@@ -835,8 +835,8 @@ namespace Shop.Areas.Admin.Controllers
         public void GeneratePDF(int Id)
         {
             var orderItem = _orderItemRepository.GetById(Id);
-            var receipt = _receiptRepository.GetByReceiptId(orderItem.Receipt.ReceiptId);
-            var seller = _sellerRepository.GetBySellerId(receipt.Seller.SellerId);
+            var items = _itemsRepository.GetByItemsId(orderItem.Items.ItemsId);
+            var seller = _sellerRepository.GetBySellerId(items.Seller.SellerId);
             var user = _userManager.GetUserAsync(User);
             var _user = _userRepository.GetBy(user.Result.Email);
 
@@ -857,7 +857,7 @@ namespace Shop.Areas.Admin.Controllers
             iTextSharp.text.Image kado = iTextSharp.text.Image.GetInstance(kadoURL);
             iTextSharp.text.Image logoLL = iTextSharp.text.Image.GetInstance(logoURL);
             iTextSharp.text.Image logoSeller = iTextSharp.text.Image.GetInstance(logoURLSeller);
-            //Paragraph naamBon = new Paragraph("Receipt: " + receipt.FirstName);
+            //Paragraph naamBon = new Paragraph("Items: " + items.FirstName);
 
             logoLL.SetAbsolutePosition(20, 15);
             logoLL.ScaleToFit(188f, 100f);
@@ -872,7 +872,7 @@ namespace Shop.Areas.Admin.Controllers
 
             Paragraph amount = new Paragraph(value, arial);
             amount.SpacingAfter = 50;
-            Paragraph nameSeller = new Paragraph(receipt.Name, arial);
+            Paragraph nameSeller = new Paragraph(items.Name, arial);
             nameSeller.SpacingAfter = 0;
             Paragraph giveBy = new Paragraph("Tang boi: " + _user.FirstName, arial18);
             Paragraph valid = new Paragraph(validity, arial18);

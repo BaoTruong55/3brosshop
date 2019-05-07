@@ -32,17 +32,17 @@
                                 </figure>
                             </div>
                             <div class="media-body valign-middle">
-                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@line.ReceiptId"><h6 class="title mb-15 t-uppercase">@($"{line.ReceiptName}")</h6></a>
+                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@line.ItemsId"><h6 class="title mb-15 t-uppercase">@($"{line.ItemsName}")</h6></a>
                                 <div class="type font-12"><a asp-controller="Home" asp-action="Search" asp-route-ZoekSoort="Category" asp-route-ZoekKey="@line.CategoryName">Danh mục: @($"{line.CategoryName}")</a></div>
                             </div>
                         </td>
                         <td class="text-center">@($" {line.Price:N2} vnđ")</td>
                         <td class="text-center">
-                            <a onclick="winkelmandAantalVerlagen(@(line.ReceiptId), @(line.Price.ToString().Replace(",",".")))">
+                            <a onclick="winkelmandAantalVerlagen(@(line.ItemsId), @(line.Price.ToString().Replace(",",".")))">
                                 <i class="fas fa-minus"></i>
                             </a>
                             <input class="quantity-label text-center" type="number" value="@($"{line.Count}")">
-                            <a onclick="winkelmandAantalVerhogen(@(line.ReceiptId), @(line.Price.ToString().Replace(",",".")))">
+                            <a onclick="winkelmandAantalVerhogen(@(line.ItemsId), @(line.Price.ToString().Replace(",",".")))">
                                 <i class="fas fa-plus"></i>
                             </a>
                         </td>
@@ -50,7 +50,7 @@
                             <div class="sub-total">@($" {line.Total:N2} vnđ")</div>
                         </td>
                         <td class="text-center">
-                            <a onclick="winkelmandItemVerwijderen(@(line.ReceiptId), @(line.Price.ToString().Replace(",",".")))">
+                            <a onclick="winkelmandItemVerwijderen(@(line.ItemsId), @(line.Price.ToString().Replace(",",".")))">
                                 <i class="fas fa-trash-alt font-26"></i>
                             </a>
                         </td>

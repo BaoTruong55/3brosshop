@@ -6,7 +6,7 @@
 }
 
 <section class="wrapper">
-    @if (Model.AllSellerSortedOpId == null || !Model.AllSellerSortedOpId.Any())
+    @if (Model.AllSellerSortedById == null || !Model.AllSellerSortedById.Any())
     {
         <h1 class="text-center mtb-40">Hiện tại người dùng không có trong hệ thống!</h1>
         <a asp-controller="Admin" asp-action="SellerAdd"><h3 class="text-center">Thêm người bán thủ công.</h3></a>
@@ -33,14 +33,14 @@
                                 <th>Chi tiết</th>
                             </tr>
                         </thead>
-                        @foreach (var handelaar in Model.AllSellerSortedOpId)
+                        @foreach (var handelaar in Model.AllSellerSortedById)
                         {
                             <tbody>
                                 <tr>
                                     <td>@handelaar.Name</td>
                                     <td>@handelaar.Postcode</td>
                                     <td>@handelaar.City</td>
-                                    <td>@handelaar.NumberofReceiptinSystem</td>
+                                    <td>@handelaar.NumberOfItemsInSystem</td>
                                     <td><a asp-controller="Admin" asp-action="SellerEdit" asp-route-id="@handelaar.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
                                 </tr>
                             </tbody>

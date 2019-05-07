@@ -11,18 +11,18 @@ namespace Shop.Models.HomeViewModels
         public string GetThumbPath { get; }
         public int QuantityOrdered { get; }
         public string Name { get; }
-        public int ReceiptId { get; }
+        public int ItemsId { get; }
 
         public IndexOfferSliderListModel()
         {
         }
 
-        public IndexOfferSliderListModel(Receipt receipt)
+        public IndexOfferSliderListModel(Items items)
         {
-            Name = receipt.Name;
-            QuantityOrdered = receipt.QuantityOrdered;
-            GetThumbPath = receipt.GetThumbPath();
-            ReceiptId = receipt.ReceiptId;
+            Name = items.Name;
+            QuantityOrdered = items.QuantityOrdered;
+            GetThumbPath = items.GetThumbPath();
+            ItemsId = items.ItemsId;
         }
     }
 }

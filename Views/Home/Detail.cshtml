@@ -75,14 +75,14 @@
                                         <p class="color-muted">
                                             @Model.SellerDescription
                                         </p>
-                                        <div class="DynamicAddCartRegionCart height-150px" style="display: none;" id="@(Model.ReceiptId.ToString() + "card")">
-                                            <form name="WinkelmandjeAdder" onsubmit='return AddToShoppingCartBasket(@Model.ReceiptId, "@Model.GetThumbPath.Replace("\\","\\\\")", "@Model.Name");'>
+                                        <div class="DynamicAddCartRegionCart height-150px" style="display: none;" id="@(Model.ItemsId.ToString() + "card")">
+                                            <form name="WinkelmandjeAdder" onsubmit='return AddToShoppingCartBasket(@Model.ItemsId, "@Model.GetThumbPath.Replace("\\","\\\\")", "@Model.Name");'>
                                                 <div class="PopupAddToCart-line">
                                                     <div class="col-xs-4 no-padding">
                                                         <label class="float-left ">Giá:</label>
                                                     </div>
                                                     <div class="col-xs-offset-1 col-xs-7 no-padding">
-                                                        <input required id="@(Model.ReceiptId.ToString() + "PriceField")" class="form-control winkelmand-register-enter" type="number" step="0.01" value="@(Model.Price.ToString().Replace(",","."))" readonly>
+                                                        <input required id="@(Model.ItemsId.ToString() + "PriceField")" class="form-control winkelmand-register-enter" type="number" step="0.01" value="@(Model.Price.ToString().Replace(",","."))" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="PopupAddToCart-line">
@@ -90,25 +90,25 @@
                                                         <label class="float-left">Số lượng:</label>
                                                     </div>
                                                     <div class="col-xs-offset-1 col-xs-7 no-padding">
-                                                        <input required id="@(Model.ReceiptId.ToString() + "QuantityField")" class="form-control winkelmand-register-enter" type="number" min="1" max="100" value="1">
+                                                        <input required id="@(Model.ItemsId.ToString() + "QuantityField")" class="form-control winkelmand-register-enter" type="number" min="1" max="100" value="1">
                                                     </div>
                                                 </div>
                                                 <div class="col-xs-4 showcode no-padding">
-                                                    <a onclick="DynamicAddCartRegion(@Model.ReceiptId);" class="btn btn-sm btn-block" id="@(Model.ReceiptId.ToString() + "TerugKnop")">
+                                                    <a onclick="DynamicAddCartRegion(@Model.ItemsId);" class="btn btn-sm btn-block" id="@(Model.ItemsId.ToString() + "TerugKnop")">
                                                         trở lại
                                                     </a>
                                                 </div>
                                                 <div class="col-xs-offset-1 col-xs-7 showcode no-padding">
-                                                    <input name="Submit" type="submit" value="Bevestig" class="btn btn-sm btn-block" id="@(Model.ReceiptId.ToString() + "BevestigKnop")"/>
+                                                    <input name="Submit" type="submit" value="Bevestig" class="btn btn-sm btn-block" id="@(Model.ItemsId.ToString() + "BevestigKnop")"/>
                                                 </div>
                                             </form>
                                         </div>
-                                        <div class="DynamicAddCartRegionDefault height-150px" id="@(Model.ReceiptId.ToString() + "default")">
+                                        <div class="DynamicAddCartRegionDefault height-150px" id="@(Model.ItemsId.ToString() + "default")">
                                             <p class="color-muted font-12"><i class="fa @Model.CategoryIcon"></i> @Model.CategoryName</p>
                                             <div class="price mb-20">
                                                 <h2 class="price"> <i class="fa fa-credit-card-alt"></i> Giá  @Model.Price vnđ</h2>
                                             </div>
-                                            <a onclick="DynamicAddCartRegion(@Model.ReceiptId);" class="btn btn-block btn-lg wow pulse animated" data-wow-delay="1s" data-wow-iteration="2" data-wow-duration="1.5s">
+                                            <a onclick="DynamicAddCartRegion(@Model.ItemsId);" class="btn btn-block btn-lg wow pulse animated" data-wow-delay="1s" data-wow-iteration="2" data-wow-duration="1.5s">
                                                 <i class="fa fa-shopping-cart font-16 mr-10"></i>
                                                 Thêm vào giỏ
                                             </a>

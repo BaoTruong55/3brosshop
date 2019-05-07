@@ -16,7 +16,7 @@ namespace Shop.Models.ManageViewModels
         {
             Date = order.ExpirationDate.ToString("dd/MM/yyyy");
             Amount = order.Price;
-            Name = order.Receipt.Name;
+            Name = order.Items.Name;
         }
 
 

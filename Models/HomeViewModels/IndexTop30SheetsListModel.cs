@@ -16,7 +16,7 @@ namespace Shop.Models.HomeViewModels
         public string Name { get; }
         public string Description { get; }
         public decimal Price { get; }
-        public int ReceiptId { get; }
+        public int ItemsId { get; }
         public string CategoryIcon { get; }
         public string CategoryName { get; }
 
@@ -24,17 +24,17 @@ namespace Shop.Models.HomeViewModels
         {
         }
 
-        public IndexTop30SheetsListModel(Receipt receipt)
+        public IndexTop30SheetsListModel(Items items)
         {
-            Name = receipt.Name;
-            Price = receipt.Price;
-            Description = receipt.Description;
-            QuantityOrdered = receipt.QuantityOrdered;
-            GetThumbPath = receipt.GetThumbPath();
-            City = receipt.City;
-            ReceiptId = receipt.ReceiptId;
-            CategoryIcon = receipt.Category.Icon;
-            CategoryName = receipt.Category.Name;
+            Name = items.Name;
+            Price = items.Price;
+            Description = items.Description;
+            QuantityOrdered = items.QuantityOrdered;
+            GetThumbPath = items.GetThumbPath();
+            City = items.City;
+            ItemsId = items.ItemsId;
+            CategoryIcon = items.Category.Icon;
+            CategoryName = items.Category.Name;
         }
 
     }

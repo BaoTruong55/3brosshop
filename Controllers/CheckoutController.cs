@@ -28,19 +28,19 @@ namespace Shop.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUserRepository _userRepository;
-        private readonly IReceiptRepository _receiptRepository;
+        private readonly IItemsRepository _itemsRepository;
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderItemRepository _orderItemRepository;
         private readonly ISellerRepository _sellerRepository;
 
         public CheckoutController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, ICategoryRepository categoryRepository, IUserRepository userRepository, IReceiptRepository receiptRepository, IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, ISellerRepository sellerRepository)
+            SignInManager<ApplicationUser> signInManager, ICategoryRepository categoryRepository, IUserRepository userRepository, IItemsRepository itemsRepository, IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, ISellerRepository sellerRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _categoryRepository = categoryRepository;
             _userRepository = userRepository;
-            _receiptRepository = receiptRepository;
+            _itemsRepository = itemsRepository;
             _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
             _sellerRepository = sellerRepository;
@@ -63,7 +63,7 @@ namespace Shop.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> CreateReceipt(int index)
+        public async Task<IActionResult> CreateItems(int index)
         {
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
 
@@ -80,7 +80,7 @@ namespace Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateReceipt(int index, CreateOrderViewModel model)
+        public async Task<IActionResult> CreateItems(int index, CreateOrderViewModel model)
         {
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
             ViewData["Index"] = index;
@@ -102,11 +102,11 @@ namespace Shop.Controllers
                     orderItem.RecipientEmail = model.EmailReciever;
                 _orderItemRepository.SaveChanges();
 
-                MakeReceipt(orderItem);
+                MakeItems(orderItem);
 
                 if ((index + 1) == OrderItem.Count)
                     return RedirectToAction(nameof(CheckoutController.Payment), "Checkout", new { Id = order.BillId });
-                return RedirectToAction(nameof(CheckoutController.CreateReceipt), "Checkout", new { index = index + 1 });
+                return RedirectToAction(nameof(CheckoutController.CreateItems), "Checkout", new { index = index + 1 });
             }
 
             return View(model);
@@ -116,8 +116,9 @@ namespace Shop.Controllers
         {
             var bonPath = @"wwwroot/images/temp/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrcode, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://" + Request.Host + "/pdf/c_" + qrcode + ".pdf", QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
+
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             qrCodeImage.Save(bonPath + qrcode + ".png", ImageFormat.Png);
         }
@@ -153,9 +154,9 @@ namespace Shop.Controllers
             var user = await RetrieveUser();
             user.PlaceOrder(shoppingCart);
             _userRepository.SaveChanges();
-            _receiptRepository.SaveChanges();
+            _itemsRepository.SaveChanges();
 
-            return RedirectToAction(nameof(CheckoutController.CreateReceipt), "Checkout", new { index = 0 });
+            return RedirectToAction(nameof(CheckoutController.CreateItems), "Checkout", new { index = 0 });
         }
 
         public IActionResult Payment(int Id)
@@ -166,7 +167,7 @@ namespace Shop.Controllers
             return View();
         }
 
-        public IActionResult MakeReceiptsUsable(int Id, ShoppingCart shoppingCart)
+        public IActionResult MakeItemsUsable(int Id, ShoppingCart shoppingCart)
         {
             shoppingCart.MakeEmpty();
             Order order = _orderRepository.GetBy(Id);
@@ -242,10 +243,10 @@ namespace Shop.Controllers
             return View();
         }
 
-        private void MakeReceipt(OrderItem orderItem)
+        private void MakeItems(OrderItem orderItem)
         {
-            var receipt = _receiptRepository.GetByReceiptId(orderItem.Receipt.ReceiptId);
-            var seller = _sellerRepository.GetBySellerId(receipt.Seller.SellerId);
+            var items = _itemsRepository.GetByItemsId(orderItem.Items.ItemsId);
+            var seller = _sellerRepository.GetBySellerId(items.Seller.SellerId);
 
             string value = String.Format(orderItem.Price + "vnd");
             string date = orderItem.CreationDate.AddYears(1).ToString("dd/MM/yyyy");
@@ -275,7 +276,7 @@ namespace Shop.Controllers
 
             Paragraph amount = new Paragraph(value, arial);
             amount.SpacingAfter = 50;
-            Paragraph nameSeller = new Paragraph(receipt.Name, arial);
+            Paragraph nameSeller = new Paragraph(items.Name, arial);
             nameSeller.SpacingAfter = 0;
             Paragraph givenBy = new Paragraph("Tang boi: " + orderItem.SenderName, arial18);
             Paragraph _valid = new Paragraph(valid, arial18);

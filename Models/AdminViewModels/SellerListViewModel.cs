@@ -12,14 +12,14 @@ namespace Shop.Models.AdminViewModels
         public string City { get; }
         public string Name { get; }
         public string Postcode { get; }
-        public int NumberofReceiptinSystem { get; }
+        public int NumberOfItemsInSystem { get; }
 
         public SellerListViewModel(Seller seller)
         {
             Id = seller.SellerId;
             City = seller.City;
             Name = seller.Name;
-            NumberofReceiptinSystem = seller.Receipt.Count;
+            NumberOfItemsInSystem = seller.Items.Count;
             Postcode = seller.Postcode;
         }
 

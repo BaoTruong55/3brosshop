@@ -1,4 +1,4 @@
-﻿@model Shop.Models.AdminViewModels.ReceiptProcessViewModel
+﻿@model Shop.Models.AdminViewModels.ItemsProcessViewModel
 
 @{
     ViewData["Title"] = "Chỉnh sửa hóa đơn";
@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Mã biên lai (không điều chỉnh)</label>
                     <div class="col-sm-6">
-                        <input class="form-control" required="required" asp-for="ReceiptId" readonly>
+                        <input class="form-control" required="required" asp-for="ItemsId" readonly>
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Tên trong biên lai</label>
+                    <label class="col-sm-3 control-label">Tên mặt hàng</label>
                     <div class="col-sm-6">
                         <input class="form-control" required="required" id="0" asp-for="Name" readonly>
                         <span asp-validation-for="Name" class="text-danger"></span>
@@ -143,7 +143,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Imageen</label>
                     <div class="col-sm-6">
-                        <a href="@Url.Action("Detail", "Home", new { Id = Model.ReceiptId})" target="_blank">Bekijk hier de huidige imageen</a>
+                        <a href="@Url.Action("Detail", "Home", new { Id = Model.ItemsId})" target="_blank">Bekijk hier de huidige imageen</a>
                         <label class="btn btn-default" id="fileselection2">
                             <a class="" id="fileselectionTekst2">chọn hình ảnh</a><input asp-for="Image" accept=".jpg" id="fileToUpload2" style="display: none;">
                         </label>
@@ -154,7 +154,7 @@
 
 
                 <div class="col-md-9 col-md-offset-3">
-                    <a asp-controller="Admin" asp-action="ReceiptOverview" class="btn btn-danger mr-20">Annuleer</a>
+                    <a asp-controller="Admin" asp-action="ItemsOverview" class="btn btn-danger mr-20">Annuleer</a>
                     <button type="submit" class="btn btn-success">Thay đổi</button>
                 </div>
             </form>

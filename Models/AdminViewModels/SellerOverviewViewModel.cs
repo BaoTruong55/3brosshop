@@ -8,11 +8,11 @@ namespace Shop.Models.AdminViewModels
 {
     public class SellerOverviewViewModel
     {
-        public IEnumerable<SellerListViewModel> AllSellerSortedOpId { get; }
+        public IEnumerable<SellerListViewModel> AllSellerSortedById { get; }
 
         public SellerOverviewViewModel(IEnumerable<Seller> allSeller)
         {
-            AllSellerSortedOpId = allSeller.Reverse().Select(h => new SellerListViewModel(h)).ToList();
+            AllSellerSortedById = allSeller.Reverse().Select(h => new SellerListViewModel(h)).ToList();
         }
 
     }

@@ -33,14 +33,14 @@
                                 <th>Detail</th>
                             </tr>
                         </thead>
-                        @foreach (var seller in Model.AllDealersSortedOpId)
+                        @foreach (var seller in Model.AllSellerSortedById)
                         {
                             <tbody>
                                 <tr>
                                     <td>@seller.Name</td>
                                     <td>@seller.Postcode</td>
                                     <td>@seller.City</td>
-                                    <td>@seller.NumberofReceiptinSystem</td>
+                                    <td>@seller.NumberOfItemsInSystem</td>
                                     <td><a asp-controller="Admin" asp-action="SellerEdit" asp-route-id="@seller.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
                                 </tr>
                             </tbody>

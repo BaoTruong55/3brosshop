@@ -21,19 +21,19 @@ namespace Shop.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ISellerRepository _sellerRepository;
         private readonly IOrderItemRepository _orderItemRepository;
-        private readonly IReceiptRepository _receiptRepository;
+        private readonly IItemsRepository _itemsRepository;
 
         public MobileAppController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ISellerRepository sellerRepository,
             IOrderItemRepository orderItemRepository,
-            IReceiptRepository receiptRepository)
+            IItemsRepository itemsRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _sellerRepository = sellerRepository;
             _orderItemRepository = orderItemRepository;
-            _receiptRepository = receiptRepository;
+            _itemsRepository = itemsRepository;
         }
 
         //GET for registering a seller
@@ -68,26 +68,26 @@ namespace Shop.Controllers
                 var orderItem = _orderItemRepository.GetBy(id);
                 if (orderItem != null)
                 {
-                    var receipt = _receiptRepository.GetByReceiptId(orderItem.Receipt.ReceiptId);
-                    var seller = _sellerRepository.GetBySellerId(receipt.Seller.SellerId);
+                    var items = _itemsRepository.GetByItemsId(orderItem.Items.ItemsId);
+                    var seller = _sellerRepository.GetBySellerId(items.Seller.SellerId);
                     return new
                     {
                         OrderId = orderItem.OrderItemId,
-                        Name = receipt.Name,
+                        Name = items.Name,
                         orderItem.Price,
                         orderItem.CreationDate,
                         SellerId = seller.SellerId,
                         Email = seller.EmailAddress,
                         orderItem.Validity,
-                        ReceiptId = receipt.ReceiptId,
-                        image = receipt.GetThumbPath()
+                        ItemsId = items.ItemsId,
+                        image = items.GetThumbPath()
                     };
                 }
             }
             return null;
         }
 
-        //PUT for receipt
+        //PUT for items
         [HttpPut("{id}", Name = "UpdateOrderItem")]
         public void UpdateOrderItem(int id, [FromBody] OrderModel model)
         {

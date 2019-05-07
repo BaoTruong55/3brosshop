@@ -13,12 +13,12 @@
     {
         <div class="text-center">
             <h1><i class="fas fa-search"></i> Tìm kiếm theo tên</h1>
-            <input onkeyup="searchInTableFunction()" type="text" class="ggg max-width-500px" id="searchInTableTextField" placeholder="nhập tên trong hóa đơn">
+            <input onkeyup="searchInTableFunction()" type="text" class="ggg max-width-500px" id="searchInTableTextField" placeholder="nhập Tên mặt hàng">
         </div>
         <div class="table-agile-info">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Verkochte Cadeaureceiptnen
+                    Verkochte Cadeauitemsnen
                 </div>
                 <div>
                     <table class="table" id="tableToSearch">
@@ -32,20 +32,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var bon in Model.SoldOrderList)
+                            @foreach (var order in Model.SoldOrderList)
                             {
                                 <tr>
-                                    <th scope="row">@bon.Date</th>
+                                    <th scope="row">@order.Date</th>
                                     <td>
-                                        @bon.Name
+                                        @order.Name
                                     </td>
                                     <td>
-                                        <h5>&euro; @bon.Amount</h5>
+                                        <h5>&euro; @order.Amount</h5>
                                     </td>
                                     <td>
-                                        <span class="label @bon.StatusClass">@bon.Status</span>
+                                        <span class="label @order.StatusClass">@order.Status</span>
                                     </td>
-                                    <td><a asp-controller="Admin" asp-action="SoldReceiptView" asp-route-id="@bon.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                    <td><a asp-controller="Admin" asp-action="SoldItemsView" asp-route-id="@order.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
                                 </tr>
                             }
                         </tbody>

@@ -15,24 +15,24 @@ namespace Shop.Models.HomeViewModels
         public string CategoryIcon { get; }
         public string CategoryName { get; }
         public int QuantityOrdered { get; }
-        public int ReceiptId { get; }
+        public int ItemsId { get; }
         public string GetThumbPath { get; }
 
         public SearchViewModel()
         {
         }
 
-        public SearchViewModel(Receipt receipt)
+        public SearchViewModel(Items items)
         {
-            Name = receipt.Name;
-            Price = receipt.Price;
-            Description = receipt.Description;
-            QuantityOrdered = receipt.QuantityOrdered;
-            GetThumbPath = receipt.GetThumbPath();
-            City = receipt.City;
-            ReceiptId = receipt.ReceiptId;
-            CategoryIcon = receipt.Category.Icon;
-            CategoryName = receipt.Category.Name;
+            Name = items.Name;
+            Price = items.Price;
+            Description = items.Description;
+            QuantityOrdered = items.QuantityOrdered;
+            GetThumbPath = items.GetThumbPath();
+            City = items.City;
+            ItemsId = items.ItemsId;
+            CategoryIcon = items.Category.Icon;
+            CategoryName = items.Category.Name;
         }
     }
 }

@@ -33,17 +33,17 @@ namespace Shop.Data.Repositories
 
         public OrderItem GetBy(string qrcode)
         {
-            return _orderItems.Include(b => b.Receipt).SingleOrDefault(g => g.QRCode == qrcode);
+            return _orderItems.Include(b => b.Items).SingleOrDefault(g => g.QRCode == qrcode);
         }
 
         public OrderItem GetById(int bestellijnid)
         {
-            return _orderItems.Include(b => b.Receipt).Include(b => b.Seller).SingleOrDefault(g => g.OrderItemId == bestellijnid);
+            return _orderItems.Include(b => b.Items).Include(b => b.Seller).SingleOrDefault(g => g.OrderItemId == bestellijnid);
         }
 
         public IEnumerable<OrderItem> getUsedOrder()
         {
-            return _orderItems.Where(b => b.Validity == Validity.Used).Include(b => b.Receipt);
+            return _orderItems.Where(b => b.Validity == Validity.Used).Include(b => b.Items);
         }
 
         public IEnumerable<OrderItem> getUsedThisMonth()
@@ -55,18 +55,18 @@ namespace Shop.Data.Repositories
 
         public IEnumerable<OrderItem> getSoldOrder()
         {
-            MakeExpiredReceiptExpired();
-            return _orderItems.Where(b => b.Validity != Validity.Invalid).Include(b => b.Receipt);
+            MakeExpiredItemsExpired();
+            return _orderItems.Where(b => b.Validity != Validity.Invalid).Include(b => b.Items);
         }
 
         public IEnumerable<OrderItem> getSoldThisMonth()
         {
             DateTime date = DateTime.Now.Date;
             date = date.AddMonths(-1);
-            return _orderItems.Where(b => (b.CreationDate >= date) && (b.Validity != Validity.Invalid)).Include(b => b.Receipt);
+            return _orderItems.Where(b => (b.CreationDate >= date) && (b.Validity != Validity.Invalid)).Include(b => b.Items);
         }
 
-        public void MakeExpiredReceiptExpired()
+        public void MakeExpiredItemsExpired()
         {
             foreach (OrderItem bon in _orderItems.Where(bl => bl.Validity == Validity.Valid && DateTime.Today > bl.CreationDate.AddYears(1)))
             {
@@ -80,9 +80,9 @@ namespace Shop.Data.Repositories
             _dbContext.SaveChanges();
         }
 
-        public IEnumerable<OrderItem> getUsedReceiptFromSellerId(int id)
+        public IEnumerable<OrderItem> getUsedItemsFromSellerId(int id)
         {
-            return _orderItems.Include(b => b.Seller).Where(b => b.Validity == Validity.Used && b.Seller.SellerId == id).Include(b => b.Receipt).OrderByDescending(b => b.ExpirationDate);
+            return _orderItems.Include(b => b.Seller).Where(b => b.Validity == Validity.Used && b.Seller.SellerId == id).Include(b => b.Items).OrderByDescending(b => b.ExpirationDate);
         }
     }
 }

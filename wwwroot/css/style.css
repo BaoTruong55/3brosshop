@@ -107,7 +107,7 @@
     transition: all 0.5s ease;
 }
 
-.shopBasketPopupReceiptName {
+.shopBasketPopupItemName {
     margin-top: -40px;
     margin-right: 5px;
 }

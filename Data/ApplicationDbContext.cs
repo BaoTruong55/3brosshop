@@ -9,7 +9,7 @@ namespace Shop.Data
     {
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderItem> OrderItem { get; set; }
-        public DbSet<Receipt> Receipt { get; set; }
+        public DbSet<Items> Items { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Seller> Seller { get; set; }

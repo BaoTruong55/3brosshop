@@ -3,9 +3,9 @@
 
 @{
     String[] sellerSubMenu = { "SellerRequest", "SellerAdd", "SellerOverview", "SellerEdit", "SellerRequestEvaluation" };
-    String[] receiptSubMenu = { "ReceiptRequests", "AddReceipt", "ReceiptOverview", "ReceiptEdit", "ReceiptRequest" };
+    String[] ItemsSubMenu = { "ItemsRequests", "AddItems", "ItemsOverview", "ItemsEdit", "ItemsRequest" };
     String[] layoutSubMenu = { "LayoutSliderIndex", "LayoutOffers" };
-    String[] soldReceipt = { "SoldReceiptView", "SoldReceipt" };
+    String[] soldItems = { "SoldItemsView", "SoldItems" };
     var user = UserManager.GetUserAsync(User);
 }
 
@@ -99,33 +99,33 @@
                             </ul>
                         </li>
                         <li class="sub-menu">
-                            <a href="#" class="@(receiptSubMenu.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
+                            <a href="#" class="@(ItemsSubMenu.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
                                 <i class="fas fa-gift"></i>
                                 <span>Quản lý biên lai</span>
                             </a>
                             <ul class="sub">
-                                <li><a asp-controller="Admin" asp-action="ReceiptRequests" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ReceiptRequests" ? "active" : (ViewContext.RouteData.Values["Action"].ToString() == "ReceiptRequest" ? "active" : ""))"><i class="fas fa-user-plus"></i> yêu cầu biên lai</a></li>
-                                <li><a asp-controller="Admin" asp-action="AddReceipt" class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddReceipt" ? "active" : "")"><i class="fas fa-plus-square"></i> Thêm biên lai</a></li>
-                                <li><a asp-controller="Admin" asp-action="ReceiptOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchReceipt" ? "active" : "")"><i class="fas fa-search"></i> Tìm biên lai</a></li>
-                                <li><a asp-controller="Admin" asp-action="ReceiptOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ReceiptOverview" ? "active" : "")"><i class="fas fas fa-ellipsis-h"></i> Thông tin biên lai</a></li>
-                                <li><a asp-controller="Admin" asp-action="ReceiptEdit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ReceiptEdit" ? "active" : "")"><i class="fas fa-edit"></i> Chỉnh sửa biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="ItemsRequests" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsRequests" ? "active" : (ViewContext.RouteData.Values["Action"].ToString() == "ItemsRequest" ? "active" : ""))"><i class="fas fa-user-plus"></i> yêu cầu biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="AddItems" class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddItems" ? "active" : "")"><i class="fas fa-plus-square"></i> Thêm biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="ItemsOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchItems" ? "active" : "")"><i class="fas fa-search"></i> Tìm biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="ItemsOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsOverview" ? "active" : "")"><i class="fas fas fa-ellipsis-h"></i> Thông tin biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="ItemsEdit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsEdit" ? "active" : "")"><i class="fas fa-edit"></i> Chỉnh sửa biên lai</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a asp-controller="Admin" asp-action="SoldReceipt" class="@(soldReceipt.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
+                            <a asp-controller="Admin" asp-action="SoldItems" class="@(soldItems.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
                                 <i class="fas fa-cloud-download-alt"></i>
                                 <span>biên lai đã xuất</span>
                             </a>
                         </li>
                         <li>
-                            <a asp-controller="Admin" asp-action="UsedReceipt" class="@(ViewContext.RouteData.Values["Action"].ToString() == "UsedReceipt" ? "active" : "")">
+                            <a asp-controller="Admin" asp-action="UsedItems" class="@(ViewContext.RouteData.Values["Action"].ToString() == "UsedItems" ? "active" : "")">
                                 <i class="fas fa-cloud-upload-alt"></i>
                                 <span>biên lai</span>
                             </a>
                         </li>
 
                         <li>
-                            <a asp-controller="Admin" asp-action="SoldReceipt" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchSoldReceipt" ? "active" : "")">
+                            <a asp-controller="Admin" asp-action="SoldItemsView" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchSoldItems" ? "active" : "")">
                                 <i class="fas fa-search"></i>
                                 <span>Tìm kiếm biên lai đã xuất</span>
                             </a>

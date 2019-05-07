@@ -21,7 +21,7 @@ namespace Shop.Models.AdminViewModels
             Date = bon.CreationDate.ToString("dd/MM/yyyy");
             Amount = bon.Price;
             Id = bon.OrderItemId;
-            Name = bon.Receipt.Name;
+            Name = bon.Items.Name;
             Status = bon.Validity.ToString();
 
             switch (bon.Validity)

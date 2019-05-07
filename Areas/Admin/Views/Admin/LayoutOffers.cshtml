@@ -1,14 +1,14 @@
-﻿@model Shop.Models.AdminViewModels.ReceiptOverviewViewModel
+﻿@model Shop.Models.AdminViewModels.ItemsOverviewViewModel
 
 @{
-    ViewData["Title"] = "Receipt in aanbiedingen";
+    ViewData["Title"] = "Các mặt hàng được cung cấp";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <section class="wrapper">
-    @if (Model.AllReceiptSortedById == null || !Model.AllReceiptSortedById.Any())
+    @if (Model.AllItemsSortedById == null || !Model.AllItemsSortedById.Any())
     {
-        <h1 class="force-whiteColor text-center mtb-40">Er zijn momenteel geen cadeaureceiptnen als offer ingesteld!</h1>
+        <h1 class="force-whiteColor text-center mtb-40">hiện tại không có mặt hàng quà tặng nào được đặt làm ưu đãi!</h1>
         <br>
         <a asp-controller="Admin" asp-action="SellerOverview"><h3 class="force-whiteColor text-center">
          Nếu bạn muốn thêm biên lai vào tab phiếu mua hàng, bạn có thể tìm kiếm ở đây và đặt loại phiếu mua hàng thành "tiêu chuẩn" hoặc "thanh trượt". Nếu bạn chọn thanh trượt, nó sẽ ở trên trang chủ cũng như trên tab ưu đãi.
@@ -36,15 +36,15 @@
                                 <th>Chi tiết</th>
                             </tr>
                         </thead>
-                        @foreach (var receipt in Model.AllReceiptSortedById)
+                        @foreach (var items in Model.AllItemsSortedById)
                         {
                             <tbody>
                                 <tr>
-                                    <td>@receipt.Name</td>
-                                    <td>@receipt.ReceiptName</td>
-                                    <td>@receipt.Ciy</td>
-                                    <td>@receipt.NumberofReceiptinSystem</td>
-                                    <td><a asp-controller="Admin" asp-action="ReceiptEdit" asp-route-id="@receipt.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                    <td>@items.Name</td>
+                                    <td>@items.ItemsName</td>
+                                    <td>@items.Ciy</td>
+                                    <td>@items.NumberOfItemsInSystem</td>
+                                    <td><a asp-controller="Admin" asp-action="ItemsEdit" asp-route-id="@items.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
                                 </tr>
                             </tbody>
                         }

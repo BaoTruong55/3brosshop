@@ -1,0 +1,57 @@
+﻿@model Shop.Models.AdminViewModels.OverviewSoldOrderViewModel
+@{
+    ViewData["Title"] = "Biên lai đã xuất";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    @if (Model.SoldOrderList == null || !Model.SoldOrderList.Any())
+    {
+        <h1 class="text-center mtb-40 color-white">Hiện tại không có biên lai!</h1>
+    }
+    else
+    {
+        <div class="text-center">
+            <h1><i class="fas fa-search"></i> Tìm kiếm theo tên</h1>
+            <input onkeyup="searchInTableFunction()" type="text" class="ggg max-width-500px" id="searchInTableTextField" placeholder="Nhập tên của hóa đơn">
+        </div>
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Biên lai đã xuất
+                </div>
+                <div>
+                    <table class="table" id="tableToSearch">
+                        <thead>
+                            <tr>
+                                <th>NGÀY</th>
+                                <th>BIÊN LAI</th>
+                                <th>SỐ TIỀN</th>
+                                <th>TRẠNG THÁI</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var items in Model.SoldOrderList)
+                            {
+                                <tr>
+                                    <th scope="row">@items.Date</th>
+                                    <td>
+                                        @items.Name
+                                    </td>
+                                    <td>
+                                        <h5>&euro; @items.Amount</h5>
+                                    </td>
+                                    <td>
+                                        <span class="label @items.StatusClass">@items.Status</span>
+                                    </td>
+                                    <td><a asp-controller="Admin" asp-action="SoldItemsView" asp-route-id="@items.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</section>

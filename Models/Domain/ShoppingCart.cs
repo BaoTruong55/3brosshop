@@ -16,32 +16,32 @@ namespace Shop.Models.Domain
         public bool IsEmpty => NumberofVouchers == 0;
         public decimal TotalValue => _listShoppingCart.Sum(l => l.Total);
 
-        public void AddItem(Receipt receipt, int count, decimal price)
+        public void AddItem(Items items, int count, decimal price)
         {
-            ShoppingCartItem item = searchShoppingCartItem(receipt.ReceiptId, price);
+            ShoppingCartItem item = searchShoppingCartItem(items.ItemsId, price);
             if (item == null)
-                _listShoppingCart.Add(new ShoppingCartItem() { Receipt = receipt, Count = count, Price = price });
+                _listShoppingCart.Add(new ShoppingCartItem() { Items = items, Count = count, Price = price });
             else
                 item.Count += count;
         }
 
-        public void DeleteItem(Receipt receipt, decimal price)
+        public void DeleteItem(Items items, decimal price)
         {
-            ShoppingCartItem cartItem = searchShoppingCartItem(receipt.ReceiptId, price);
+            ShoppingCartItem cartItem = searchShoppingCartItem(items.ItemsId, price);
             if (cartItem != null)
                 _listShoppingCart.Remove(cartItem);
         }
 
-        public void IncreaseNumber(int receiptId, decimal price)
+        public void IncreaseNumber(int itemsId, decimal price)
         {
-            ShoppingCartItem item = searchShoppingCartItem(receiptId, price);
+            ShoppingCartItem item = searchShoppingCartItem(itemsId, price);
             if (item != null)
                 item.Count++;
         }
 
-        public void DecreaseNumber(int receiptId, decimal price)
+        public void DecreaseNumber(int itemsId, decimal price)
         {
-            ShoppingCartItem cartItem = searchShoppingCartItem(receiptId, price);
+            ShoppingCartItem cartItem = searchShoppingCartItem(itemsId, price);
             if (cartItem != null)
                 cartItem.Count--;
             if (cartItem.Count <= 0)
@@ -53,9 +53,9 @@ namespace Shop.Models.Domain
             _listShoppingCart.Clear();
         }
 
-        private ShoppingCartItem searchShoppingCartItem(int receiptId, decimal price)
+        private ShoppingCartItem searchShoppingCartItem(int itemsId, decimal price)
         {
-            return _listShoppingCart.SingleOrDefault(l => (l.Receipt.ReceiptId == receiptId) && (l.Price == price));
+            return _listShoppingCart.SingleOrDefault(l => (l.Items.ItemsId == itemsId) && (l.Price == price));
         }
     }
 }
