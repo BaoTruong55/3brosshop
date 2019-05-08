@@ -25,11 +25,11 @@ namespace Shop.Data
             _dbContext.Database.EnsureDeleted();
             if (_dbContext.Database.EnsureCreated())
             {
-                Category converse = new Category("converse", "fa-utensils");
-                Category nike = new Category("nike", "fa-heartbeat");
-                Category adidas = new Category("adidas", "fa-plane");
-                Category palladium = new Category("palladium", "fa-home");
-                Category vans = new Category("vans", "fa-calendar");
+                Category converse = new Category("converse", "fa-star");
+                Category nike = new Category("nike", "fa-star");
+                Category adidas = new Category("adidas", "fa-star");
+                Category palladium = new Category("palladium", "fa-star");
+                Category vans = new Category("vans", "fa-star");
 //                Category beauty = new Category("Beauty", "fa-female");
 //                Category interieur = new Category("Interieur", "fa-image");
 //                Category kledij = new Category("Kledij", "fa-umbrella");
@@ -130,47 +130,47 @@ namespace Shop.Data
                 Items bon04 = new Items("Chuck Taylor All Star 1970s", 1800000, "Thiết kế cổ điển của Chuck 1970s với tone đen huyền thoại .", 24, @"images\items\4\", converse, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar04, Offer.No, true);
                 Items bon05 = new Items("Chuck Taylor All Star 1970s", 1400000, "Phiên bản cổ thấp màu đen cá tính của Chuck 1970s được giới trẻ nhiệt tình ưu ái.", 124, @"images\items\5\", converse, "Arbeidstraat", "14", "9300", "Aalst", Handelaar05, Offer.Slider, true);
                 Items bon06 = new Items("1970s Base Camp Suede", 1500000, "Vải lưới ở lưỡi gà và dây giày giúp sản phẩm trở nên nổi bật hơn.", 45, @"images\items\6\", converse, "Arbeidstraat", "14", "9300", "Aalst", Handelaar06, Offer.No, true);
-                Items bon07 = new Items("Fastfood McDonalds", 1,  "De keten met keuzes voor iedereen.", 98, @"images\items\7\", converse, "Arbeidstraat", "14", "9300", "Aalst", Handelaar07, Offer.No, true);
-                Items bon08 = new Items("Restaurant SOS Piet", 75,  "5 sterren restaurant met de enige echte SOS Piet als kok.", 21, @"images\items\8\", converse, "Paepestraat", "178", "9260", "Wichelen", Handelaar08, Offer.No, true);
-                Items bon09 = new Items("Wijnproeverij CoBoSh", 25,  "Keuze uit verschillende wijnen vergezeld met een hapje.", 47, @"images\items\9\", converse, "Arbeidstraat", "14", "9300", "Aalst", Handelaar09, Offer.No, true);
-                Items bon10 = new Items("Wijnproeverij chacha", 22,  "Hapje drankje favoriet muziekje.", 22, @"images\items\10\", converse, "Ravensteinstraat", "50", "1000", "Brussel", Handelaar10, Offer.No, true);
+                Items bon07 = new Items("Chuck Taylor All Star", 1300000,  "Với 2 tone màu Xanh Navy và Xanh Chàm tươi mát cùng xuất hiện ngay trên đôi giày sẽ giúp bạn có được một sản phẩm không bao giờ lỗi mốt.", 98, @"images\items\7\", converse, "Arbeidstraat", "14", "9300", "Aalst", Handelaar07, Offer.No, true);
+                Items bon08 = new Items("All Star Limo Leather", 1700000,  "Toàn bộ thân giày được làm từ chất liệu da cao cấp cùng tone Xanh Navy mang lại một sự mới mẻ.", 21, @"images\items\8\", converse, "Paepestraat", "178", "9260", "Wichelen", Handelaar08, Offer.No, true);
+                Items bon09 = new Items("Converse Chuck Taylor", 1400000,  "Toàn bộ thân giày được làm từ chất liệu da cao cấp cùng tone Xanh Navy mang lại một sự mới mẻ.", 47, @"images\items\9\", converse, "Arbeidstraat", "14", "9300", "Aalst", Handelaar09, Offer.No, true);
+                Items bon10 = new Items("One Star Sunbaked", 1600000,  "Kiểu dáng CONS One-Star với thiết kế All-White để bạn dễ dàng tận dụng với mọi outfit.", 22, @"images\items\10\", converse, "Ravensteinstraat", "50", "1000", "Brussel", Handelaar10, Offer.No, true);
 
 
-                Items bon11 = new Items("Sanitas Wichelen", 5,  "Ideale nike voor oud en jong", 83, @"images\items\11\", nike, "Paepestraat", "178", "9260", "Wichelen", Handelaar11, Offer.No, true);
-                Items bon12 = new Items("nike Basic-Fit Aalst", 5,  "Bekenste nike van België met vestigingen over het hele land.", 75, @"images\items\12\", nike, "Arbeidstraat", "14", "9300", "Aalst", Handelaar12, Offer.No, true);
-                Items bon13 = new Items("nike Basic-Fit Gent", 4,  "Bekenste nike van België met vestigingen over het hele land.", 8, @"images\items\13\", nike, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar12, Offer.No, true);
-                Items bon14 = new Items("nike Basic-Fit Brussel", 6, "Bekenste nike van België met vestigingen over het hele land.", 53, @"images\items\14\", nike, "Ravensteinstraat", "50", "1000", "Brussel", Handelaar12, Offer.No, true);
-                Items bon15 = new Items("nike Basic-Fit Brugge", 8, "Bekenste nike van België met vestigingen over het hele land.", 53, @"images\items\15\", nike, "Maalse Steenweg", "50", "8310", "Brugge", Handelaar12, Offer.No, true);
-                Items bon16 = new Items("nike Basic-Fit Sint-Truiden", 5, "Bekenste nike van België met vestigingen over het hele land.", 72, @"images\items\16\", nike, "Luikersteenweg ", "40", "3800", "Sint-Truiden", Handelaar12, Offer.No, true);
-                Items bon17 = new Items("nike Basic-Fit Wetteren", 6, "Bekenste nike van België met vestigingen over het hele land.", 65, @"images\items\17\", nike, "Cooppallaan ", "40", "9230", "Wetteren", Handelaar12, Offer.No, true);
-                Items bon18 = new Items("nike Basic-Fit Wichelen", 4,  "Bekenste nike van België met vestigingen over het hele land.", 22, @"images\items\18\", nike, "Paepestraat", "178", "9260", "Wichelen", Handelaar12, Offer.No, true);
-                Items bon19 = new Items("nike Basic-Fit Lede", 8, "Bekenste nike van België met vestigingen over het hele land.", 75, @"images\items\19\", nike, "Kasteeldreef", "15", "9340", "Lede", Handelaar12, Offer.No, true);
+                Items bon11 = new Items("Nike x CLOT Air Max Haven", 2200000,  "Ideale nike voor oud en jong", 83, @"images\items\11\", nike, "Paepestraat", "178", "9260", "Wichelen", Handelaar11, Offer.No, true);
+                Items bon12 = new Items("AIR JORDAN 1 RETRO HIGH OG", 2200000,  "Bekenste nike van België met vestigingen over het hele land.", 75, @"images\items\12\", nike, "Arbeidstraat", "14", "9300", "Aalst", Handelaar12, Offer.No, true);
+                Items bon13 = new Items("Air Jordan 11 Retro Low LE", 2200000,  "Bekenste nike van België met vestigingen over het hele land.", 8, @"images\items\13\", nike, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar12, Offer.No, true);
+                Items bon14 = new Items("Nike Epic Phantom React", 2200000, "Bekenste nike van België met vestigingen over het hele land.", 53, @"images\items\14\", nike, "Ravensteinstraat", "50", "1000", "Brussel", Handelaar12, Offer.No, true);
+                Items bon15 = new Items("Nike Free RN Flyknit 3.0", 2200000, "Bekenste nike van België met vestigingen over het hele land.", 53, @"images\items\15\", nike, "Maalse Steenweg", "50", "8310", "Brugge", Handelaar12, Offer.No, true);
+                Items bon16 = new Items("Nike Vaporfly 4% Flyknit", 2200000, "Bekenste nike van België met vestigingen over het hele land.", 72, @"images\items\16\", nike, "Luikersteenweg ", "40", "3800", "Sint-Truiden", Handelaar12, Offer.No, true);
+                Items bon17 = new Items("NikeCourt Royale AC SE", 2200000, "Bekenste nike van België met vestigingen over het hele land.", 65, @"images\items\17\", nike, "Cooppallaan ", "40", "9230", "Wetteren", Handelaar12, Offer.No, true);
+                Items bon18 = new Items("LeBron 16 SB", 2200000,  "Bekenste nike van België met vestigingen over het hele land.", 22, @"images\items\18\", nike, "Paepestraat", "178", "9260", "Wichelen", Handelaar12, Offer.No, true);
+                Items bon19 = new Items("Nike Free RN 5.0", 2200000, "Bekenste nike van België met vestigingen over het hele land.", 75, @"images\items\19\", nike, "Kasteeldreef", "15", "9340", "Lede", Handelaar12, Offer.No, true);
 
 
-                Items bon20 = new Items("Nachtwandeling Aalst at night", 5, "Geniet van de sterrenhemel in de mooie streken van Aalst (met gids).", 63, @"images\items\20\", adidas, "Arbeidstraat", "14", "9300", "Aalst", Handelaar21, Offer.No, true);
-                Items bon21 = new Items("Dagje wallibi in Dendermonde", 25,  "Wat is er nu leuker dan een dagje wallibi met vrienden", 34, @"images\items\21\", adidas, "Mechelsesteenweg ", "138", "9200", "Dendermonde", Handelaar22, Offer.No, true);
-                Items bon22 = new Items("Met de trein naar Oostende", 36,  "Spring zong er al over dus wat houd je tegen het te doen", 45, @"images\items\22\", adidas, "Torhoutsesteenweg", "611", "8400", "Oostende", Handelaar23, Offer.No, true);
-                Items bon23 = new Items("Weekendje disneyland parijs", 29,  "Disneyland de bestemming voor groot en klein", 35, @"images\items\23\", adidas, "Leopoldlaan", "1", "1930", "Zaventem", Handelaar24, Offer.No, true);
-                Items bon24 = new Items("De grotten van Han", 50,  "Het liedje zit ongetwijfeld al in je hoofd dus ga nu gewoon", 86, @"images\items\24\", adidas, "Rue Joseph Lamotte", "2", "5580", "Han-sur-Lesse", Handelaar25, Offer.No, true);
-                Items bon25 = new Items("Historisch bezoek Breemdonk", 6, "Voor de oorlog fanaten een must", 35, @"images\items\25\", adidas, "Brandstraat", "57", "2830", "Willebroek", Handelaar26, Offer.No, true);
+                Items bon20 = new Items("Adidas NMD_CS1 Primeknit", 2500000, "Geniet van de sterrenhemel in de mooie streken van Aalst (met gids).", 63, @"images\items\20\", adidas, "Arbeidstraat", "14", "9300", "Aalst", Handelaar21, Offer.No, true);
+                Items bon21 = new Items("Adidas NMD R1", 2500000,  "Wat is er nu leuker dan een dagje wallibi met vrienden", 34, @"images\items\21\", adidas, "Mechelsesteenweg ", "138", "9200", "Dendermonde", Handelaar22, Offer.No, true);
+                Items bon22 = new Items("Adidas Stansmith", 2500000,  "Spring zong er al over dus wat houd je tegen het te doen", 45, @"images\items\22\", adidas, "Torhoutsesteenweg", "611", "8400", "Oostende", Handelaar23, Offer.No, true);
+                Items bon23 = new Items("Adidas UltraBoost 2.0", 2500000,  "Disneyland de bestemming voor groot en klein", 35, @"images\items\23\", adidas, "Leopoldlaan", "1", "1930", "Zaventem", Handelaar24, Offer.No, true);
+                Items bon24 = new Items("Adidas NMD_CS1 Primeknit", 2500000,  "Het liedje zit ongetwijfeld al in je hoofd dus ga nu gewoon", 86, @"images\items\24\", adidas, "Rue Joseph Lamotte", "2", "5580", "Han-sur-Lesse", Handelaar25, Offer.No, true);
+                Items bon25 = new Items("Adidas ZX 500 RM", 2500000, "Voor de oorlog fanaten een must", 35, @"images\items\25\", adidas, "Brandstraat", "57", "2830", "Willebroek", Handelaar26, Offer.No, true);
 
 
-                Items bon26 = new Items("Bloemencenter Brenk", 1,  "Stel zelf uw setje bloemen samen met deze items.", 43, @"images\items\26\", palladium, "Arbeidstraat", "14", "9300", "Aalst", Handelaar31, Offer.No, true);
-                Items bon27 = new Items("Potgrond De Mol in Lede", 22, "Heb je grond nodig voor in een pot", 68, @"images\items\27\", palladium, "Kasteeldreef", "15", "9340", "Lede", Handelaar32, Offer.No, true);
-                Items bon28 = new Items("Schelfhout Ten Aalst", 36,  "Schelfhout, waar moet je andes zijn!", 75, @"images\items\28\", palladium, "Arbeidstraat", "14", "9300", "Aalst", Handelaar33, Offer.No, true);
-                Items bon29 = new Items("Bloemetje liesje in Gent", 13,  "Lies, verkoopt ook wel een madelief ", 25, @"images\items\29\", palladium, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar34, Offer.No, true);
-                Items bon30 = new Items("Funa Lima tuincentrum Lede", 26,  "Vissen, fonteinen, dieraccesoire...", 14, @"images\items\30\", palladium, "Kasteeldreef", "15", "9340", "Lede", Handelaar35, Offer.No, true);
-                Items bon31 = new Items("Vijvervoorziening Blub", 30,  "Blub, de winkel voor vis enthousiasten", 35, @"images\items\31\", palladium, "Arbeidstraat", "14", "9300", "Aalst", Handelaar36, Offer.No, true);
-                Items bon32 = new Items("Grasmaaiers Bontinck", 25, "Jaren ervaring in het snoeien", 76, @"images\items\32\", palladium, "Paepestraat", "178", "9260", "Wichelen", Handelaar37, Offer.No, true);
-                Items bon33 = new Items("Aveve boerenbond te Aalst", 31, "Bij de boerenbond vind je altijd wat je zoekt", 75, @"images\items\33\", palladium, "Arbeidstraat", "14", "9300", "Aalst", Handelaar38, Offer.No, true);
-                Items bon34 = new Items("Groener Gras In Wetteren", 12, "Gazon voorzieningen", 14, @"images\items\34\", palladium, "Cooppallaan ", "40", "9230", "Wetteren", Handelaar39, Offer.No, true);
+                Items bon26 = new Items("PAMPA OXFORD ORIGINALE", 1600000,  "Stel zelf uw setje bloemen samen met deze items.", 43, @"images\items\26\", palladium, "Arbeidstraat", "14", "9300", "Aalst", Handelaar31, Offer.No, true);
+                Items bon27 = new Items("PAMPALICIOUS POP CORN", 1600000, "Heb je grond nodig voor in een pot", 68, @"images\items\27\", palladium, "Kasteeldreef", "15", "9340", "Lede", Handelaar32, Offer.No, true);
+                Items bon28 = new Items("PAMPALICIOUS STARLIGHT BLUE", 1600000,  "Schelfhout, waar moet je andes zijn!", 75, @"images\items\28\", palladium, "Arbeidstraat", "14", "9300", "Aalst", Handelaar33, Offer.No, true);
+                Items bon29 = new Items("PAMPALICIOUS BLOSSOM", 1600000,  "Lies, verkoopt ook wel een madelief ", 25, @"images\items\29\", palladium, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar34, Offer.No, true);
+                Items bon30 = new Items("PALLADIUM PAMPA HI DARE", 1600000,  "Vissen, fonteinen, dieraccesoire...", 14, @"images\items\30\", palladium, "Kasteeldreef", "15", "9340", "Lede", Handelaar35, Offer.No, true);
+                Items bon31 = new Items("PALLADIUM PAMPA HI DARE", 1600000,  "Blub, de winkel voor vis enthousiasten", 35, @"images\items\31\", palladium, "Arbeidstraat", "14", "9300", "Aalst", Handelaar36, Offer.No, true);
+                Items bon32 = new Items("PALLADIUM PAMPA FREE CANVAS", 1600000, "Jaren ervaring in het snoeien", 76, @"images\items\32\", palladium, "Paepestraat", "178", "9260", "Wichelen", Handelaar37, Offer.No, true);
+                Items bon33 = new Items("PAMPA LITE CUFF WATERPROOF", 1600000, "Bij de boerenbond vind je altijd wat je zoekt", 75, @"images\items\33\", palladium, "Arbeidstraat", "14", "9300", "Aalst", Handelaar38, Offer.No, true);
+                Items bon34 = new Items("PALLABROUSE BAGGY", 1600000, "Gazon voorzieningen", 14, @"images\items\34\", palladium, "Cooppallaan ", "40", "9230", "Wetteren", Handelaar39, Offer.No, true);
 
-                Items bon35 = new Items("Pukkelpop weekend tickets", 21,  "Pukkelpop, dat moet je gedaan hebben", 57, @"images\items\35\", vans, "Paepestraat", "178", "9260", "Wichelen", Handelaar41, Offer.No, true);
-                Items bon36 = new Items("Lokerse bierfeesten", 44, "Bierfanaten kunnen dit niet missen", 75, @"images\items\36\", vans, "Kleine Dam", "1", "9160", "Lokeren", Handelaar42, Offer.No, true);
-                Items bon37 = new Items("Gentse feesten eetfestijn", 42,  "Drinken en eten, meer moet dat niet zijn", 25, @"images\items\37\", vans, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar43, Offer.No, true);
-                Items bon38 = new Items("Gameforce in de Nekkerhalle", 38, "Voor elke nerd wat wils", 14, @"images\items\38\", vans, "Ravensteinstraat", "50", "1000", "Brussel", Handelaar44, Offer.No, true);
-                Items bon39 = new Items("Drive A Ferrari Day", 8,  "Ideal geshenk voor een autofanaat", 38, @"images\items\39\", vans, "Paepestraat", "178", "9260", "Wichelen", Handelaar45, Offer.No, true);
-                Items bon40 = new Items("Facts: trein en eten", 34,  "Cosplay, eten en vervoer", 18, @"images\items\40\", vans, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar46, Offer.No, true);
+                Items bon35 = new Items("VANS ERA GET THE REAL", 1700000,  "Pukkelpop, dat moet je gedaan hebben", 57, @"images\items\35\", vans, "Paepestraat", "178", "9260", "Wichelen", Handelaar41, Offer.No, true);
+                Items bon36 = new Items("VANS UA OLD SKOOL I HEART ", 1700000, "Bierfanaten kunnen dit niet missen", 75, @"images\items\36\", vans, "Kleine Dam", "1", "9160", "Lokeren", Handelaar42, Offer.No, true);
+                Items bon37 = new Items("VANS OLD SKOOL OT SIDEWALL", 1700000,  "Drinken en eten, meer moet dat niet zijn", 25, @"images\items\37\", vans, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar43, Offer.No, true);
+                Items bon38 = new Items("ANAHEIM FACTORY STYLE 73 DX", 1700000, "Voor elke nerd wat wils", 14, @"images\items\38\", vans, "Ravensteinstraat", "50", "1000", "Brussel", Handelaar44, Offer.No, true);
+                Items bon39 = new Items("CLASSIC COM AUTHENTIC", 1700000,  "Ideal geshenk voor een autofanaat", 38, @"images\items\39\", vans, "Paepestraat", "178", "9260", "Wichelen", Handelaar45, Offer.No, true);
+                Items bon40 = new Items("COMFYCUSH OLD SKOOL", 1700000,  "Cosplay, eten en vervoer", 18, @"images\items\40\", vans, "Sint-Pietersnieuwstraat", "124", "9000", "Gent", Handelaar46, Offer.No, true);
 
 //                Items bon41 = new Items("Makeup pallete Nude", 29, "Het bekendste merk zijn palette", 67, @"images\items\41\", beauty, "Paepestraat", "178", "9260", "Wichelen", Handelaar51, Offer.No, true);
 //                Items bon42 = new Items("Ici Paris verwenbon", 15, "Een parfum kan je nooit mee misdoen", 17, @"images\items\42\", beauty, "Arbeidstraat", "14", "9300", "Aalst", Handelaar52, Offer.No, true);

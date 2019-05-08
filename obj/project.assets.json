@@ -14456,11 +14456,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\Shop.csproj",
+      "projectUniqueName": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\3brosshop\\Shop.csproj",
       "projectName": "Shop",
-      "projectPath": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\Shop.csproj",
+      "projectPath": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\3brosshop\\Shop.csproj",
       "packagesPath": "C:\\Users\\Henry\\.nuget\\packages\\",
-      "outputPath": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\obj\\",
+      "outputPath": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\3brosshop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
