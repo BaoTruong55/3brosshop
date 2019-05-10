@@ -80,10 +80,16 @@
                                             <div id="advancedSearch" class="collapse mt-15">
                                                 <select name="Category" id="Category" class="input-sm">
                                                     <option value="">Category</option>
-                                                    @foreach (Category category in (IEnumerable<Category>)ViewData["AllCategories"])
-                                                    {
-                                                        <option value="@category.Name">@category.Name</option>
-                                                    }
+                                                        @try
+                                                        {
+                                                            foreach (Category category in (IEnumerable<Category>) ViewData["AllCategories"])
+                                                             {
+                                                                 <option value="@category.Name">@category.Name</option>
+                                                             }
+                                                        }
+                                                        catch (Exception e)
+                                                        {
+                                                        }
                                                 </select>
                                                 <input type="number" name="MaxStartPrice" id="MaxStartPrice" class="input-sm" style="width: 90px" min="1" max="100000" placeholder="tầm giá">
                                             </div>
@@ -125,12 +131,20 @@
                                     <li class="Categoryen-List-Item">
                                         <a>Thể loại</a>
                                         <ul>
-                                            @foreach (Category category in (IEnumerable<Category>)ViewData["AllCategories"])
+                                            @try
                                             {
-                                                <li>
-                                                    <a asp-controller="Home" asp-action="Search" asp-route-SearchType="Category" asp-route-SearchKey="@category.Name"><i class="fa @category.Icon"></i> - @category.Name</a>
-                                                </li>
+                                                foreach (Category category in (IEnumerable<Category>) ViewData["AllCategories"])
+                                                 {
+                                                     <li>
+                                                         <a asp-controller="Home" asp-action="Search" asp-route-SearchType="Category" asp-route-SearchKey="@category.Name"><i class="fa @category.Icon"></i> - @category.Name</a>
+                                                     </li>
+                                                 }
                                             }
+                                            catch (Exception e)
+                                            {
+                                             
+                                            }
+                                           
                                         </ul>
                                     </li>
                                     <li class="BestSeller-List-Item">
@@ -151,7 +165,7 @@
                                         </ul>
                                     </li>
                                     <li class="Offeren-List-Item">
-                                        <a asp-controller="Home" asp-action="Offers">Nhà cung cấp</a>
+                                        <a asp-controller="Home" asp-action="Offers">Ưu đãi</a>
                                     </li>
                                     <li class="Over-List-Item">
                                         <a asp-controller="Home" asp-action="About">Giới thiệu</a>

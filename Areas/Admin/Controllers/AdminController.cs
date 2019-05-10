@@ -20,7 +20,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Microsoft.EntityFrameworkCore;
 using Shop.Models.Domain.Interface;
+using Shop.Models.AdminViewModels;
 
 namespace Shop.Areas.Admin.Controllers
 {
@@ -288,6 +290,59 @@ namespace Shop.Areas.Admin.Controllers
                 return RedirectToAction("SellerRequest");
             }
             return View(nameof(SellerRequestEvaluation), model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Users()
+        {
+            ListIdentityUser list = new ListIdentityUser();
+            List<ApplicationUser> listUser = await _userManager.Users.ToListAsync();
+            foreach (var item in listUser)
+            {
+
+                IList<Claim> tmp = await _userManager.GetClaimsAsync(item);
+
+                list.ListUser.Add(
+                    new UsersViewModel()
+                    {
+                        User = item,
+                        RoleName = tmp[0].Value
+                    });
+
+            }
+
+            return View(list);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UsersEdit(string id)
+        {
+            ApplicationUser user = _userManager.Users.FirstOrDefault(x => x.Id == id);
+            IList<Claim> tmp = await  _userManager.GetClaimsAsync(user);
+            return View(new UsersViewModel()
+            {
+                User = user,
+                RoleName = tmp[0].Value
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UsersEdit(UsersViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                List<ApplicationUser> user = await _userManager.Users.ToListAsync();
+                ApplicationUser u = user.Find(x => x.Id == model.User.Id);
+                IList<Claim> tmp = await _userManager.GetClaimsAsync(u);
+                _userManager.ReplaceClaimAsync(u, tmp[0], new Claim(ClaimTypes.Role, model.RoleName));
+
+                _sellerRepository.SaveChanges();
+
+                return RedirectToAction("Users");
+            }
+            return View();
         }
 
         [HttpGet]

@@ -36,9 +36,9 @@ namespace Shop.Data.Repositories
             return _orderItems.Include(b => b.Items).SingleOrDefault(g => g.QRCode == qrcode);
         }
 
-        public OrderItem GetById(int bestellijnid)
+        public OrderItem GetById(int orderItemId)
         {
-            return _orderItems.Include(b => b.Items).Include(b => b.Seller).SingleOrDefault(g => g.OrderItemId == bestellijnid);
+            return _orderItems.Include(b => b.Items).Include(b => b.Seller).SingleOrDefault(g => g.OrderItemId == orderItemId);
         }
 
         public IEnumerable<OrderItem> getUsedOrder()

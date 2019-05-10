@@ -22,7 +22,5 @@ namespace Shop.Models.AdminViewModels
             NumberOfItemsInSystem = seller.Items.Count;
             Postcode = seller.Postcode;
         }
-
-
     }
 }

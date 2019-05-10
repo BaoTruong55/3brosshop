@@ -1,0 +1,38 @@
+﻿@model Shop.Models.AdminViewModels.ListIdentityUser
+
+@{
+    ViewData["Title"] = "Danh sách người dùng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+        <div class="table-agile-info">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Danh sách người dùng
+                </div>
+                <div>
+                    <table class="table" id="tableToSearch">
+                        <thead>
+                            <tr>
+                                <th>Người dùng</th>
+                                <th>Role</th>
+                                <th>Chi tiét</th>
+                            </tr>
+                        </thead>
+                        @foreach (var items in Model.ListUser.ToArray())
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@items.User.Email</td>
+                                    <td>@items.RoleName</td>
+                                    <td><a asp-controller="Admin" asp-action="UsersEdit" asp-route-id="@items.User.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+</section>

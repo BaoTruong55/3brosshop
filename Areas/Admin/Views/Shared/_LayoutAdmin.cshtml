@@ -101,14 +101,14 @@
                         <li class="sub-menu">
                             <a href="#" class="@(ItemsSubMenu.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
                                 <i class="fas fa-gift"></i>
-                                <span>Quản lý biên lai</span>
+                                <span>Quản lý mặt hàng</span>
                             </a>
                             <ul class="sub">
                                 <li><a asp-controller="Admin" asp-action="ItemsRequests" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsRequests" ? "active" : (ViewContext.RouteData.Values["Action"].ToString() == "ItemsRequest" ? "active" : ""))"><i class="fas fa-user-plus"></i> Yêu cầu mặt hàng</a></li>
                                 <li><a asp-controller="Admin" asp-action="AddItems" class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddItems" ? "active" : "")"><i class="fas fa-plus-square"></i> Thêm mặt hàng</a></li>
-                                <li><a asp-controller="Admin" asp-action="ItemsOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchItems" ? "active" : "")"><i class="fas fa-search"></i> Tìm biên lai</a></li>
+                                <li><a asp-controller="Admin" asp-action="ItemsOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchItems" ? "active" : "")"><i class="fas fa-search"></i> Tìm mặt hàng</a></li>
                                 <li><a asp-controller="Admin" asp-action="ItemsOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsOverview" ? "active" : "")"><i class="fas fas fa-ellipsis-h"></i> Thông tin mặt hàng</a></li>
-                                <li><a asp-controller="Admin" asp-action="ItemsEdit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsEdit" ? "active" : "")"><i class="fas fa-edit"></i> Chỉnh sửa mặt hành</a></li>
+                                <li><a asp-controller="Admin" asp-action="ItemsEdit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsEdit" ? "active" : "")"><i class="fas fa-edit"></i> Chỉnh sửa mặt hàng</a></li>
                             </ul>
                         </li>
                         <li>
@@ -117,6 +117,7 @@
                                 <span>biên lai đã xuất</span>
                             </a>
                         </li>
+
                         <li>
                             <a asp-controller="Admin" asp-action="UsedItems" class="@(ViewContext.RouteData.Values["Action"].ToString() == "UsedItems" ? "active" : "")">
                                 <i class="fas fa-cloud-upload-alt"></i>
@@ -128,6 +129,12 @@
                             <a asp-controller="Admin" asp-action="SoldItems" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchSoldItems" ? "active" : "")">
                                 <i class="fas fa-search"></i>
                                 <span>Tìm kiếm biên lai đã xuất</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-controller="Admin" asp-action="Users" class="@(soldItems.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">
+                                <i class="fas fa-cloud-download-alt"></i>
+                                <span>Quản lý người dùng</span>
                             </a>
                         </li>
                         <li class="sub-menu">

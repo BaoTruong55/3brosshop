@@ -119,12 +119,14 @@ namespace Shop
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error/PageNotFound");
             }
 
             app.UseStaticFiles();
             app.UseSession();
             app.UseAuthentication();
+            app.UseDeveloperExceptionPage();
+            
 
             app.UseMvc(routes =>
             {
@@ -187,6 +189,10 @@ namespace Shop
                 routes.MapRoute(
                    name: "MakeItemsUsable",
                    template: "{controller=Checkout}/{action=MakeItemsUsable}/{Id}");
+
+                routes.MapRoute(
+                    name: "Error",
+                    template: "{controller=Error}/{action=PageNotFound}/{Id?}");
 
             }); 
             datainit.InitializeData().Wait();

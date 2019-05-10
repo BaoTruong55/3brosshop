@@ -6,7 +6,7 @@
 }
 
 <section class="wrapper">
-    @if (Model.AlSortedOpId == null || !Model.AllDealersSortedOpId.Any())
+    @if (Model.AllSellerSortedById == null || !Model.AllSellerSortedById.Any())
     {
     <h1 class="text-center mtb-40">Hiện tại không có người bán trong hệ thống!</h1>
         <a asp-controller="Admin" asp-action="SellerAdd"><h3 class="text-center">Thêm người bán bằng tay.</h3></a>
