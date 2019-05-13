@@ -329,7 +329,16 @@ namespace Shop.Controllers
                                             model.NameOfBusiness, model.Email, model.Street, model.ApartmentNumber, model.Postcode, model.City, model.Description);
 
                     Seller nieuweSeller = new Seller(model.NameOfBusiness, model.Email, model.Description, model.Street, model.ApartmentNumber, model.Postcode, model.City, false);
+                    _userRepository.Add(new User
+                    {
+                        EmailAddress = model.Email,
+                        FirstName = model.NameOfBusiness,
+                        FamilyName = "",
+                        Sex = Shop.Models.Domain.Enum.Sex.Different
+                    });
+
                     _sellerRepository.Add(nieuweSeller);
+                    _userRepository.SaveChanges();
                     _sellerRepository.SaveChanges();
 
 
@@ -498,7 +507,7 @@ namespace Shop.Controllers
                     var message = new MailMessage();
                     message.From = new MailAddress("3bros.shop.suport@gmail.com");
                     message.To.Add(model.Email);
-                    message.Subject = "Bạn đã tại tài khoản tại 3BrosShop";
+                    message.Subject = "Bạn đã tạo tài khoản tại 3BrosShop";
 
                     message.Body = String.Format("Kính gửi, \n" +
                    "Gần đây bạn đã tạo tài khoản trên 3BrosShop thông qua facebook hoặc google.\n\n" +

@@ -33,7 +33,9 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
                 <input asp-for="Password" type="password" class="ggg" placeholder="Mật khẩu">
                 <span asp-validation-for="Password" class="text-danger"></span>
-                <h6><a href="#">quên mật khẩu?</a></h6>
+                <h6>
+                    <a asp-controller="Account" asp-action="ForgotPassword" class="forgot-pass-link color-blue">Quên mật khẩu</a>
+                </h6>
                 <div class="clearfix"></div>
                 <input type="submit" value="Đăng nhập">
             </form>

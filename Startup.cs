@@ -86,8 +86,8 @@ namespace Shop
  
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
-                googleOptions.ClientId = "691114390080-b0d3c071g15urhs6at72fbgd9n9ndrh9.apps.googleusercontent.com";
-                googleOptions.ClientSecret = "B2qyzjZZ9jHJvF2EIcz3nGL2";
+                googleOptions.ClientId = "368540063821-q77iotv06t5uuuree8mkcs43fj8ejpol.apps.googleusercontent.com";
+                googleOptions.ClientSecret = "rlwJJV0NgvusXiBhgrtWzlal";
             });
 
             services.AddScoped<CartSessionFilter>();
@@ -126,7 +126,8 @@ namespace Shop
             app.UseSession();
             app.UseAuthentication();
             app.UseDeveloperExceptionPage();
-            
+            app.UseStatusCodePagesWithReExecute("/Error/{0}");
+
 
             app.UseMvc(routes =>
             {

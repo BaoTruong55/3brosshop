@@ -16,8 +16,11 @@
                         <thead>
                             <tr>
                                 <th>Người dùng</th>
-                                <th>Role</th>
-                                <th>Chi tiét</th>
+                                <th>Tên</th>
+                                <th>Họ</th>
+                                <th>Giới tính</th>
+                                <th>Quyền</th>
+                                <th>Chi tiết</th>
                             </tr>
                         </thead>
                         @foreach (var items in Model.ListUser.ToArray())
@@ -25,8 +28,12 @@
                             <tbody>
                                 <tr>
                                     <td>@items.User.Email</td>
+                                    <td>@items.UserInfo.FirstName</td>
+                                    <td>@items.UserInfo.FamilyName</td>
+                                    <td>@items.UserInfo.Sex</td>
                                     <td>@items.RoleName</td>
-                                    <td><a asp-controller="Admin" asp-action="UsersEdit" asp-route-id="@items.User.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                    <td><a asp-controller="Admin" asp-action="UsersEdit" asp-route-id="@items.User.UserName"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                                  
                                 </tr>
                             </tbody>
                         }

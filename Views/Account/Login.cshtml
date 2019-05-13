@@ -29,7 +29,7 @@
                                 <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group">
-                                <a asp-action="ForgotPassword" class="forgot-pass-link color-blue">Quên mật khẩu?</a>
+                                <a asp-action="ForgotPassword" class="forgot-pass-link color-blue">Quên mật khẩu</a>
                             </div>
                             <div class="custom-checkbox mb-20">
                                 <input input asp-for="RememberMe" type="checkbox" id="remember_account" checked>
@@ -44,17 +44,12 @@
                         <div class="social-login p-40">
                             <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                                 <div class="mb-20">
-                                    <button type="submit" name="provider" value="Facebook" class="btn btn-lg btn-block btn-social btn-facebook"><i class="fab fa-facebook-square font-18"></i> Đăng ký với Facebook</button>
+                                    <button type="submit" name="provider" value="Facebook" class="btn btn-lg btn-block btn-social btn-facebook"><i class="fab fa-facebook-square font-18"></i>  Facebook</button>
                                 </div>
                             </form>
                             <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
                                 <div class="mb-20">
-                                    <button type="submit" name="provider" value="Twitter" class="btn btn-lg btn-block btn-social btn-twitter"><i class="fab fa-twitter font-18"></i> Đăng ký với Twitter</button>
-                                </div>
-                            </form>
-                            <form asp-action="ExternalLogin" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                                <div class="mb-20">
-                                    <button type="submit" name="provider" value="Google" class="btn btn-lg btn-block btn-social btn-google-plus"><i class="fab fa-google-plus font-18"></i> Đăng ký với Google</button>
+                                    <button type="submit" name="provider" value="Google" class="btn btn-lg btn-block btn-social btn-google-plus"><i class="fab fa-google-plus font-18"></i>  Google</button>
                                 </div>
                             </form>
                             <div class="text-center color-mid hidden-xs">

@@ -16,13 +16,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "LekkerLokaal": {
+    "BrosShop": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:49248/"
+      "applicationUrl": "https://localhost:44394/"
     }
   }
 }

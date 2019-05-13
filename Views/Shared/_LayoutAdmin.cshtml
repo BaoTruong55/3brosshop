@@ -123,18 +123,27 @@
                                 <span>biên lai</span>
                             </a>
                         </li>
-
                         <li>
                             <a asp-controller="Admin" asp-action="SoldItemsView" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchSoldItems" ? "active" : "")">
                                 <i class="fas fa-search"></i>
                                 <span>Tìm kiếm biên lai đã xuất</span>
                             </a>
                         </li>
-                        <li>
-                            <a asp-controller="Admin" asp-action="Users" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchSoldItems" ? "active" : "")">
-                                <i class="fas fa-search"></i>
+                        @* <li> *@
+                        @*     <a asp-controller="Admin" asp-action="Users" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchSoldItems" ? "active" : "")"> *@
+                        @*         <i class="fas fa-user"></i> *@
+                        @*         <span>Quản lý người dùng</span> *@
+                        @*     </a> *@
+                        @* </li> *@
+                        <li class="sub-menu">
+                            <a href="#">
+                                <i class="fas fa-user"></i>
                                 <span>Quản lý người dùng</span>
                             </a>
+                            <ul class="sub">
+                                <li><a asp-controller="Admin" asp-action="Users"><i class="fas fa-star"></i> Quản lý người dùng</a></li>
+                                <li><a asp-controller="Admin" asp-action="UsersAdd"><i class="fab fa-slideshare"></i>Thêm người dùng</a></li>
+                            </ul>
                         </li>
                         <li class="sub-menu">
                             <a href="#" class="@(layoutSubMenu.Contains(ViewContext.RouteData.Values["Action"].ToString()) ? "active" : "")">

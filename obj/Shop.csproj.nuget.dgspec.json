@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "I:\\DoAn1\\Shop\\Shop.csproj": {}
+    "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop-master\\Shop.csproj": {}
   },
   "projects": {
-    "I:\\DoAn1\\Shop\\Shop.csproj": {
+    "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop-master\\Shop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "I:\\DoAn1\\Shop\\Shop.csproj",
+        "projectUniqueName": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop-master\\Shop.csproj",
         "projectName": "Shop",
-        "projectPath": "I:\\DoAn1\\Shop\\Shop.csproj",
+        "projectPath": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop-master\\Shop.csproj",
         "packagesPath": "C:\\Users\\longv\\.nuget\\packages\\",
-        "outputPath": "I:\\DoAn1\\Shop\\obj\\",
+        "outputPath": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop-master\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -75,7 +75,7 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[2.0.3, )"
+              "version": "[2.0.4, )"
             },
             "MySql.Data.EntityFrameworkCore": {
               "target": "Package",

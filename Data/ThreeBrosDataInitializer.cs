@@ -203,6 +203,13 @@ namespace Shop.Data
                 var password = "banhang";
                 var result = await _userManager.CreateAsync(user, password);
 
+                _dbContext.User.Add(new User
+                {
+                    EmailAddress = "banhang@3brosshop.com",
+                    FirstName = "Ban",
+                    FamilyName = "Hang",
+                    Sex = Sex.Male
+                });
                 await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "seller"));
 
                 Seller localMarket = new Seller("BanHang", "banhang@3brosshop.com", "abc", "Denderstraat", "22", "9300", "Aalst", true);

@@ -21,8 +21,13 @@ using System.Drawing.Imaging;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualStudio.Web.CodeGeneration;
+using Shop.Data;
 using Shop.Models.Domain.Interface;
 using Shop.Models.AdminViewModels;
+using Shop.Models.Domain.Enum;
+using Shop.Services;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Shop.Areas.Admin.Controllers
 {
@@ -33,12 +38,14 @@ namespace Shop.Areas.Admin.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ApplicationDbContext _dbContext;
         private readonly ISellerRepository _sellerRepository;
         private readonly IItemsRepository _itemsRepository;
         private readonly IUserRepository _userRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IOrderItemRepository _orderItemRepository;
         private readonly ILogger _logger;
+        private readonly IEmailSender _emailSender;
 
         public AdminController(
             UserManager<ApplicationUser> userManager,
@@ -292,6 +299,13 @@ namespace Shop.Areas.Admin.Controllers
             return View(nameof(SellerRequestEvaluation), model);
         }
 
+        private async Task CreateUser(string userName, string email, string password, string role)
+        {
+            var user = new ApplicationUser { UserName = userName, Email = email, EmailConfirmed = true };
+            await _userManager.CreateAsync(user, password);
+            await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, role));
+        }
+
         [HttpGet]
         public async Task<IActionResult> Users()
         {
@@ -301,11 +315,13 @@ namespace Shop.Areas.Admin.Controllers
             {
 
                 IList<Claim> tmp = await _userManager.GetClaimsAsync(item);
-
+                User userInfo = _userRepository.GetBy(item.UserName);
                 list.ListUser.Add(
                     new UsersViewModel()
                     {
                         User = item,
+                        UserInfo = userInfo,
+                        Password = "",
                         RoleName = tmp[0].Value
                     });
 
@@ -315,13 +331,94 @@ namespace Shop.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        public IActionResult UsersAdd()
+        {
+            ViewData["Role"] = Role();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UsersAdd(UsersViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = _userManager.Users.FirstOrDefault(x => x.UserName == model.User.Email);
+                if (user == null)
+                {
+                    await CreateUser(model.User.Email, model.User.Email, model.Password, model.RoleName);
+                    _userRepository.Add(new User
+                    {
+                        EmailAddress = model.User.Email,
+                        FirstName = model.UserInfo.FirstName,
+                        FamilyName = model.UserInfo.FamilyName,
+                        Sex = Models.Domain.Enum.Sex.Different
+                    });
+
+                    if (model.RoleName == "seller")
+                    {
+                        Seller newSeller = new Seller(model.UserInfo.FamilyName + " "+ model.UserInfo.FirstName , model.User.UserName, "#", "#", "#", "#", "#", true);
+                        _sellerRepository.Add(newSeller);
+                    }
+
+                    var message = new MailMessage();
+                    message.From = new MailAddress("3bros.shop.suport@gmail.com");
+                    message.To.Add(model.User.Email);
+                    message.Subject = "Tài khoản được tạo trên 3BrosShop";
+
+                    message.Body = String.Format("Kính gửi, \n" +
+                                                 "Tài khoản được tạo bởi Admin\n\n" +
+                                                 "Thông tin chi tiết: \n" +
+                                                 "Địa chỉ Email: " + model.User.Email + "\n" +
+                                                 "Mật khẩu: " + model.Password + "\n" +
+                                                 "Quyền: "+ model.RoleName + "\n\n" + 
+                                                 "Bạn nên đổi mật khẩu khi đăng nhập và cập nhật thông tin cá nhân\n\n" +
+                                                 "Trân trọng, \n" +
+                                                 "3Bros team");
+
+                    var SmtpServer = new SmtpClient("smtp.gmail.com");
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("3bros.shop.suport@gmail.com", "1234567893bros");
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(message);
+
+                    _userRepository.SaveChanges();
+                    _sellerRepository.SaveChanges();
+                    return RedirectToAction("Users");
+                }
+            }
+            return View(nameof(UsersAdd), model);
+        }
+
+        private SelectList Sex()
+        {
+            var sexList = new List<Sex>();
+            foreach (Sex sex in Enum.GetValues(typeof(Sex)))
+            {
+                sexList.Add(sex);
+            }
+            return new SelectList(sexList);
+        }
+
+        private SelectList Role()
+        {
+            return new SelectList(new List<string>(new string[] {"admin", "seller", "customers"}));
+        }
+
+        [HttpGet]
         public async Task<IActionResult> UsersEdit(string id)
         {
-            ApplicationUser user = _userManager.Users.FirstOrDefault(x => x.Id == id);
+            ApplicationUser user = _userManager.Users.FirstOrDefault(x => x.UserName == id);
+            User userInfo = _userRepository.GetBy(id);
             IList<Claim> tmp = await  _userManager.GetClaimsAsync(user);
+
+            ViewData["Sex"] = Sex();
+            ViewData["Role"] = Role();
             return View(new UsersViewModel()
             {
                 User = user,
+                UserInfo = userInfo,
+                Password = "",
                 RoleName = tmp[0].Value
             });
         }
@@ -334,12 +431,53 @@ namespace Shop.Areas.Admin.Controllers
             {
 
                 List<ApplicationUser> user = await _userManager.Users.ToListAsync();
-                ApplicationUser u = user.Find(x => x.Id == model.User.Id);
+                ApplicationUser u = user.Find(x => x.UserName == model.User.UserName);
+
                 IList<Claim> tmp = await _userManager.GetClaimsAsync(u);
-                _userManager.ReplaceClaimAsync(u, tmp[0], new Claim(ClaimTypes.Role, model.RoleName));
+                
+                if (model.Password != "" && model.Password != null)
+                {
+                    var token = await _userManager.GeneratePasswordResetTokenAsync(u);
+                    await _userManager.ResetPasswordAsync(u, token, model.Password);
+                    var message = new MailMessage();
+                    message.From = new MailAddress("3bros.shop.suport@gmail.com");
+                    message.To.Add(model.User.UserName);
+                    message.Subject = "Tài khoản của bạn đã được thay đổi mật khẩu";
+
+                    message.Body = String.Format("Kính gửi, \n" +
+                                                 "Mật khẩu của bạn đã được thay đổi bởi Admin\n\n" +
+                                                 "Thông tin chi tiết: \n" +
+                                                 "Địa chỉ Email: " + model.User.UserName + "\n" +
+                                                 "Mật khẩu: " + model.Password + "\n\n" +
+                                                 "Bạn nên đổi mật khẩu khi đăng nhập \n\n" +
+                                                 "Trân trọng, \n" +
+                                                 "3Bros team");
+
+                    var SmtpServer = new SmtpClient("smtp.gmail.com");
+                    SmtpServer.Port = 587;
+                    SmtpServer.Credentials = new System.Net.NetworkCredential("3bros.shop.suport@gmail.com", "1234567893bros");
+                    SmtpServer.EnableSsl = true;
+                    SmtpServer.Send(message);
+                }
+
+                await _userManager.ReplaceClaimAsync(u, tmp[0], new Claim(ClaimTypes.Role, model.RoleName));
+                User userInfo = _userRepository.GetBy(model.User.UserName);
+                userInfo.FirstName = model.UserInfo.FirstName;
+                userInfo.FamilyName = model.UserInfo.FamilyName;
+                userInfo.Sex = model.UserInfo.Sex;
+
+                if (tmp[0].Value != model.RoleName && model.RoleName == "seller")
+                {
+                    Seller seller = _sellerRepository.GetByEmail(model.User.UserName);
+                    if (seller == null)
+                    {
+                        Seller newSeller = new Seller(userInfo.FamilyName +" "+userInfo.FirstName , model.User.UserName, "#", "#", "#", "#", "#", true);
+                        _sellerRepository.Add(newSeller);
+                    }
+                }
 
                 _sellerRepository.SaveChanges();
-
+                _userRepository.SaveChanges();
                 return RedirectToAction("Users");
             }
             return View();
@@ -378,7 +516,14 @@ namespace Shop.Areas.Admin.Controllers
                     await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "seller"));
 
                     Seller nieuweSeller = new Seller(model.Name, model.Email, model.Description, model.StreetName, model.ApartmentNumber, model.Postcode, model.City, true);
+                    _userRepository.Add(new User{
+                        EmailAddress = model.Email,
+                        FirstName = model.Name,
+                        FamilyName = "",
+                        Sex = Shop.Models.Domain.Enum.Sex.Different
+                    });
                     _sellerRepository.Add(nieuweSeller);
+                    _userRepository.SaveChanges();
                     _sellerRepository.SaveChanges();
 
                     var filePath = @"wwwroot/images/seller/" + nieuweSeller.SellerId + "/logo.jpg";

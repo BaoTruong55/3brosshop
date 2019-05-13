@@ -1,0 +1,55 @@
+﻿@model Shop.Models.AdminViewModels.UsersViewModel
+@{
+    ViewData["Title"] = "Thêm người dùng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="wrapper">
+    <h1 class="text-center"></h1>
+    <section class="panel">
+        <header class="panel-heading">Thêm người người dùng</header>
+        <div class="panel-body">
+            <form class="form-horizontal bucket-form" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Email người dùng</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" asp-for="User.Email">
+                        <span asp-validation-for="User.Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Tên</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" asp-for="UserInfo.FirstName">
+                        <span asp-validation-for="UserInfo.FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Họ</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" asp-for="UserInfo.FamilyName">
+                        <span asp-validation-for="UserInfo.FamilyName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Mật khẩu</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" asp-for="Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Quyền</label>
+                    <div class="col-sm-6">
+                        <select class="form-control input-lg search-select" asp-for="RoleName" asp-items="@(ViewData["Role"] as SelectList)"></select>
+                        <span asp-validation-for="RoleName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-9 col-md-offset-3">
+                    <a asp-controller="Admin" asp-action="Users" class="btn btn-danger mr-20">Hủy</a>
+                    <button type="submit" class="btn btn-success">Thêm</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</section>

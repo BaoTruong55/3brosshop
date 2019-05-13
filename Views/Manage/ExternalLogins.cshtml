@@ -5,7 +5,7 @@
 }
 
 @Html.Partial("_StatusMessage", Model.StatusMessage)
-@if (Model.CurrentLogins?.Count > 0)
+@if (Model.CurrentLogins?.Count >= 0)
 {
     <div class="page-container ptb-10">
         <div class="container width-100">
@@ -24,7 +24,7 @@
                                             <div>
                                                 <input asp-for="@login.LoginProvider" name="LoginProvider" type="hidden" />
                                                 <input asp-for="@login.ProviderKey" name="ProviderKey" type="hidden" />
-                                                <button type="submit" class="btn btn-default" title="Verwijder @login.LoginProvider van uw account"> 
+                                                <button type="submit" class="btn btn-default" title="Xóa @login.LoginProvider khỏi tài khoản của bạn"> 
                                                     Xóa
                                                 </button>
                                             </div>

@@ -1,7 +1,7 @@
 ﻿@model Shop.Models.AdminViewModels.UsersViewModel
 
 @{
-    ViewData["Title"] = "Người bán hàng";
+    ViewData["Title"] = "Người dùng";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -19,19 +19,52 @@
                         <input type="text" asp-for="User.UserName" class="form-control" readonly>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Tên</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="2" asp-for="UserInfo.FirstName" readonly>
+
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('2')" class="clickable"><i id="2icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Họ</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="3" asp-for="UserInfo.FamilyName" readonly>
+
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('3')" class="clickable"><i id="3icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Giới tính</label>
+                    <div class="col-sm-6">
+                        <select class="form-control input-lg search-select" asp-for="UserInfo.Sex" asp-items="@(ViewData["Sex"] as SelectList)" id="4"></select>
+                        <span asp-validation-for="UserInfo.Sex" class="text-danger"></span>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Quyền</label>
                     <div class="col-sm-6">
-                        <input class="form-control" required="required" id="9" asp-for="RoleName" readonly>
-               
-                    </div>
-                    <div class="col-sm-1">
-                        <a onclick="ToggleReadOnly('9')" class="clickable"><i id="9icon" class="fas fa-lock"></i></a>
+                        <select class="form-control input-lg search-select" asp-for="RoleName" asp-items="@(ViewData["Role"] as SelectList)"></select>
+                        <span asp-validation-for="RoleName" class="text-danger"></span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Mật khẩu</label>
+                    <div class="col-sm-6">
+                        <input class="form-control" required="required" id="5" asp-for="Password" readonly>
 
-                
+                    </div>
+                    <div class="col-sm-1">
+                        <a onclick="ToggleReadOnly('5')" class="clickable"><i id="5icon" class="fas fa-lock"></i></a>
+                    </div>
+                </div>
                 <div class="col-md-9 col-md-offset-3">
                     <a asp-controller="Admin" asp-action="Users" class="btn btn-warning mr-20">Hủy bỏ</a>
                     <button type="submit" class="btn btn-success">Thay đổi</button>
@@ -40,9 +73,3 @@
         </div>
     </section>
 </section>
-
-<script>
-    $("#fileToUpload").change(function () {
-        document.getElementById('fileselectionText').innerHTML = 'Bạn đã chọn một logo mới';
-    });
-</script>

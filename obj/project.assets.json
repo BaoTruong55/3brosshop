@@ -6556,7 +6556,7 @@
       ]
     },
     "Microsoft.CodeAnalysis.Analyzers/1.1.0": {
-      "sha512": "HS3iRWZKcUw/8eZ/08GXKY2Bn7xNzQPzf8gRPHGSowX7u7XXu9i9YEaBeBNKUXWfI7qjvT2zXtLUvbN0hds8vg==",
+      "sha512": "d+dYh1WIr1YGzIEbczueAe8a0C97fRMlMOavpZDu03IK3yhQhCo5D0FzK55hu5z5n0C+31/IEph1VT4YMnMGxw==",
       "type": "package",
       "path": "microsoft.codeanalysis.analyzers/1.1.0",
       "hasTools": true,
@@ -7523,7 +7523,7 @@
       ]
     },
     "Microsoft.Extensions.PlatformAbstractions/1.1.0": {
-      "sha512": "H6ZsQzxYw/6k2DfEQRXdC+vQ6obd6Uba3uGJrnJ2vG4PRXjQZ7seB13JdCfE72abp8E6Fk3gGgDzfJiLZi5ZpQ==",
+      "sha512": "FsfrBCEExAp5qkiXFnGskyhYcwpVVdrxPAcH/rFl9UcVW4NioA7bGOZqlsuySBoLxftQmOy1yWEY9paydEALxA==",
       "type": "package",
       "path": "microsoft.extensions.platformabstractions/1.1.0",
       "files": [
@@ -8211,12 +8211,11 @@
       ]
     },
     "Microsoft.NETCore.Targets/1.1.0": {
-      "sha512": "aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
+      "sha512": "luVlXvkZA2TygIwsuBkYpsC86m98TLQpvq7FC7/Ky9/0knbqnGgT9g+HFIZcHzNxVrysZNls1bhQfd8NMDwzPw==",
       "type": "package",
       "path": "microsoft.netcore.targets/1.1.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -8422,7 +8421,7 @@
       ]
     },
     "Microsoft.Win32.Primitives/4.3.0": {
-      "sha512": "9ZQKCWxH7Ijp9BfahvL2Zyf1cJIk8XYLF6Yjzr2yi0b2cOut/HQ31qf1ThHAgCc3WiZMdnWcfJCgN82/0UunxA==",
+      "sha512": "cD7Iv/KQ+jHmBkQnH7fS7O34jDrxBSz7naMedkiqb6sAAaTfDw+NsywNnFFtukC7aeBY/5Ftuc37oLyVb9yrWQ==",
       "type": "package",
       "path": "microsoft.win32.primitives/4.3.0",
       "files": [
@@ -8868,12 +8867,11 @@
       ]
     },
     "Remotion.Linq/2.1.1": {
-      "sha512": "IJn0BqkvwEDpP+2qjvci7n4/a9f7DhKESLWb2/uG4xQh3rTkGTBUz69bI4IivCoKkTFAqjXxYDZw2K/npohjsw==",
+      "sha512": "ufn3AKtMUoG6cSmEhWwOfMpd0vTjMAvz9xe6A6GXl7F2mr9Fzm6iXjrzguN2STY+g0TgRtRz92pb3Ry4AvGNcQ==",
       "type": "package",
       "path": "remotion.linq/2.1.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "lib/net35/Remotion.Linq.XML",
         "lib/net35/Remotion.Linq.dll",
         "lib/net40/Remotion.Linq.XML",
@@ -8889,7 +8887,7 @@
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "HdSSp5MnJSsg08KMfZThpuLPJpPwE5hBXvHwoKWosyHHfe8Mh5WKT0ylEOf6yNzX6Ngjxe4Whkafh5q7Ymac4Q==",
+      "sha512": "NpvdNVNvt3iCyGC8jZo/BA/m/UnsnNn0qCbvBOrp6PSxqvjdtDcJ+TfMt69PeKo8J16A93qLHC/PKxQBehD8zg==",
       "type": "package",
       "path": "runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -8902,7 +8900,7 @@
       ]
     },
     "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "+yH1a49wJMy8Zt4yx5RhJrxO/DBDByAiCzNwiETI+1S4mPdCu0OY4djdciC7Vssk0l22wQaDLrXxXkp+3+7bVA==",
+      "sha512": "/EMY9nvW0U/NeKI4tj/VXK2rWsqqN2VETj8+0xLtNAvreQhARO8zlfTOWvlRfj9NDZcC2tg6vzoQ5HWLo6fVFw==",
       "type": "package",
       "path": "runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -8915,7 +8913,7 @@
       ]
     },
     "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "c3YNH1GQJbfIPJeCnr4avseugSqPrxwIqzthYyZDN6EuOyNOzq+y2KSUfRcXauya1sF4foESTgwM5e1A8arAKw==",
+      "sha512": "eoz2v7izgcZ/pmMbS0kdhfQ8JE2qJmPYUQ+DMu8D1ZA4Q0kiXMk3A1juI1EUA5JUMmLqy1zvmUOHd2UotgNuog==",
       "type": "package",
       "path": "runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -8928,12 +8926,11 @@
       ]
     },
     "runtime.native.System/4.3.0": {
-      "sha512": "c/qWt2LieNZIj1jGnVNsE2Kl23Ya2aSTBuXMD6V7k9KWr6l16Tqdwq+hJScEpWER9753NWC8h96PaVNY5Ld7Jw==",
+      "sha512": "mCxI+EheyxjGk+ocA/Z0IjjFkDpRWSXNL9FluOE/3UWwAQqOMZxwRtE2Yu63C6tPPxDMAuJDLIArCZSAimYRvA==",
       "type": "package",
       "path": "runtime.native.system/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -8956,12 +8953,11 @@
       ]
     },
     "runtime.native.System.IO.Compression/4.3.0": {
-      "sha512": "INBPonS5QPEgn7naufQFXJEp3zX6L4bwHgJ/ZH78aBTpeNfQMtf7C6VrAFhlq2xxWBveIOWyFzQjJ8XzHMhdOQ==",
+      "sha512": "+/l0pcGk1TclzehzFIkNO4ZZNBxzgQbUgkStNGOooA7fPiBjeYH4zHCPbqfa5Vs0GX37pMxCWxYI8J6Eo6RK+A==",
       "type": "package",
       "path": "runtime.native.system.io.compression/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -8970,12 +8966,11 @@
       ]
     },
     "runtime.native.System.Net.Http/4.3.0": {
-      "sha512": "ZVuZJqnnegJhd2k/PtAbbIcZ3aZeITq3sj06oKfMBSfphW3HDmk/t4ObvbOk/JA/swGR0LNqMksAh/f7gpTROg==",
+      "sha512": "KIKpWkkWsZeznSKROm1Mw/WUz2iMl+sp3hVsFUOW8DSHLUfn5PCtquV1d+pgjPBmHkDa245tII2Emv6yWOGMUQ==",
       "type": "package",
       "path": "runtime.native.system.net.http/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -8984,7 +8979,7 @@
       ]
     },
     "runtime.native.System.Net.Security/4.3.0": {
-      "sha512": "M2nN92ePS8BgQ2oi6Jj3PlTUzadYSIWLdZrHY1n1ZcW9o4wAQQ6W+aQ2lfq1ysZQfVCgDwY58alUdowrzezztg==",
+      "sha512": "maOJSboLMPKGqYDXud5pZqmeUiyVAwzsjMUEFb1g/sSIiUHbvzY7xnqP0r//U39YIV+SMu/lFAN7yz+OIXTHPA==",
       "type": "package",
       "path": "runtime.native.system.net.security/4.3.0",
       "files": [
@@ -8997,7 +8992,7 @@
       ]
     },
     "runtime.native.System.Security.Cryptography.Apple/4.3.0": {
-      "sha512": "DloMk88juo0OuOWr56QG7MNchmafTLYWvABy36izkrLI5VledI0rq28KGs1i9wbpeT9NPQrx/wTf8U2vazqQ3Q==",
+      "sha512": "9OK1+YvXrN5+lPfsua8cRe+e3ovMS/Nw33sXJRGPsd5zzeRRe1M6PFItlarz/UXaIOacC18KDdoUhfSbf53Rlg==",
       "type": "package",
       "path": "runtime.native.system.security.cryptography.apple/4.3.0",
       "files": [
@@ -9010,7 +9005,7 @@
       ]
     },
     "runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "NS1U+700m4KFRHR5o4vo9DSlTmlCKu/u7dtE5sUHVIPB+xpXxYQvgBgA6wEIeCz6Yfn0Z52/72WYsToCEPJnrw==",
+      "sha512": "KL/jU8zilny+bTnVb2xDB00athNkfBCyIJYa2wmWEsNhV/f5TO22ZYWz0UEKIGtaWDdWxwUVuG084jj2Wq7phA==",
       "type": "package",
       "path": "runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -9023,7 +9018,7 @@
       ]
     },
     "runtime.opensuse.13.2-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "b3pthNgxxFcD+Pc0WSEoC0+md3MyhRS6aCEeenvNE3Fdw1HyJ18ZhRFVJJzIeR/O/jpxPboB805Ho0T3Ul7w8A==",
+      "sha512": "E8RcJQ0F6KBUMTiRdDZ+x81Noua5KQStVaKIKMF1U67Yp944ai2UHyV2Zx40vn7W2dA7ixSNgWM8zFCXKdgwew==",
       "type": "package",
       "path": "runtime.opensuse.13.2-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -9036,7 +9031,7 @@
       ]
     },
     "runtime.opensuse.42.1-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "KeLz4HClKf+nFS7p/6Fi/CqyLXh81FpiGzcmuS8DGi9lUqSnZ6Es23/gv2O+1XVGfrbNmviF7CckBpavkBoIFQ==",
+      "sha512": "6mnlvSgE0j7/ogSC5imDYeT3lyWp55yDun9i4wAbRtwJrBF7Qf7qj4rNoplP1GtXO0CY3UwAO9PJRGAs1g7NUg==",
       "type": "package",
       "path": "runtime.opensuse.42.1-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -9049,7 +9044,7 @@
       ]
     },
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.Apple/4.3.0": {
-      "sha512": "kVXCuMTrTlxq4XOOMAysuNwsXWpYeboGddNGpIgNSZmv1b6r/s/DPk0fYMB7Q5Qo4bY68o48jt4T4y5BVecbCQ==",
+      "sha512": "4fi8M+67+Baf769efuvFYVyqF5T4WxjA2Z0qma4bh4DMeLRLp/n4ARwIugAs19MvfOTr1Q0UR4QM8v1HcgT+4g==",
       "type": "package",
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.apple/4.3.0",
       "files": [
@@ -9062,7 +9057,7 @@
       ]
     },
     "runtime.osx.10.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "X7IdhILzr4ROXd8mI1BUCQMSHSQwelUlBjF1JyTKCjXaOGn2fB4EKBxQbCK2VjO3WaWIdlXZL3W6TiIVnrhX4g==",
+      "sha512": "imxWTqs5g5Zxblk6IYUO0KHMWT0gcLnp/Va0Q0f/XPDyf7HriDGDSAoDM8SS6T9gYlJej7pqHKk4nHpbG+z7sg==",
       "type": "package",
       "path": "runtime.osx.10.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -9075,7 +9070,7 @@
       ]
     },
     "runtime.rhel.7-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "nyFNiCk/r+VOiIqreLix8yN+q3Wga9+SE8BCgkf+2BwEKiNx6DyvFjCgkfV743/grxv8jHJ8gUK4XEQw7yzRYg==",
+      "sha512": "HxG7L6znc4eP2WxpWF723tfQt/qkperg3d9ZQWV2ENNt8SoJKo2donNdpNB8t4Q18QM6NJpnFWujI0ILXsY2Sw==",
       "type": "package",
       "path": "runtime.rhel.7-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -9088,7 +9083,7 @@
       ]
     },
     "runtime.ubuntu.14.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "ytoewC6wGorL7KoCAvRfsgoJPJbNq+64k2SqW6JcOAebWsFUvCCYgfzQMrnpvPiEl4OrblUlhF2ji+Q1+SVLrQ==",
+      "sha512": "WEkm86IxNCoAMNbM5fjOlr6z3MQfaig3Y23Yrsd+t2nbyuMEtWeTWwAELWfAbj1rv4Sg1lYYtOqXqrASsYWh1g==",
       "type": "package",
       "path": "runtime.ubuntu.14.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -9101,7 +9096,7 @@
       ]
     },
     "runtime.ubuntu.16.04-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "I8bKw2I8k58Wx7fMKQJn2R8lamboCAiHfHeV/pS65ScKWMMI0+wJkLYlEKvgW1D/XvSl/221clBoR2q9QNNM7A==",
+      "sha512": "wCWiRDNpRKGcicU01xfyALCRUJjYiVWr1iOSz/dPU8xn0IKbo9b1VbSlYFJm4EakN3QGIrftSO1oqusZkJ8/ww==",
       "type": "package",
       "path": "runtime.ubuntu.16.04-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -9114,7 +9109,7 @@
       ]
     },
     "runtime.ubuntu.16.10-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "VB5cn/7OzUfzdnC8tqAIMQciVLiq2epm2NrAm1E9OjNRyG4lVhfR61SMcLizejzQP8R8Uf/0l5qOIbUEi+RdEg==",
+      "sha512": "drawGapOZc874YJ+21MhkzqXbzr42nTT/0AlbahEv+fpCgBmRW/7fuag425AjYHWVRyUxqS0Ju60g47wxI4ZyQ==",
       "type": "package",
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "files": [
@@ -9341,7 +9336,7 @@
       ]
     },
     "System.AppContext/4.3.0": {
-      "sha512": "fKC+rmaLfeIzUhagxY17Q9siv/sPrjjKcfNg1Ic8IlQkZLipo8ljcaZQu4VtI4Jqbzjc2VTjzGLF6WmsRXAEgA==",
+      "sha512": "5nSbgaYgavOioO7vXYo+R8ynjqRVCFqejBKDZyVsxAIvke9Ug+IoNyeiXVOw5JOOS2lMplISKL2w9oPaYsc+pA==",
       "type": "package",
       "path": "system.appcontext/4.3.0",
       "files": [
@@ -9420,7 +9415,7 @@
       ]
     },
     "System.Collections/4.3.0": {
-      "sha512": "3Dcj85/TBdVpL5Zr+gEEBUuFe2icOnLalmEh9hfck1PTYbbyWuZgh4fmm2ysCLTrqLQw6t3TgTyJ+VLp+Qb+Lw==",
+      "sha512": "gk9ZWfR/yjKCz9APvHNocJLnpExJBcuTzLsDheRlosneZAxhbdcm+UHkxVdW+SYCpWF5aJZkiFreqvVJ5NuVmA==",
       "type": "package",
       "path": "system.collections/4.3.0",
       "files": [
@@ -9487,7 +9482,7 @@
       ]
     },
     "System.Collections.Concurrent/4.3.0": {
-      "sha512": "ztl69Xp0Y/UXCL+3v3tEU+lIy+bvjKNUmopn1wep/a291pVPK7dxBd6T7WnlQqRog+d1a/hSsgRsmFnIBKTPLQ==",
+      "sha512": "ikxBly4xSm1fHJVbPkEFiDtS/5O6pMaJxMXmYk3ot/bCjqvP6XLKXO4azG6TsUZW8ghJbqyIbhrzFjLIgf+C8Q==",
       "type": "package",
       "path": "system.collections.concurrent/4.3.0",
       "files": [
@@ -9577,12 +9572,11 @@
       ]
     },
     "System.Collections.NonGeneric/4.3.0": {
-      "sha512": "prtjIEMhGUnQq6RnPEYLpFt8AtLbp9yq2zxOSrY7KJJZrw25Fi97IzBqY7iqssbM61Ek5b8f3MG/sG1N2sN5KA==",
+      "sha512": "JkImXCsG2K2gkjR8nztIkSgKFTL0Qz/swqmKCsZGbUaToRE7fB404HcjJFl9fMU3Fxw8xtLtsJAikp5QLF25/w==",
       "type": "package",
       "path": "system.collections.nongeneric/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -9616,7 +9610,7 @@
       ]
     },
     "System.Collections.Specialized/4.3.0": {
-      "sha512": "Epx8PoVZR0iuOnJJDzp7pWvdfMMOAvpUo95pC4ScH2mJuXkKA2Y4aR3cG9qt2klHgSons1WFh4kcGW7cSXvrxg==",
+      "sha512": "kWtHBUelNbE+w0LzpNWNr5JKmfwUnv6LF3jUd/X3RPb7AIclDzviUyZhqT5CfaZv8Kbu8pgM7O5JAWBXvGc0Ow==",
       "type": "package",
       "path": "system.collections.specialized/4.3.0",
       "files": [
@@ -9654,7 +9648,7 @@
       ]
     },
     "System.ComponentModel/4.3.0": {
-      "sha512": "VyGn1jGRZVfxnh8EdvDCi71v3bMXrsu8aYJOwoV7SNDLVhiEqwP86pPMyRGsDsxhXAm2b3o9OIqeETfN5qfezw==",
+      "sha512": "7JGBVA1lNTqNpjRUsVpUXEJZSwJY28IGOeJmrAFTCO6WsY/opyhoQIRUO/RT/kf71zBmQhHLnQVZMVRdBD8SHQ==",
       "type": "package",
       "path": "system.componentmodel/4.3.0",
       "files": [
@@ -9799,7 +9793,7 @@
       ]
     },
     "System.ComponentModel.Primitives/4.3.0": {
-      "sha512": "j8GUkCpM8V4d4vhLIIoBLGey2Z5bCkMVNjEZseyAlm4n5arcsJOeI3zkUP+zvZgzsbLTYh4lYeP/ZD/gdIAPrw==",
+      "sha512": "kfaLE7G5Lg4y5wuXg7RcLya5pGw1n6V5uhmSgJ9CiUf2vrpJu/NOKlb7E6NIKBTZZJk9hMtX3NFfF9GZXE8FWw==",
       "type": "package",
       "path": "system.componentmodel.primitives/4.3.0",
       "files": [
@@ -9837,7 +9831,7 @@
       ]
     },
     "System.ComponentModel.TypeConverter/4.3.0": {
-      "sha512": "16pQ6P+EdhcXzPiEK4kbA953Fu0MNG2ovxTZU81/qsCd1zPRsKc3uif5NgvllCY598k6bI0KUyKW8fanlfaDQg==",
+      "sha512": "+zgRA8Xc23KH8MG8b/sl9OIcg/bc48HUUzGn/iBS/XTJ3iTs63bZeDRRTyR1MZ5oAwaDR58WbpnXJiu3ZdsWCg==",
       "type": "package",
       "path": "system.componentmodel.typeconverter/4.3.0",
       "files": [
@@ -9994,7 +9988,7 @@
       ]
     },
     "System.Console/4.3.0": {
-      "sha512": "DHDrIxiqk1h03m6khKWV2X8p/uvN79rgSqpilL6uzpmSfxfU5ng8VcPtW4qsDsQDHiTv6IPV9TmD5M/vElPNLg==",
+      "sha512": "zRX6eZix4jD0QffANJavg72pGcYORE21dtr5Kh+HucxP7sPgK2c9yA6PBuij/4wrbIew1LxuVtyR7YVDeLkC+w==",
       "type": "package",
       "path": "system.console/4.3.0",
       "files": [
@@ -10150,12 +10144,11 @@
       ]
     },
     "System.Diagnostics.Contracts/4.3.0": {
-      "sha512": "eelRRbnm+OloiQvp9CXS0ixjNQldjjkHO4iIkR5XH2VIP8sUB/SIpa1TdUW6/+HDcQ+MlhP3pNa1u5SbzYuWGA==",
+      "sha512": "6Lvad+t05oDFbzmygun/+IuVbrmv827CIcbisVoq75++Lp+1T7DJXLkrCyYgBm1gDr7y20gGTs9VNBgsa/wuKg==",
       "type": "package",
       "path": "system.diagnostics.contracts/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -10210,7 +10203,7 @@
       ]
     },
     "System.Diagnostics.Debug/4.3.0": {
-      "sha512": "ZUhUOdqmaG5Jk3Xdb8xi5kIyQYAA4PnTNlHx1mu9ZY3qv4ELIdKbnL/akbGaKi2RnNUWaZsAs31rvzFdewTj2g==",
+      "sha512": "s/WeARLpVgQzeJW7VjExAq70vERUD3zc7zu7IMocPHxnLPHctI05QdHbdkRxa9pPmcNKwCwRKxTPzUrg5Fg38A==",
       "type": "package",
       "path": "system.diagnostics.debug/4.3.0",
       "files": [
@@ -10346,7 +10339,7 @@
       ]
     },
     "System.Diagnostics.StackTrace/4.3.0": {
-      "sha512": "BiHg0vgtd35/DM9jvtaC1eKRpWZxr0gcQd643ABG7GnvSlf5pOkY2uyd42mMOJoOmKvnpNj0F4tuoS1pacTwYw==",
+      "sha512": "+qsG8HDZisThr0nz5dW1zVxAUmw69sNGXdGHKxaHW6uBidWn6UnDeb+pGooiDarcPCms3tFSke0F81hSc2MmuA==",
       "type": "package",
       "path": "system.diagnostics.stacktrace/4.3.0",
       "files": [
@@ -10385,7 +10378,7 @@
       ]
     },
     "System.Diagnostics.Tools/4.3.0": {
-      "sha512": "UUvkJfSYJMM6x527dJg2VyWPSRqIVB0Z7dbjHst1zmwTXz5CcXSYJFWRpuigfbO1Lf7yfZiIaEUesfnl/g5EyA==",
+      "sha512": "kJ5fAks+yBoazNH0jSaVYMEvBOA+QaDM0JBxVv4xUlsqgRn1poM8XxFKHwPfphTqBSZoa94O3tbq6yZoku+a9Q==",
       "type": "package",
       "path": "system.diagnostics.tools/4.3.0",
       "files": [
@@ -10441,7 +10434,7 @@
       ]
     },
     "System.Diagnostics.Tracing/4.3.0": {
-      "sha512": "rswfv0f/Cqkh78rA5S8eN8Neocz234+emGCtTF3lxPY96F+mmmUen6tbn0glN6PMvlKQb9bPAY5e9u7fgPTkKw==",
+      "sha512": "awcjDRhdTubKha4GX7cR65NkSatCVXfzJ8UtRE5+6Uk45Qms+Bydddq8/2Cc4ucqxONJlHDZAS6K9ieorv0CMw==",
       "type": "package",
       "path": "system.diagnostics.tracing/4.3.0",
       "files": [
@@ -10563,7 +10556,7 @@
       ]
     },
     "System.Dynamic.Runtime/4.3.0": {
-      "sha512": "SNVi1E/vfWUAs/WYKhE9+qlS6KqK0YVhnlT0HQtr8pMIA8YX3lwy3uPMownDwdYISBdmAF/2holEIldVp85Wag==",
+      "sha512": "2GZGmiVBs2t/dn/IoM3WQK+dJG11VaA58cC6o6U0S1vJkJa3wwckt1ZSTNV0zh3VYdNNE8nRdndZfQ3m2wDKQA==",
       "type": "package",
       "path": "system.dynamic.runtime/4.3.0",
       "files": [
@@ -10633,7 +10626,7 @@
       ]
     },
     "System.Globalization/4.3.0": {
-      "sha512": "kYdVd2f2PAdFGblzFswE4hkNANJBKRmsfa2X5LG2AcWE1c7/4t0pYae1L8vfZ5xvE2nK/R9JprtToA61OSHWIg==",
+      "sha512": "YWHnibDWYBsN5AJE6Nk0ANxi1OugFGHuUfu92RWviO4k8Ez07gqYXT0MRtTVpwTDiyxtWpP61ENlE6UB7ID+BQ==",
       "type": "package",
       "path": "system.globalization/4.3.0",
       "files": [
@@ -10700,7 +10693,7 @@
       ]
     },
     "System.Globalization.Calendars/4.3.0": {
-      "sha512": "GUlBtdOWT4LTV3I+9/PJW+56AnnChTaOqqTLFtdmype/L500M2LIyXgmtd9X2P2VOkmJd5c67H5SaC2QcL1bFA==",
+      "sha512": "GMITEVCm9zW/wwxWSCLXfZ4PUCYenzUCRc09zEzjH+NHH9r04jJgyS9CGJGrWFurpcgNu9NzBOSJpO/6Uyk8NQ==",
       "type": "package",
       "path": "system.globalization.calendars/4.3.0",
       "files": [
@@ -10737,7 +10730,7 @@
       ]
     },
     "System.Globalization.Extensions/4.3.0": {
-      "sha512": "FhKmdR6MPG+pxow6wGtNAWdZh7noIOpdD5TwQ3CprzgIE1bBBoim0vbR1+AWsWjQmU7zXHgQo4TWSP6lCeiWcQ==",
+      "sha512": "3Z7UTD2w6BdREd2Zz4vdagSL2G7Bq7f+gBBaQKPcK1yZDD5o+ofEEk04E3/y5cNwGSLkBua5g5RFLeftas7pBg==",
       "type": "package",
       "path": "system.globalization.extensions/4.3.0",
       "files": [
@@ -10813,7 +10806,7 @@
       ]
     },
     "System.IO/4.3.0": {
-      "sha512": "3qjaHvxQPDpSOYICjUoTsmoq5u6QJAFRUITgeT/4gqkF1bajbSmb1kwSxEA8AHlofqgcKJcM8udgieRNhaJ5Cg==",
+      "sha512": "ACfvkVwZrEqylXg1C0Xgott4mNv8+4bmqqcbINoXgjJ0XWRtYZulLARndiOc7mh/MBb0qFVa4JTv+/cu2qjnQw==",
       "type": "package",
       "path": "system.io/4.3.0",
       "files": [
@@ -10893,7 +10886,7 @@
       ]
     },
     "System.IO.Compression/4.3.0": {
-      "sha512": "YHndyoiV90iu4iKG115ibkhrG+S3jBm8Ap9OwoUAzO5oPDAWcr0SFwQFm0HjM8WkEZWo0zvLTyLmbvTkW1bXgg==",
+      "sha512": "PqeX2gtZnnfCa6V2jNyx6o/0sE6gueYPZB9sllGnvs8VILk/EHenwNi4Lx8k9F2iKmardXFtqgaahbf+ti5X8Q==",
       "type": "package",
       "path": "system.io.compression/4.3.0",
       "files": [
@@ -10963,7 +10956,7 @@
       ]
     },
     "System.IO.FileSystem/4.3.0": {
-      "sha512": "3wEMARTnuio+ulnvi+hkRNROYwa1kylvYahhcLk4HSoVdl+xxTFVeVlYOfLwrDPImGls0mDqbMhrza8qnWPTdA==",
+      "sha512": "Ceyl7iVlLs54pRhsSbxqZEj2bkvUJcGMGict8RzAJqIrr819sgEcE7ovLn9pH3fVYHQeavHw5OTlxOF8SGwQag==",
       "type": "package",
       "path": "system.io.filesystem/4.3.0",
       "files": [
@@ -11000,7 +10993,7 @@
       ]
     },
     "System.IO.FileSystem.Primitives/4.3.0": {
-      "sha512": "6QOb2XFLch7bEc4lIcJH49nJN2HV+OC3fHDgsLVsBVBk3Y4hFAnOBGzJ2lUu7CyDDFo9IBWkSsnbkT6IBwwiMw==",
+      "sha512": "7SnU92b1fkFNSepw/JCVHqIeShEqYyLdHfTX+EJzSZC14ySseiT18IblXKnJudCaWEeTKTb4a1308TF51WQMkQ==",
       "type": "package",
       "path": "system.io.filesystem.primitives/4.3.0",
       "files": [
@@ -11038,7 +11031,7 @@
       ]
     },
     "System.Linq/4.3.0": {
-      "sha512": "5DbqIUpsDp0dFftytzuMmc0oeMdQwjcP/EWxsksIz/w1TcFRkZ3yKKz0PqiYFMmEwPSWw+qNVqD7PJ889JzHbw==",
+      "sha512": "d6wB1JutFpYXTy0d7DO3w4Nc3k1q8Iqsdz3CIbypTbCPuSMIiqZiTI219iHzOd4MHYfWrK5jQqDvX0LpJmYIDg==",
       "type": "package",
       "path": "system.linq/4.3.0",
       "files": [
@@ -11109,7 +11102,7 @@
       ]
     },
     "System.Linq.Expressions/4.3.0": {
-      "sha512": "PGKkrd2khG4CnlyJwxwwaWWiSiWFNBGlgXvJpeO0xCXrZ89ODrQ6tjEWS/kOqZ8GwEOUATtKtzp1eRgmYNfclg==",
+      "sha512": "omA0a2aJTH7mtlc0vJu2JZm0dk7Y/3/GkFGnAU3mzYZjZSeiXolcjg87rke8r1KsoQsAjgR7ICwtYF0hVpO2VQ==",
       "type": "package",
       "path": "system.linq.expressions/4.3.0",
       "files": [
@@ -11192,7 +11185,7 @@
       ]
     },
     "System.Linq.Parallel/4.3.0": {
-      "sha512": "td7x21K8LalpjTWCzW/nQboQIFbq9i0r+PCyBBCdLWWnm4NBcdN18vpz/G9hCpUaCIfRL+ZxJNVTywlNlB1aLQ==",
+      "sha512": "dsaltEbQ0SNSrIQAQmbvZXPf8z5bXxLezEG5FgrRXM1Ns9LztZhiiSixv+sxrMm8IiB9+NNk7Qsm/Tp1iCQfGg==",
       "type": "package",
       "path": "system.linq.parallel/4.3.0",
       "files": [
@@ -11248,7 +11241,7 @@
       ]
     },
     "System.Linq.Queryable/4.0.1": {
-      "sha512": "Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
+      "sha512": "rDmirixYkXbwgW8nl6JcwtbhCBmqWPC9kwAHjbwPkEn4Z1vN1RqjIK2qAbLJpkgsLBrDqMgGXNjJ+CiSz6635Q==",
       "type": "package",
       "path": "system.linq.queryable/4.0.1",
       "files": [
@@ -11306,12 +11299,11 @@
       ]
     },
     "System.Net.Http/4.3.0": {
-      "sha512": "sYg+FtILtRQuYWSIAuNOELwVuVsxVyJGWQyOnlAzhV4xvhyFnON1bAzYYC+jjRW8JREM45R0R5Dgi8MTC5sEwA==",
+      "sha512": "1z8TqHSBxN2bblFcA8jY6UYoAZ59c2mwTihu6LzVZIRlhlbfCnh9TbGgDF8afvNQRd5c6NgvL4xox5DyoJSxkA==",
       "type": "package",
       "path": "system.net.http/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/Xamarinmac20/_._",
@@ -11388,7 +11380,7 @@
       ]
     },
     "System.Net.NameResolution/4.3.0": {
-      "sha512": "AFYl08R7MrsrEjqpQWTZWBadqXyTzNDaWpMqyxhb0d6sGhV6xMDKueuBXlLL30gz+DIRY6MpdgnHWlCh5wmq9w==",
+      "sha512": "revG/TY5roK5CZMlrrQrH7uxQXooTflJQpvKu7kl8jsM0osdp0UirouVLSC869XTZpDxKcQ96CC95PnBl1fPZA==",
       "type": "package",
       "path": "system.net.nameresolution/4.3.0",
       "files": [
@@ -11504,7 +11496,7 @@
       ]
     },
     "System.Net.Primitives/4.3.0": {
-      "sha512": "qOu+hDwFwoZPbzPvwut2qATe3ygjeQBDQj91xlsaqGFQUI5i4ZnZb8yyQuLGpDGivEPIt8EJkd1BVzVoP31FXA==",
+      "sha512": "TP+f2VomfYz+FXLs9VCo8XAB9IwRmpsFckQMyLKal6vRca8zwAx91OUFdimyJaHQAbOgFXQt8GUiJPdRTJREzg==",
       "type": "package",
       "path": "system.net.primitives/4.3.0",
       "files": [
@@ -11582,7 +11574,7 @@
       ]
     },
     "System.Net.Security/4.3.0": {
-      "sha512": "IgJKNfALqw7JRWp5LMQ5SWHNKvXVz094U6wNE3c1i8bOkMQvgBL+MMQuNt3xl9Qg9iWpj3lFxPZEY6XHmROjMQ==",
+      "sha512": "jjXz8qg6N4w2088x8O+o23dmnKo+aFjF3nL2HlywhLmFe4zQZG0LTsNWb+sXcSKTNaCnxpcaiUVJDDuJFjsHTg==",
       "type": "package",
       "path": "system.net.security/4.3.0",
       "files": [
@@ -11623,7 +11615,7 @@
       ]
     },
     "System.Net.Sockets/4.3.0": {
-      "sha512": "m6icV6TqQOAdgt5N/9I5KNpjom/5NFtkmGseEH+AK/hny8XrytLH3+b5M8zL/Ycg3fhIocFpUMyl/wpFnVRvdw==",
+      "sha512": "/LfsmeQX05/Vtk/qmANxYU9lnnJT6A/ylFKBOCqHZtr9j04L1H4sbXTjKjL6M/BEj1IMKVv0qhLdoPwWFGiMiw==",
       "type": "package",
       "path": "system.net.sockets/4.3.0",
       "files": [
@@ -11703,7 +11695,7 @@
       ]
     },
     "System.ObjectModel/4.3.0": {
-      "sha512": "bdX+80eKv9bN6K4N+d77OankKHGn6CH711a6fcOpMQu2Fckp/Ft4L/kW9WznHpyR0NRAvJutzOMHNNlBGvxQzQ==",
+      "sha512": "18uWN7znG8MVgLcituTX6NtA6lp+H4KH2/jZxAcLVoNfNh3918VaDtAxsxEutX+8FvLV50pf0lvVcFamYWZRVQ==",
       "type": "package",
       "path": "system.objectmodel/4.3.0",
       "files": [
@@ -11772,12 +11764,11 @@
       ]
     },
     "System.Private.DataContractSerialization/4.1.1": {
-      "sha512": "lcqFBUaCZxPiUkA4dlSOoPZGtZsAuuElH2XHgLwGLxd7ZozWetV5yiz0qGAV2AUYOqw97MtZBjbLMN16Xz4vXA==",
+      "sha512": "pHCcuVX5n90pCHK74wqbGMMYjT5AUKHxDCXwZ1RPqHg4b7I+jeMe7AvJMcNw7yRNdUVH0+QF14vGmA4+E7zuvA==",
       "type": "package",
       "path": "system.private.datacontractserialization/4.1.1",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.3/System.Private.DataContractSerialization.dll",
@@ -11788,7 +11779,7 @@
       ]
     },
     "System.Reflection/4.3.0": {
-      "sha512": "KMiAFoW7MfJGa9nDFNcfu+FpEdiHpWgTcS2HdMpDvt9saK3y/G4GwprPyzqjFH9NTaGPQeWNHU+iDlDILj96aQ==",
+      "sha512": "jqM5bnKUcyA+LfAj7N+/zt7S6quXmd1e3WUWI0fg+KlgIv93k3gwZ+PC0qb3NheF263sDyRLRhqzv+Iv/Ngsag==",
       "type": "package",
       "path": "system.reflection/4.3.0",
       "files": [
@@ -11868,12 +11859,11 @@
       ]
     },
     "System.Reflection.Emit/4.3.0": {
-      "sha512": "228FG0jLcIwTVJyz8CLFKueVqQK36ANazUManGaJHkO0icjiIypKW7YLWLIWahyIkdh5M7mV2dJepllLyA1SKg==",
+      "sha512": "xjj0zLBN9dKG4aDhh8PdbRF8ltLiLOxXC083IpY86SwySko6kypa+NipMfJZUBti+JGc5DCj6iOMhyYCFCAdzw==",
       "type": "package",
       "path": "system.reflection.emit/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -11904,12 +11894,11 @@
       ]
     },
     "System.Reflection.Emit.ILGeneration/4.3.0": {
-      "sha512": "59tBslAk9733NXLrUJrwNZEzbMAcu8k344OYo+wfSVygcgZ9lgBdGIzH/nrg3LYhXceynyvTc8t5/GD4Ri0/ng==",
+      "sha512": "42NQUDwisrDQeTE4FEtqGL4tUgCp4dHbgfew8uUlRh5lJvRD5C1zuFShUuGFhGwcLholQFmBULSuXYjVfq4F2A==",
       "type": "package",
       "path": "system.reflection.emit.ilgeneration/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -11949,12 +11938,11 @@
       ]
     },
     "System.Reflection.Emit.Lightweight/4.3.0": {
-      "sha512": "oadVHGSMsTmZsAF864QYN1t1QzZjIcuKU3l2S9cZOwDdDueNTrqq1yRj7koFfIGEnKpt6NjpL3rOzRhs4ryOgA==",
+      "sha512": "UrMsMYosOAn9JW610QSdxXIj9o+hRMLB2YVWIullNcGswkjyzdxBXlyt0S9/Qh61x+2bIfctpLfy2LesHH27ig==",
       "type": "package",
       "path": "system.reflection.emit.lightweight/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -11994,7 +11982,7 @@
       ]
     },
     "System.Reflection.Extensions/4.3.0": {
-      "sha512": "rJkrJD3kBI5B712aRu4DpSIiHRtr6QlfZSQsb0hYHrDCZORXCFjQfoipo2LaMUHoT9i1B7j7MnfaEKWDFmFQNQ==",
+      "sha512": "xy9jSz+pmECVvsbk7mtxH2SiC1E9/UnguKze6Ht0rTQi09QauNmRtlsAT5WqHZeqrBn2USG0jT/DUUHrDbdnAA==",
       "type": "package",
       "path": "system.reflection.extensions/4.3.0",
       "files": [
@@ -12073,7 +12061,7 @@
       ]
     },
     "System.Reflection.Primitives/4.3.0": {
-      "sha512": "5RXItQz5As4xN2/YUDxdpsEkMhvw3e6aNveFXUn4Hl/udNTCNhnKp8lT9fnc3MhvGKh1baak5CovpuQUXHAlIA==",
+      "sha512": "pyL997BPsCM6lpRxCoDm6Rf6A7vPnDADEqHcdOQ6a7FQvzbHUuTt153OdfBKOqCcqlwkczVxgXz30x8tZ0M7Vw==",
       "type": "package",
       "path": "system.reflection.primitives/4.3.0",
       "files": [
@@ -12129,7 +12117,7 @@
       ]
     },
     "System.Reflection.TypeExtensions/4.3.0": {
-      "sha512": "7u6ulLcZbyxB5Gq0nMkQttcdBTx57ibzw+4IOXEfR+sXYQoHvjW5LTLyNr8O22UIMrqYbchJQJnos4eooYzYJA==",
+      "sha512": "r3A2CYftiYeZR2O5a92MI8Mw7epY6rgtYUs7nAb2pGQAQOSPe2Q2Ge3FhnC83kSbiZNvJI+SAEBLBuMFJQwoJw==",
       "type": "package",
       "path": "system.reflection.typeextensions/4.3.0",
       "files": [
@@ -12182,7 +12170,7 @@
       ]
     },
     "System.Resources.ResourceManager/4.3.0": {
-      "sha512": "/zrcPkkWdZmI4F92gL/TPumP98AVDu/Wxr3CSJGQQ+XN6wbRZcyfSKVoPo17ilb3iOr0cCRqJInGwNMolqhS8A==",
+      "sha512": "pvOra+XGO/CBJFdSL8d2xcnVHDZ3EeDHK42Tmkt6d4qFKds1XC7zuXnuAL1+V/00b5kSMo10EsT/2pb9PYXtiw==",
       "type": "package",
       "path": "system.resources.resourcemanager/4.3.0",
       "files": [
@@ -12238,7 +12226,7 @@
       ]
     },
     "System.Runtime/4.3.0": {
-      "sha512": "JufQi0vPQ0xGnAczR13AUFglDyVYt4Kqnz1AZaiKZ5+GICq0/1MH/mO/eAJHt/mHW1zjKBJd7kV26SrxddAhiw==",
+      "sha512": "CRrdrjmpM7i9UJ7gUWDbmft4bNJz3L9IswOaklK8eETfd0jubEdzltC+u+mrgXC5vgyqerdeXyrj5Cgl2pjZhQ==",
       "type": "package",
       "path": "system.runtime/4.3.0",
       "files": [
@@ -12352,7 +12340,7 @@
       ]
     },
     "System.Runtime.Extensions/4.3.0": {
-      "sha512": "guW0uK0fn5fcJJ1tJVXYd7/1h5F+pea1r7FLSOz/f8vPEqbR2ZAknuRDvTQ8PzAilDveOxNjSfr0CHfIQfFk8g==",
+      "sha512": "8Ezr0bLEzrWo52eQjvUrqIKzEr9EyQej5fusdVNPnk+WWZQ5PukizgFu6fXoh4mhFrnKw/sPLpiGApJTnl2R+g==",
       "type": "package",
       "path": "system.runtime.extensions/4.3.0",
       "files": [
@@ -12432,7 +12420,7 @@
       ]
     },
     "System.Runtime.Handles/4.3.0": {
-      "sha512": "OKiSUN7DmTWeYb3l51A7EYaeNMnvxwE249YtZz7yooT4gOZhmTjIn48KgSsw2k2lYdLgTKNJw/ZIfSElwDRVgg==",
+      "sha512": "OBwfq52tJmuTERUs+sRIVXzFW3+7E8l8uUla/WHV0m/+kAxHpWDk4SmUSKbGRdPwFiP6CK1WKLKB5zkLiR18dw==",
       "type": "package",
       "path": "system.runtime.handles/4.3.0",
       "files": [
@@ -12469,7 +12457,7 @@
       ]
     },
     "System.Runtime.InteropServices/4.3.0": {
-      "sha512": "uv1ynXqiMK8mp1GM3jDqPCFN66eJ5w5XNomaK2XD+TuCroNTLFGeZ+WCmBMcBDyTFKou3P6cR6J/QsaqDp7fGQ==",
+      "sha512": "vNuS6W3H7HcEwrF+eRwxwq+q/XMP/SQwKaRsH7G4dIioGYtK4o5+EKJwt5yOqD/iNhdM39JsGEpz2MPmoZW+nQ==",
       "type": "package",
       "path": "system.runtime.interopservices/4.3.0",
       "files": [
@@ -12561,7 +12549,7 @@
       ]
     },
     "System.Runtime.InteropServices.RuntimeInformation/4.3.0": {
-      "sha512": "cbz4YJMqRDR7oLeMRbdYv7mYzc++17lNhScCX0goO2XpGWdvAt60CGN+FHdePUEHCe/Jy9jUlvNAiNdM+7jsOw==",
+      "sha512": "iv1x1V3Mi1CKkjKVDihMk9ilqGhftrdkEztgrXihtdJoN8kQQ+WnTxnDYJyyOwfdvyZ+1XMh5r55QjLZyU0uzQ==",
       "type": "package",
       "path": "system.runtime.interopservices.runtimeinformation/4.3.0",
       "files": [
@@ -12595,7 +12583,7 @@
       ]
     },
     "System.Runtime.Numerics/4.3.0": {
-      "sha512": "yMH+MfdzHjy17l2KESnPiF2dwq7T+xLnSJar7slyimAkUh/gTrS9/UQOtv7xarskJ2/XDSNvfLGOBQPjL7PaHQ==",
+      "sha512": "xy0AaBEmmSwZcB1wHPXqPItHv+tAAAqBGk23P8lqua44MjAJyD+S2y/Hwy5gNeNmR8ZAYEwt+oHYEET9Gq6aRA==",
       "type": "package",
       "path": "system.runtime.numerics/4.3.0",
       "files": [
@@ -12651,7 +12639,7 @@
       ]
     },
     "System.Runtime.Serialization.Formatters/4.3.0": {
-      "sha512": "KT591AkTNFOTbhZlaeMVvfax3RqhH1EJlcwF50Wm7sfnBLuHiOeZRRKrr1ns3NESkM20KPZ5Ol/ueMq5vg4QoQ==",
+      "sha512": "JDvElnEe41MGPmWXRX0s5kU4DipIeo+MN9J7F4Z7Gxq+ig49NjLyQBj/1CbL9mx19te/6Lg0/F8akA7jPNmBLw==",
       "type": "package",
       "path": "system.runtime.serialization.formatters/4.3.0",
       "files": [
@@ -12737,12 +12725,11 @@
       ]
     },
     "System.Runtime.Serialization.Primitives/4.3.0": {
-      "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
+      "sha512": "xeNtXbdSYTIFTaaWzW5UgMpqv8E3xTL1/W4CIkshEIvdqJJV8xd5VfUxEGHlqaqtey+nWBxsodkiyO5akoDJeg==",
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -12850,7 +12837,7 @@
       ]
     },
     "System.Security.Claims/4.3.0": {
-      "sha512": "P/+BR/2lnc4PNDHt/TPBAWHVMLMRHsyYZbU1NphW4HIWzCggz8mJbTQQ3MKljFE7LS3WagmVFuBgoLcFzYXlkA==",
+      "sha512": "/gXxRXmTxODEiR3IIPE6zfC8yMzHhoj2+VOlhHh1r0GVX/GqFX84zE+NwMFH/E7jk1bVSl57zrpcGs/r2j4usA==",
       "type": "package",
       "path": "system.security.claims/4.3.0",
       "files": [
@@ -12888,7 +12875,7 @@
       ]
     },
     "System.Security.Cryptography.Algorithms/4.3.0": {
-      "sha512": "W1kd2Y8mYSCgc3ULTAZ0hOP2dSdG5YauTb1089T0/kRcN2MpSAW1izOFROrJgxSlMn3ArsgHXagigyi+ibhevg==",
+      "sha512": "b1aT+aqhja0p1mynsG8oCyuDrOO1Mh7JhUjnDemYj0ExiWE9B2T+rQ73pM1ZEBe/s8K3ZQAMmt7sA746/VD26g==",
       "type": "package",
       "path": "system.security.cryptography.algorithms/4.3.0",
       "files": [
@@ -12928,7 +12915,7 @@
       ]
     },
     "System.Security.Cryptography.Cng/4.3.0": {
-      "sha512": "03idZOqFlsKRL4W+LuCpJ6dBYDUWReug6lZjBa3uJWnk5sPCUXckocevTaUA8iT/MFSrY/2HXkOt753xQ/cf8g==",
+      "sha512": "hqhdo1qG/En8DtfGp6Dnpy0Y53Onwdyhg/h71fxtCxSnGuoFNvBLD5GHmhtRicUviywtvSWJP9YiHZl9zby6aA==",
       "type": "package",
       "path": "system.security.cryptography.cng/4.3.0",
       "files": [
@@ -12955,12 +12942,11 @@
       ]
     },
     "System.Security.Cryptography.Csp/4.3.0": {
-      "sha512": "X4s/FCkEUnRGnwR3aSfVIkldBmtURMhmexALNTwpjklzxWU7yjMk7GHLKOZTNkgnWnE0q7+BCf9N2LVRWxewaA==",
+      "sha512": "0LUF6vPYI8MOf/8ZosRstbWIURR/LpYS9T+rqMRjPIRir5e3xmcuvmw40bkq/iDAO7TmCGTYWZjSijnd2OJttw==",
       "type": "package",
       "path": "system.security.cryptography.csp/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -12987,7 +12973,7 @@
       ]
     },
     "System.Security.Cryptography.Encoding/4.3.0": {
-      "sha512": "1DEWjZZly9ae9C79vFwqaO5kaOlI5q+3/55ohmq/7dpDyDfc8lYe7YVxJUZ5MF/NtbkRjwFRo14yM4OEo9EmDw==",
+      "sha512": "nYTsk1A8J8KEh8LcXfc3p/VrIqhxAJsKI5v+z9ttpIMSPws8FMh7Ci6ZEOG/XR8yAMKYjHuwcDt/EhUlYQb1vA==",
       "type": "package",
       "path": "system.security.cryptography.encoding/4.3.0",
       "files": [
@@ -13027,12 +13013,11 @@
       ]
     },
     "System.Security.Cryptography.OpenSsl/4.3.0": {
-      "sha512": "h4CEgOgv5PKVF/HwaHzJRiVboL2THYCou97zpmhjghx5frc7fIvlkY1jL+lnIQyChrJDMNEXS6r7byGif8Cy4w==",
+      "sha512": "03LTvTRjZqvCAhBmkBEEuouzOabRLIQBkJHmOQizGiTpkuV7fS8o0DGWlQsQyLvZd+mqUrr/CA6cN/N2ZpZnuQ==",
       "type": "package",
       "path": "system.security.cryptography.openssl/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.6/System.Security.Cryptography.OpenSsl.dll",
@@ -13043,7 +13028,7 @@
       ]
     },
     "System.Security.Cryptography.Primitives/4.3.0": {
-      "sha512": "7bDIyVFNL/xKeFHjhobUAQqSpJq9YTOpbEs6mR233Et01STBMXNAc/V+BM6dwYGc95gVh/Zf+iVXWzj3mE8DWg==",
+      "sha512": "04ii5aqIeBMhsxSX9HmZE++naG+WcTlgG+p8C3FJvpOYlX7804FwhNBbfmealb63+4sq2DeOvpmrM9YykWneeg==",
       "type": "package",
       "path": "system.security.cryptography.primitives/4.3.0",
       "files": [
@@ -13112,7 +13097,7 @@
       ]
     },
     "System.Security.Cryptography.X509Certificates/4.3.0": {
-      "sha512": "t2Tmu6Y2NtJ2um0RtcuhP7ZdNNxXEgUm2JeoA/0NvlMjAhKCnM1NX07TDl3244mVp3QU6LPEhT3HTtH1uF7IYw==",
+      "sha512": "ujj1267amZ/BWtm4FG/sCuttla2hkLBLc6tnpYlAxvKNI5w+fT34zzNUmsFI5n5ZNQAhuV1yhUVfUrLHMBPtzw==",
       "type": "package",
       "path": "system.security.cryptography.x509certificates/4.3.0",
       "files": [
@@ -13208,12 +13193,11 @@
       ]
     },
     "System.Security.Principal/4.3.0": {
-      "sha512": "I1tkfQlAoMM2URscUtpcRo/hX0jinXx6a/KUtEQoz3owaYwl3qwsO8cbzYVVnjxrzxjHo3nJC+62uolgeGIS9A==",
+      "sha512": "lz4br4W8LbQ7J/fp3NqUBW7TrLLos0FQYV++yTHwxOaFQlx33oz/RLppyIaYV1IBzkfmu4AmlTgHYWv+EcWkmg==",
       "type": "package",
       "path": "system.security.principal/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -13372,7 +13356,7 @@
       ]
     },
     "System.Text.Encoding/4.3.0": {
-      "sha512": "BiIg+KWaSDOITze6jGQynxg64naAPtqGHBwDrLaCtixsa5bKiR8dpPOHA7ge3C0JJQizJE+sfkz1wV+BAKAYZw==",
+      "sha512": "7GPk+LPROHnj+jtIGhhha/VkFq9DfMtAATv1XQ048VMOH09o/gdH5QzYoSX/LRycSgaTH3n5LjUu6JIXdSQIvA==",
       "type": "package",
       "path": "system.text.encoding/4.3.0",
       "files": [
@@ -13487,7 +13471,7 @@
       ]
     },
     "System.Text.Encoding.Extensions/4.3.0": {
-      "sha512": "YVMK0Bt/A43RmwizJoZ22ei2nmrhobgeiYwFzC4YAN+nue8RF6djXDMog0UCn+brerQoYVyaS+ghy9P/MUVcmw==",
+      "sha512": "syh2MPKMZENAigpDj1yRaoNwKJxgk6AtU405/LyNi8JIVZn+JawjNonJOHuoWqGuujQbes+e+ADTVKu9UTxw2Q==",
       "type": "package",
       "path": "system.text.encoding.extensions/4.3.0",
       "files": [
@@ -13573,7 +13557,7 @@
       ]
     },
     "System.Text.RegularExpressions/4.3.0": {
-      "sha512": "RpT2DA+L660cBt1FssIE9CAGpLFdFPuheB7pLpKpn6ZXNby7jDERe8Ua/Ne2xGiwLVG2JOqziiaVCGDon5sKFA==",
+      "sha512": "nAAhF3sJBJxJZKSj5wvXUZrw9I42jyLgSo0NFPC2QNTfz/HUF+iuRiFihrHV/do18Hv0jzSUkgbGHiIkpd7wfQ==",
       "type": "package",
       "path": "system.text.regularexpressions/4.3.0",
       "files": [
@@ -13656,7 +13640,7 @@
       ]
     },
     "System.Threading/4.3.0": {
-      "sha512": "VkUS0kOBcUf3Wwm0TSbrevDDZ6BlM+b/HRiapRFWjM5O0NS0LviG0glKmFK+hhPDd1XFeSdU1GmlLhb2CoVpIw==",
+      "sha512": "2ahcdHT1YcgMHY8h/LVCR8zKondKMvtAHwmNsHkx+N9sHgkqYv6cHFV2+pysd1EWZPc0z5rByo/lL7c/Znd/QA==",
       "type": "package",
       "path": "system.threading/4.3.0",
       "files": [
@@ -13756,7 +13740,7 @@
       ]
     },
     "System.Threading.Tasks/4.3.0": {
-      "sha512": "LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
+      "sha512": "Jkv6dPoeumkyCGIlc4z2mgBM02i9CTQNUUV5pkISRXYXXtMMmhizfAheVAl8uHTL7LvQ4Caeo2FSkDIRH3sn2Q==",
       "type": "package",
       "path": "system.threading.tasks/4.3.0",
       "files": [
@@ -13846,12 +13830,11 @@
       ]
     },
     "System.Threading.Tasks.Parallel/4.3.0": {
-      "sha512": "cbjBNZHf/vQCfcdhzx7knsiygoCKgxL8mZOeocXZn5gWhCdzHIq6bYNKWX0LAJCWYP7bds4yBK8p06YkP0oa0g==",
+      "sha512": "bOqRwY5V9+udQ9Y6YY9lbmdUDVjciZcQZ9jmR2X5WXkvIzwQmd3OiKa62cqG+yVM1E3CO9JPlyFHg871QIaNRg==",
       "type": "package",
       "path": "system.threading.tasks.parallel/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -13903,12 +13886,11 @@
       ]
     },
     "System.Threading.Thread/4.3.0": {
-      "sha512": "OHmbT+Zz065NKII/ZHcH9XO1dEuLGI1L2k7uYss+9C1jLxTC9kTZZuzUOyXHayRk+dft9CiDf3I/QZ0t8JKyBQ==",
+      "sha512": "CFywRSRfcCLHm1Ck7iZt9MKnMSx0TVtEHxmeh+87YHG5zacA3KWRM/1NqnpDqF34rptw44+DoSxDQJHHSoOeIQ==",
       "type": "package",
       "path": "system.threading.thread/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -13943,12 +13925,11 @@
       ]
     },
     "System.Threading.ThreadPool/4.3.0": {
-      "sha512": "k/+g4b7vjdd4aix83sTgC9VG6oXYKAktSfNIJUNGxPEj7ryEOfzHHhfnmsZvjxawwcD9HyWXKCXmPjX8U4zeSw==",
+      "sha512": "0VC5ML+t/76p0CSRXff9wpR9lBVSLIxCfwYL77Lsg+CzdSwYW6zcI3xicX0IRh7KaoT5V2zxa5fycInj/AwuBg==",
       "type": "package",
       "path": "system.threading.threadpool/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -13983,7 +13964,7 @@
       ]
     },
     "System.Threading.Timer/4.3.0": {
-      "sha512": "Z6YfyYTCg7lOZjJzBjONJTFKGN9/NIYKSxhU5GRd+DTwHSZyvWp1xuI5aR+dLg+ayyC5Xv57KiY4oJ0tMO89fQ==",
+      "sha512": "BkQyRXdvAMyHxo6YfUcVIYmbo1ubWqM4QCM9H94TK/uijbOFTnxwju5WOBd0+Luv5TN/TechfUP4vYGQugUqxw==",
       "type": "package",
       "path": "system.threading.timer/4.3.0",
       "files": [
@@ -14082,7 +14063,7 @@
       ]
     },
     "System.Xml.ReaderWriter/4.3.0": {
-      "sha512": "GrprA+Z0RUXaR4N7/eW71j1rgMnEnEVlgii49GZyAjTH7uliMnrOU3HNFBr6fEDBCJCIdlVNq9hHbaDR621XBA==",
+      "sha512": "xOJ4RjSism7VMpvhc1Cg678VY0dBz8JBPRjlh5vZtYvTyyYnmVczXlXw42+Wvv/5/6njVF6y4ZGIkmE2ZswDgg==",
       "type": "package",
       "path": "system.xml.readerwriter/4.3.0",
       "files": [
@@ -14153,7 +14134,7 @@
       ]
     },
     "System.Xml.XDocument/4.3.0": {
-      "sha512": "5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
+      "sha512": "+3g3V6dRGU5iwjNdLRWgfv6jnXy15KsOdsfXwaYUM3lXcW2ft65Zbg7vebGnG/zu6l78154abTTrOQgJV78x7g==",
       "type": "package",
       "path": "system.xml.xdocument/4.3.0",
       "files": [
@@ -14222,7 +14203,7 @@
       ]
     },
     "System.Xml.XmlDocument/4.3.0": {
-      "sha512": "lJ8AxvkX7GQxpC6GFCeBj8ThYVyQczx2+f/cWHJU8tjS7YfI6Cv6bon70jVEgs2CiFbmmM8b9j1oZVx0dSI2Ww==",
+      "sha512": "irWot1dMaOpA059p/EB6qdYvq68Ov6fRm3Q3HViiT/vxUf8+KHl0C9Y8WzbBhvbzKRxh1TkTLioG499+cIBA5g==",
       "type": "package",
       "path": "system.xml.xmldocument/4.3.0",
       "files": [
@@ -14261,12 +14242,11 @@
       ]
     },
     "System.Xml.XmlSerializer/4.0.11": {
-      "sha512": "FrazwwqfIXTfq23mfv4zH+BjqkSFNaNFBtjzu3I9NRmG8EELYyrv/fJnttCIwRMFRR/YKXF1hmsMmMEnl55HGw==",
+      "sha512": "BuGX1Uxft1ceIww/77k2jZnbMccOf1S3RgwzzTkGMiGX4RGUeMqjm82pE8VoS79l2/zaxPXu9H1E69v6wAA/sQ==",
       "type": "package",
       "path": "system.xml.xmlserializer/4.0.11",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -14450,23 +14430,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Henry\\.nuget\\packages\\": {},
+    "C:\\Users\\longv\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\3brosshop\\Shop.csproj",
+      "projectUniqueName": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop\\Shop.csproj",
       "projectName": "Shop",
-      "projectPath": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\3brosshop\\Shop.csproj",
-      "packagesPath": "C:\\Users\\Henry\\.nuget\\packages\\",
-      "outputPath": "F:\\Năm 3\\D.A.1\\Backup 060519 01\\backup\\backup\\Shop\\3brosshop\\3brosshop\\obj\\",
+      "projectPath": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop\\Shop.csproj",
+      "packagesPath": "C:\\Users\\longv\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\Henry\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\longv\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
