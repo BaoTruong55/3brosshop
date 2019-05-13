@@ -50,7 +50,7 @@ namespace Shop.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        public IActionResult Search(string SearchType = null, string SearchKey = null, string Categorie = null, string Location = null, string MaxStartPrice = null )
+        public IActionResult Search(string SearchType = null, string SearchKey = null, string Category = null, string Location = null, string MaxStartPrice = null )
         {
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
             IEnumerable<Items> filteredItems;
@@ -61,7 +61,7 @@ namespace Shop.Controllers
             {
                 switch (SearchType)
                 {
-                    case "Everything":
+                    case "All":
                         filteredItems = _itemsRepository.GetAll(SearchKey, _itemsRepository.GetAllApproved());
                         break;
                     case "Location":
@@ -70,18 +70,16 @@ namespace Shop.Controllers
                     case "FirstName":
                         filteredItems = _itemsRepository.GetByName(SearchKey, _itemsRepository.GetAllApproved());
                         break;
-                    case "Category":
-                        filteredItems = _itemsRepository.GetByCategory(SearchKey, _itemsRepository.GetAllApproved());
-                        break;
+                        
                     default:
                         filteredItems = _itemsRepository.GetAllApproved();
                         break;
                 }
                 ViewData["SearchAssignment"] = SearchKey + " trong " + SearchType;
 
-                if (!string.IsNullOrEmpty(Categorie) && Categorie != "*")
+                if (!string.IsNullOrEmpty(Category) && Category != "*")
                 {
-                    string input = Categorie;
+                    string input = Category;
                     filteredItems = _itemsRepository.GetByCategory(input, filteredItems);
                     ViewData["SearchAssignment"] = ViewData["SearchAssignment"] + ", với thể loại " + input;
                 }
@@ -103,9 +101,9 @@ namespace Shop.Controllers
                 filteredItems = _itemsRepository.GetAllApproved();
                 ViewData["SearchAssignment"] = "Tổng quan";
 
-                if (!string.IsNullOrEmpty(Categorie) && Categorie != "*")
+                if (!string.IsNullOrEmpty(Category) && Category != "*")
                 {
-                    string input = Categorie;
+                    string input = Category;
                     filteredItems = _itemsRepository.GetByCategory(input, filteredItems);
                     ViewData["SearchAssignment"] = ViewData["SearchAssignment"] + ", với thể loại " + input;
                 }

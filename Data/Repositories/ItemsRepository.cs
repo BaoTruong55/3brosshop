@@ -89,8 +89,8 @@ namespace Shop.Data.Repositories
                                 }
                             }
                         }
-                        
-                        
+
+
                     }
                     if (_numberofMatchesWord == _numberofWords)
                     {
@@ -104,7 +104,6 @@ namespace Shop.Data.Repositories
             {
                 return GetAllApproved().ToList();
             }
-            
         }
 
         public IEnumerable<Items> GetByCategory(string searchKey, IEnumerable<Items> inputList)
@@ -118,7 +117,7 @@ namespace Shop.Data.Repositories
             string _searchKey = searchKey.ToLower();
             _searchKey = _searchKey.Replace("-", "");
             _searchKey = _searchKey.Replace("_", "");
-            _searchKey = RemoveAccents(searchKey);
+            _searchKey = RemoveAccents(_searchKey);
             return inputList.Where(b => RemoveAccents(b.City.ToLower().Replace("-", "").Replace("_", "")).Contains(_searchKey)).ToList();
         }
 
@@ -127,7 +126,7 @@ namespace Shop.Data.Repositories
             string _searchKey = searchKey.ToLower();
             _searchKey = _searchKey.Replace("-", "");
             _searchKey = _searchKey.Replace("_", "");
-            _searchKey = RemoveAccents(searchKey);
+            _searchKey = RemoveAccents(_searchKey);
             return inputList.Where(b => RemoveAccents(b.Name.ToLower().Replace("-", "").Replace("_", "")).Contains(_searchKey)).ToList();
         }
 

@@ -14168,11 +14168,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop-master\\3brosshop-master\\Shop.csproj",
+      "projectUniqueName": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop\\Shop.csproj",
       "projectName": "Shop",
-      "projectPath": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop-master\\3brosshop-master\\Shop.csproj",
+      "projectPath": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop\\Shop.csproj",
       "packagesPath": "C:\\Users\\longv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop-master\\3brosshop-master\\obj\\",
+      "outputPath": "C:\\Users\\longv\\OneDrive\\Desktop\\3brosshop\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

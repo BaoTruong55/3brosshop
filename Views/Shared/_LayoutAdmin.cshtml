@@ -93,9 +93,9 @@
                             <ul class="sub">
                                 <li><a asp-controller="Admin" asp-action="SellerRequest" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SellerRequest" ? "active" : (ViewContext.RouteData.Values["Action"].ToString() == "SellerRequestEvaluation" ? "active" : ""))"><i class="fas fa-user-plus"></i> người bán hàng</a></li>
                                 <li><a asp-controller="Admin" asp-action="SellerAdd" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SellerAdd" ? "active" : "")"><i class="fas fa-plus-square"></i> Thêm người bán hàng</a></li>
-                                <li><a asp-controller="Admin" asp-action="SellerOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ZoekHandelaar" ? "active" : "")"><i class="fas fa-search"></i> Tìm người bán hàng</a></li>
+                              
                                 <li><a asp-controller="Admin" asp-action="SellerOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SellerOverview" ? "active" : "")"><i class="fas fas fa-ellipsis-h"></i> Tổng quan người bán hàng</a></li>
-                                <li><a asp-controller="Admin" asp-action="SellerEdit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SellerEdit" ? "active" : "")"><i class="fas fa-edit"></i> Chỉnh sửa thông tin người bán hàng</a></li>
+                               
                             </ul>
                         </li>
                         <li class="sub-menu">
@@ -106,9 +106,8 @@
                             <ul class="sub">
                                 <li><a asp-controller="Admin" asp-action="ItemsRequests" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsRequests" ? "active" : (ViewContext.RouteData.Values["Action"].ToString() == "ItemsRequest" ? "active" : ""))"><i class="fas fa-user-plus"></i> yêu cầu mặt hàng</a></li>
                                 <li><a asp-controller="Admin" asp-action="AddItems" class="@(ViewContext.RouteData.Values["Action"].ToString() == "AddItems" ? "active" : "")"><i class="fas fa-plus-square"></i> Thêm mặt hàng</a></li>
-                                <li><a asp-controller="Admin" asp-action="ItemsOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "SearchItems" ? "active" : "")"><i class="fas fa-search"></i> Tìm mặt hàng</a></li>
                                 <li><a asp-controller="Admin" asp-action="ItemsOverview" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsOverview" ? "active" : "")"><i class="fas fas fa-ellipsis-h"></i> Thông tin mặt hàng</a></li>
-                                <li><a asp-controller="Admin" asp-action="ItemsEdit" class="@(ViewContext.RouteData.Values["Action"].ToString() == "ItemsEdit" ? "active" : "")"><i class="fas fa-edit"></i> Chỉnh sửa mặt hàng </a></li>
+                                
                             </ul>
                         </li>
                         <li>

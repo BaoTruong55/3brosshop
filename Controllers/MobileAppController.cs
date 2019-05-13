@@ -71,7 +71,7 @@ namespace Shop.Controllers
         [HttpGet("GetAllItems", Name = "GetAllItems")]
         public  List<Items> GetAllItems()
         {
-            return _itemsRepository.GetAll().ToList();
+            return _itemsRepository.GetAllApproved().ToList();
 
         }
         //GET for order
