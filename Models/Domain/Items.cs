@@ -41,9 +41,11 @@ namespace Shop.Models.Domain
                 _price = value;
             }
         }
-
+        [JsonProperty]
         public string Description { get; set; }
+        [JsonProperty]
         public int QuantityOrdered { get; set; }
+        [JsonProperty]
         public string Image { get; set; }
         public Seller Seller { get; set; }
 
@@ -59,9 +61,13 @@ namespace Shop.Models.Domain
                 _category = value ?? throw new ArgumentException("Thể loại * bắt buộc.");
             }
         }
+        [JsonProperty]
         public string Street { get; set; }
+        [JsonProperty]
         public string ApartmentNumber { get; set; }
+        [JsonProperty]
         public string Postcode { get; set; }
+        [JsonProperty]
         public string City { get; set; }
         public bool Approved { get; set; }
         public Offer Offer { get; set; }

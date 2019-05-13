@@ -9,12 +9,16 @@ using Shop.Models.Domain.Enum;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Shop.Data;
 using Shop.Models.Domain.Interface;
+using Newtonsoft.Json;
 
 namespace Shop.Controllers
 {
     [Produces("application/json")]
     [Route("api/[controller]")]
+
     public class MobileAppController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -22,22 +26,27 @@ namespace Shop.Controllers
         private readonly ISellerRepository _sellerRepository;
         private readonly IOrderItemRepository _orderItemRepository;
         private readonly IItemsRepository _itemsRepository;
+        private ApplicationDbContext _dbContext;
+
 
         public MobileAppController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ISellerRepository sellerRepository,
             IOrderItemRepository orderItemRepository,
-            IItemsRepository itemsRepository)
+            IItemsRepository itemsRepository,
+            ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _sellerRepository = sellerRepository;
             _orderItemRepository = orderItemRepository;
             _itemsRepository = itemsRepository;
+            _dbContext = dbContext;
         }
 
         //GET for registering a seller
         [HttpGet("{id}/{ww}", Name = "ReportSeller")]
+
         public async Task<Object> ReportSeller(string id, string ww)
         {
             if (_sellerRepository.GetByEmail(id) != null)
@@ -59,6 +68,12 @@ namespace Shop.Controllers
             return null;
         }
 
+        [HttpGet("GetAllItems", Name = "GetAllItems")]
+        public  List<Items> GetAllItems()
+        {
+            return _itemsRepository.GetAll().ToList();
+
+        }
         //GET for order
         [HttpGet("{id}", Name = "PickupOrder")]
         public Object PickupOrder(string id)

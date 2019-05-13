@@ -103,7 +103,9 @@ namespace Shop
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
-            services.AddMvc();
+            services.AddMvc().AddJsonOptions(options => {
+                options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+            }); ;
 
             services.Configure<AuthMessageSenderOptions>(Configuration);
         }
@@ -190,10 +192,6 @@ namespace Shop
                 routes.MapRoute(
                    name: "MakeItemsUsable",
                    template: "{controller=Checkout}/{action=MakeItemsUsable}/{Id}");
-
-                routes.MapRoute(
-                    name: "Error",
-                    template: "{controller=Error}/{action=PageNotFound}/{Id?}");
 
             }); 
             datainit.InitializeData().Wait();
