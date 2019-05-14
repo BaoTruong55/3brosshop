@@ -142,3 +142,15 @@ C:\Users\longv\OneDrive\Desktop\3brosshop\obj\Debug\netcoreapp2.0\Shop.AssemblyI
 C:\Users\longv\OneDrive\Desktop\3brosshop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfo.cs
 C:\Users\longv\OneDrive\Desktop\3brosshop\obj\Debug\netcoreapp2.0\Shop.dll
 C:\Users\longv\OneDrive\Desktop\3brosshop\obj\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\bin\Debug\netcoreapp2.0\Shop.deps.json
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.json
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\bin\Debug\netcoreapp2.0\Shop.runtimeconfig.dev.json
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\bin\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\bin\Debug\netcoreapp2.0\Shop.pdb
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\obj\Debug\netcoreapp2.0\Shop.csprojAssemblyReference.cache
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\obj\Debug\netcoreapp2.0\Shop.csproj.CoreCompileInputs.cache
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfoInputs.cache
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\obj\Debug\netcoreapp2.0\Shop.AssemblyInfo.cs
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\obj\Debug\netcoreapp2.0\Shop.dll
+F:\Năm 3\D.A.1\Backup 060519 01\backup\backup\3brosshop\obj\Debug\netcoreapp2.0\Shop.pdb

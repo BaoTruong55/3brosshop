@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="hosting.json" />
     <Content Remove="Views\ShoppingCart\WinkelWagenLijstPartial.cshtml" />
     <Content Remove="wwwroot\vendors\PrettierSelect\css\easydropdown.flat.css" />
     <Content Remove="wwwroot\vendors\PrettierSelect\css\easydropdown.metro.css" />
@@ -67,6 +68,10 @@
     <Folder Include="Data\Migrations\" />
     <Folder Include="wwwroot\images\temp\" />
     <Folder Include="wwwroot\pdf\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="hosting.json" />
   </ItemGroup>
 
 </Project>

@@ -601,7 +601,7 @@ namespace Shop.Controllers
         {
             var itemsPath = @"wwwroot/images/temp/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://"+ Request.Host  + "/pdf/c_" + qrcode + ".pdf", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("http://"+ Request.Host  + "/pdf/c_" + qrcode + ".pdf", QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             qrCodeImage.Save(itemsPath + qrcode + ".png", ImageFormat.Png);
