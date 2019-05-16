@@ -318,7 +318,7 @@ namespace Shop.Controllers
             message.Subject = "Đơn đặt hàng của bạn từ 3BrosShop.";
             message.Body = String.Format("Kính " + orderItemList[0].SenderName + ", " + System.Environment.NewLine + System.Environment.NewLine +
                 "Cảm ơn bạn đã đặt hàng tại 3BrosShop." + System.Environment.NewLine +
-                "Trong tệp đính kèm, bạn sẽ tìm thấy phiếu quà tặng đã mua." + System.Environment.NewLine + System.Environment.NewLine +
+                "Trong tệp đính kèm, bạn sẽ tìm thấy phiếu mua hàng." + System.Environment.NewLine + System.Environment.NewLine +
                 "Trân trọng," + System.Environment.NewLine + "3Bros team");
             var attachment = new Attachment(@"wwwroot/favicon.ico");
             attachment.Dispose();
@@ -350,15 +350,15 @@ namespace Shop.Controllers
                     MailMessage message2 = new MailMessage();
                     message2.From = new MailAddress("3bros.shop.suport@gmail.com");
                     message2.To.Add(orderItemList[i].RecipientEmail);
-                    message2.Subject = orderItemList[i].SenderName + " gửi cho bạn một phiếu quà tặng từ 3BrosShop.";
+                    message2.Subject = orderItemList[i].SenderName + " gửi cho bạn một phiếu mua hàng từ 3BrosShop.";
                     message2.Body = String.Format(
 
                         "Kính gửi " + orderItemList[i].RecipientName + ", " + System.Environment.NewLine + System.Environment.NewLine +
-                        orderItemList[i].SenderName + " đã tặng phiếu quà tặng cho bạn." + System.Environment.NewLine + System.Environment.NewLine +
+                        orderItemList[i].SenderName + " đã mua một mặt hàng." + System.Environment.NewLine + System.Environment.NewLine +
 
                         _message +
 
-                        "Bạn sẽ tìm thấy phiếu quà tặng kèm theo." + System.Environment.NewLine + System.Environment.NewLine +
+                        "Bạn sẽ tìm thấy phiếu mua hàng." + System.Environment.NewLine + System.Environment.NewLine +
                         "Trân trọng ," + System.Environment.NewLine + "3Bros team");
 
                     attachment = new Attachment(@"wwwroot/pdf/c_" + orderItemList[i].QRCode + ".pdf");

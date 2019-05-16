@@ -27,7 +27,7 @@ namespace Shop.Models.Domain
         public Order(ShoppingCart shoppingCart) : this()
         {
             if (!shoppingCart.ShoppingCartItems.Any())
-                throw new InvalidOperationException("Vui lòng thêm một hoặc nhiều phiếu quà tặng vào giỏ hàng của bạn trước khi đặt hàng.");
+                throw new InvalidOperationException("Vui lòng thêm một hoặc nhiều mặt hàng vào giỏ hàng của bạn trước khi đặt hàng.");
 
             foreach (ShoppingCartItem cart in shoppingCart.ShoppingCartItems)
             {

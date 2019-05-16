@@ -26,14 +26,14 @@
                     <i class="fas fa-gift font-size-60"></i>
                 </div>
                 <div class="col-md-8 market-update-left">
-                    <h4>Yêu cầu biên lai</h4>
+                    <h4>Yêu cầu mặt hàng</h4>
                     <h3>@Model.NumberofItemsRequests</h3>
-                </div>
+                </div>  
                 <div class="clearfix"> </div>
             </div>
         </div>
         <div class="col-md-3 market-update-gd">
-            <div class="market-update-block clr-block-1 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("Views", "Admin", null)';">
+            <div class="market-update-block clr-block-1 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("SoldItems", "Admin", null)';">
                 <div class="col-md-4 market-update-right">
                     <i class="fas fa-cloud-download-alt font-size-60"></i>
                 </div>
@@ -44,18 +44,18 @@
                 <div class="clearfix"> </div>
             </div>
         </div>
-        <div class="col-md-3 market-update-gd">
-            <div class="market-update-block clr-block-3 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("UsedItems", "Admin", null)';">
-                <div class="col-md-4 market-update-right">
-                    <i class="fas fa-cloud-upload-alt font-size-60" aria-hidden="true"></i>
-                </div>
-                <div class="col-md-8 market-update-left">
-                    <h4>Biên lai đã xuất</h4>
-                    <h3>@Model.NumberUsedItems1M</h3>
-                </div>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
+        @* <div class="col-md-3 market-update-gd"> *@
+        @*     <div class="market-update-block clr-block-3 Lennertpopupnomargin clickable" onclick="window.location = '@Url.Action("UsedItems", "Admin", null)';"> *@
+        @*         <div class="col-md-4 market-update-right"> *@
+        @*             <i class="fas fa-cloud-upload-alt font-size-60" aria-hidden="true"></i> *@
+        @*         </div> *@
+        @*         <div class="col-md-8 market-update-left"> *@
+        @*             <h4>Biên lai đã xuất</h4> *@
+        @*             <h3>@Model.NumberUsedItems1M</h3> *@
+        @*         </div> *@
+        @*         <div class="clearfix"> </div> *@
+        @*     </div> *@
+        @* </div> *@
         <div class="clearfix"> </div>
     </div>
     <!-- //market-->

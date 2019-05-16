@@ -71,7 +71,7 @@ function winkelmandAantalVerlagen(id, price) {
 };
 
 function winkelmandItemVerwijderen(id, price) {
-    if (confirm("Bạn có chắc chắn muốn xóa (các) phiếu quà tặng này khỏi giỏ hàng của bạn?") == true) {
+    if (confirm("Bạn có chắc chắn muốn xóa (các) mặt hàng này khỏi giỏ hàng của bạn?") == true) {
         var plusId = id;
         var plusPrice = price;
 

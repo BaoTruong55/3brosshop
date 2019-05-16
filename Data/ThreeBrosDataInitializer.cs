@@ -199,20 +199,20 @@ namespace Shop.Data
                 _dbContext.SaveChanges();
 
                 //seller example
-                var user = new ApplicationUser { UserName = "banhang@3brosshop.com", Email = "banhang@3brosshop.com", EmailConfirmed = true };
+                var user = new ApplicationUser { UserName = "3bros.suport@gmail.com", Email = "3bros.suport@gmail.com", EmailConfirmed = true };
                 var password = "banhang";
                 var result = await _userManager.CreateAsync(user, password);
 
                 _dbContext.User.Add(new User
                 {
-                    EmailAddress = "banhang@3brosshop.com",
+                    EmailAddress = "3bros.suport@gmail.com",
                     FirstName = "Ban",
                     FamilyName = "Hang",
                     Sex = Sex.Male
                 });
                 await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "seller"));
 
-                Seller localMarket = new Seller("BanHang", "banhang@3brosshop.com", "abc", "Denderstraat", "22", "9300", "Aalst", true);
+                Seller localMarket = new Seller("BanHang", "3bros.suport@gmail.com", "abc", "Denderstraat", "22", "9300", "Aalst", true);
                 _dbContext.Seller.Add(localMarket);
 
                 Items localMarketItem = new Items("Lokaalmarkt Aalst", 15, "De beste markt van aalst!", 27, @"images\items\71\", converse, "Denderstraat", "22", "9300", "Aalst", localMarket, Offer.No, true);

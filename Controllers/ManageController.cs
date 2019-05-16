@@ -647,7 +647,7 @@ namespace Shop.Controllers
             amount.SpacingAfter = 50;
             Paragraph nameSeller = new Paragraph(items.Name, arial);
             nameSeller.SpacingAfter = 0;
-            Paragraph givenBy = new Paragraph("Tặng bởi: " + _user.FirstName, arial18);
+            Paragraph givenBy = new Paragraph("mua boi: " + _user.FirstName, arial18);
             Paragraph _valid = new Paragraph(valid, arial18);
 
             amount.Alignment = Element.ALIGN_LEFT;
