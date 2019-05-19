@@ -1,20 +1,19 @@
-﻿@model Shop.Models.ManageViewModels.UsedOrderOverviewViewModel
+﻿@using Shop.Models.Domain.Enum
+@model Shop.Models.ManageViewModels.UsedOrderOverviewViewModel
 @{
     ViewData["Title"] = "Mặt hàng đã qua sử dụng tại cửa hàng của bạn";
 }
-
 <div class="page-container pt-10 pb-40">
     <div class="container width-100">
         <section class="sign-area panel p-40 mr-10">
             <h3 class="pb-20 text-center">@ViewData["Title"]</h3>
             <div class="row">
                 <div>
-
                     @if (Model.AllUsedOrder == null || !Model.AllUsedOrder.Any())
                     {
-                    <h2 class="text-center mtb-40">
-                        Hiện tại chưa có hóa đơn!
-                    </h2>
+                        <h2 class="text-center mtb-40">
+                            Hiện tại chưa có hóa đơn!
+                        </h2>
                     }
                     else
                     {
@@ -31,6 +30,15 @@
                                                 <th>
                                                     SỐ TIỀN
                                                 </th>
+                                                <th>
+                                                    Tình trạng
+                                                </th>
+                                                <th>
+                                                    Chi Tiết
+                                                </th>
+                                                <th>
+                                                    Xác nhận đơn hàng
+                                                </th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -42,7 +50,19 @@
                                                         @bon.Name
                                                     </td>
                                                     <td>
-                                                        <h5>&euro; @bon.Amount</h5>
+                                                        <h5>@bon.Amount vnđ</h5>
+                                                    </td>
+                                                    <td>@bon.Validity</td>
+                                                    <td><a asp-controller="Checkout" asp-action="OrderQr" asp-route-id="@bon.QRCode" class="btn btn-danger mr-20">...</a></td>
+                                                    <td>
+                                                        @if (@bon.Validity == Validity.Valid)
+                                                        {
+                                                            <a asp-controller="Manage" asp-action="ItemsUsed" asp-route-id="@bon.QRCode" class="btn btn-danger mr-20">Xác nhận</a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a class="btn btn-success mr-20">Đã xác nhận đơn hàng</a>
+                                                        }
                                                     </td>
                                                 </tr>
                                             }
@@ -53,13 +73,11 @@
                             </div>
                         </div>
                     }
-
                 </div>
             </div>
         </section>
     </div>
 </div>
-
 <script>
     jQuery(function ($) {
         // alle items bepalen door tr's te tellen

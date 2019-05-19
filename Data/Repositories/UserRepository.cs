@@ -38,5 +38,12 @@ namespace Shop.Data.Repositories
         {
             _dbContext.SaveChanges();
         }
+
+        public void SaveChangesAsync()
+        {
+            _dbContext.SaveChangesAsync();
+        }
+
+        
     }
 }

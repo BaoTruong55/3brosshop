@@ -1,4 +1,5 @@
 ﻿@using Shop.Models.Domain
+@using Shop.Models.Domain.Enum
 
 @{
     ViewData["Title"] = "Chi tiết đặt hàng";
@@ -35,6 +36,7 @@
                         <th>
                             Hiệu lực
                         </th>
+                        
                     </tr>
                     @foreach (OrderItem b in (IEnumerable<OrderItem>)ViewData["OrderItem"])
                     {
@@ -43,9 +45,12 @@
                         <td>@b.Items.Name</td>
                         <td>@b.Price vnđ</td>
                         <td>@b.OrderItemId</td>
-                        <td><a target="_blank" href="~/pdf/c_@(b.QRCode).pdf" class="btn btn-sm btn-block">
-    Tải về phiếu mua hàng
-</a></td>
+                        
+                        <td>
+                            <a target="_blank" href="~/pdf/c_@(b.QRCode).pdf" class="btn btn-sm btn-block">
+                                Tải về phiếu mua hàng
+                            </a>
+                        </td>
                         <td><a asp-controller="Home" asp-action="Detail" asp-route-id="@b.Items.ItemsId" class="btn btn-sm btn-block m-lg-10">Chi tiết</a></td>
                     </tr>
                     }

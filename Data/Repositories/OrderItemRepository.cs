@@ -28,8 +28,24 @@ namespace Shop.Data.Repositories
 
         public IEnumerable<OrderItem> GetAll()
         {
-            return _orderItems.AsNoTracking().ToList();
+            return _orderItems.Select(x => new OrderItem()
+            {
+                Validity = x.Validity,
+                CreationDate = x.CreationDate,
+                ExpirationDate = x.ExpirationDate,
+                QRCode = x.QRCode,
+                Seller = x.Seller,
+                SenderName = x.SenderName,
+                SenderEmail = x.SenderEmail,
+                RecipientName = x.RecipientName,
+                RecipientEmail = x.RecipientEmail,
+                Message = x.Message,
+                Items = x.Items,
+                Price = x.Price,
+                Count = x.Count
+            }).ToList();
         }
+
 
         public OrderItem GetBy(string qrcode)
         {
@@ -74,15 +90,39 @@ namespace Shop.Data.Repositories
             }
             SaveChanges();
         }
+
+        public void deleteMe(OrderItem item)
+        {
+            _orderItems.Remove(item);
+            SaveChanges();
+        }
         
         public void SaveChanges()
         {
             _dbContext.SaveChanges();
         }
 
+
+
         public IEnumerable<OrderItem> getUsedItemsFromSellerId(int id)
         {
-            return _orderItems.Include(b => b.Seller).Where(b => b.Validity == Validity.Used && b.Seller.SellerId == id).Include(b => b.Items).OrderByDescending(b => b.ExpirationDate);
+            
+            return _orderItems.Select(x=>new OrderItem()
+            {
+                Validity = x.Validity,
+                CreationDate = x.CreationDate,
+                ExpirationDate = x.ExpirationDate,
+                QRCode = x.QRCode,
+                Seller = x.Seller,
+                SenderName = x.SenderName,
+                SenderEmail = x.SenderEmail,
+                RecipientName = x.RecipientName,
+                RecipientEmail = x.RecipientEmail,
+                Message = x.Message,
+                Items = x.Items,
+                Price = x.Price,
+                Count = x.Count
+            }).Where(x=>x.Seller.SellerId == id).ToList();
         }
     }
 }

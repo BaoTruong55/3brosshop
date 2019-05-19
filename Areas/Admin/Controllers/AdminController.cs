@@ -24,7 +24,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using Shop.Data;
 using Shop.Models.Domain.Interface;
-using Shop.Models.AdminViewModels;
 using Shop.Models.Domain.Enum;
 using Shop.Services;
 using ILogger = Microsoft.Extensions.Logging.ILogger;
@@ -352,12 +351,13 @@ namespace Shop.Areas.Admin.Controllers
                         EmailAddress = model.User.Email,
                         FirstName = model.UserInfo.FirstName,
                         FamilyName = model.UserInfo.FamilyName,
-                        Sex = Models.Domain.Enum.Sex.Different
+                        PhoneNumber = "#",
+                        Address = "#"
                     });
 
                     if (model.RoleName == "seller")
                     {
-                        Seller newSeller = new Seller(model.UserInfo.FamilyName + " "+ model.UserInfo.FirstName , model.User.UserName, "#", "#", "#", "#", "#", true);
+                        Seller newSeller = new Seller(model.UserInfo.FamilyName + " "+ model.UserInfo.FirstName , model.User.UserName, "#","#", "#", "#", "#", "#", true);
                         _sellerRepository.Add(newSeller);
                     }
 
@@ -471,7 +471,7 @@ namespace Shop.Areas.Admin.Controllers
                     Seller seller = _sellerRepository.GetByEmail(model.User.UserName);
                     if (seller == null)
                     {
-                        Seller newSeller = new Seller(userInfo.FamilyName +" "+userInfo.FirstName , model.User.UserName, "#", "#", "#", "#", "#", true);
+                        Seller newSeller = new Seller(userInfo.FamilyName +" "+userInfo.FirstName , model.User.UserName, "#","#", "#", "#", "#", "#", true);
                         _sellerRepository.Add(newSeller);
                     }
                 }
@@ -515,11 +515,13 @@ namespace Shop.Areas.Admin.Controllers
                 {
                     await _userManager.AddClaimAsync(user, new Claim(ClaimTypes.Role, "seller"));
 
-                    Seller nieuweSeller = new Seller(model.Name, model.Email, model.Description, model.StreetName, model.ApartmentNumber, model.Postcode, model.City, true);
+                    Seller nieuweSeller = new Seller(model.Name, model.Email, model.PhoneNumber, model.Description, model.StreetName, model.ApartmentNumber, model.Postcode, model.City, true);
                     _userRepository.Add(new User{
                         EmailAddress = model.Email,
                         FirstName = model.Name,
                         FamilyName = "",
+                        PhoneNumber = "#",
+                        Address = "#",
                         Sex = Shop.Models.Domain.Enum.Sex.Different
                     });
                     _sellerRepository.Add(nieuweSeller);
@@ -634,6 +636,11 @@ namespace Shop.Areas.Admin.Controllers
                     sellerInDb.City = model.City;
                 }
 
+                if (sellerInDb.PhoneNumber != model.PhoneNumber)
+                {
+                    sellerInDb.PhoneNumber = model.PhoneNumber;
+                }
+
                 _sellerRepository.SaveChanges();
 
                 if (model.Image != null)
@@ -717,6 +724,24 @@ namespace Shop.Areas.Admin.Controllers
         public IActionResult ItemsOverview()
         {
             return View(new ItemsOverviewViewModel(_itemsRepository.GetAllApproved()));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ItemsDelete(string id)
+        {
+            ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return RedirectToAction("Index", "Home");
+            var itemsList = _itemsRepository.GetAllApproved().Where(item => item.ItemsId == Convert.ToInt32(id)).ToList();
+
+            if (itemsList.Count > 0)
+            {
+                var items = itemsList[0];
+                _itemsRepository.Remove(items.ItemsId);
+                _itemsRepository.SaveChanges();
+            }
+            return RedirectToAction("ItemsOverview");
         }
 
         [HttpGet]
@@ -1026,7 +1051,7 @@ namespace Shop.Areas.Admin.Controllers
         {
             var bonPath = @"wwwroot/images/temp/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode("http://" + Request.Host + "/pdf/c_" + qrcode + ".pdf", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://" + Request.Host + "/checkout/OrderQr?Id=" + qrcode, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             qrCodeImage.Save(bonPath + qrcode + ".png", ImageFormat.Png);

@@ -1,0 +1,46 @@
+﻿@model Shop.Models.ManageViewModels.ItemsOverviewViewModel
+
+@{
+    ViewData["Title"] = "Tổng quan mặt hàng";
+}
+
+<section class="wrapper">
+    @if (Model.AllItemsSortedById == null || !Model.AllItemsSortedById.Any())
+    {
+        <h1 class="text-center mtb-40">Hiện tại không có biên lai trong hệ thống!</h1>
+        <a asp-controller="Manage" asp-action="AddItems"><h3 class="text-center">Thêm biên lai thủ công.</h3></a>
+    }
+    else
+    {
+
+        <div class="page-container ptb-10">
+            <div class="container width-100">
+                <section class="sign-area panel p-40 mr-19">
+                    <table class="table" id="tableToSearch">
+                        <thead>
+                        <tr>
+                            <th>Tên mặt hàng</th>
+                            <th>Tên người bán</th>
+                            <th>Thành phố</th>
+                            <th>Số lượng đã bán</th>
+                            <th>Chi tiét</th>
+                        </tr>
+                        </thead>
+                        @foreach (var items in Model.AllItemsSortedById)
+                        {
+                            <tbody>
+                            <tr>
+                                <td>@items.ItemsName</td>
+                                <td>@items.Name</td>
+                                <td>@items.Ciy</td>
+                                <td>@items.NumberOfItemsInSystem</td>
+                                <td><a asp-controller="Manage" asp-action="ItemsEdit" asp-route-id="@items.Id"><i class="fas fas fa-ellipsis-h"></i></a></td>
+                            </tr>
+                            </tbody>
+                        }
+                    </table>
+                </section>
+            </div>
+        </div>
+    }
+</section>

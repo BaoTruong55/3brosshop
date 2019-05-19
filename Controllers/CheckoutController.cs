@@ -18,6 +18,8 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Shop.Filters;
 using Shop.Models.Domain.Interface;
+using Shop.Data;
+using Shop.Models.CheckoutViewModels;
 
 namespace Shop.Controllers
 {
@@ -32,9 +34,11 @@ namespace Shop.Controllers
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderItemRepository _orderItemRepository;
         private readonly ISellerRepository _sellerRepository;
+        private readonly ApplicationDbContext _dbContext;
+
 
         public CheckoutController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager, ICategoryRepository categoryRepository, IUserRepository userRepository, IItemsRepository itemsRepository, IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, ISellerRepository sellerRepository)
+            SignInManager<ApplicationUser> signInManager, ICategoryRepository categoryRepository, IUserRepository userRepository, IItemsRepository itemsRepository, IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, ISellerRepository sellerRepository, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -44,6 +48,7 @@ namespace Shop.Controllers
             _orderRepository = orderRepository;
             _orderItemRepository = orderItemRepository;
             _sellerRepository = sellerRepository;
+            _dbContext = context;
         }
 
         public IActionResult Index(string checkoutId, string returnUrl = null)
@@ -95,11 +100,18 @@ namespace Shop.Controllers
                 OrderItem orderItem = OrderItem[(int)index];
                 orderItem.SenderName = model.Name;
                 orderItem.SenderEmail = model.Email;
+                orderItem.SenderPhoneNumber = model.PhoneNumber;
+                orderItem.SenderAddress = model.Address;
                 orderItem.RecipientName = model.NameReciever;
                 if (model.Message != null && model.Message != "")
                     orderItem.Message = model.Message;
                 if (model.EmailReciever != null && model.EmailReciever != "")
                     orderItem.RecipientEmail = model.EmailReciever;
+                if (model.PhoneNumberReciever != null && model.PhoneNumberReciever != "")
+                    orderItem.RecipientPhoneNumber = model.PhoneNumberReciever;
+                if (model.AddressReciever != null && model.AddressReciever != "")
+                    orderItem.RecipientAddress = model.AddressReciever;
+                
                 _orderItemRepository.SaveChanges();
 
                 MakeItems(orderItem);
@@ -112,11 +124,19 @@ namespace Shop.Controllers
             return View(model);
         }
 
+
+        public IActionResult OrderQr(string Id)
+        {
+            ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
+            var view = new OrderQrViewModel {ItemQr = _orderItemRepository.GetBy(Id)};
+            return View(view);
+        }
+
         public void GenerateQR(string qrcode)
         {
             var bonPath = @"wwwroot/images/temp/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://" + Request.Host + "/pdf/c_" + qrcode + ".pdf", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://" + Request.Host + "/checkout/OrderQr?Id=" + qrcode, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
 
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
@@ -125,7 +145,7 @@ namespace Shop.Controllers
 
         private async Task<User> RetrieveUser()
         {
-            var user = _userRepository.GetBy("lekkerlokaal");
+            var user = _userRepository.GetBy("khach3brosshop@gmail.com");
             if (_signInManager.IsSignedIn(User))
             {
                 var _user = await _userManager.GetUserAsync(User);

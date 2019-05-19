@@ -30,7 +30,7 @@ namespace Shop.Data.Repositories
 
         public IEnumerable<Seller> GetAll()
         {
-            return _sellers.Include(h => h.Items).AsNoTracking().ToList();
+            return _sellers.Include(h => h.Items).ToList();
         }
 
         public Seller GetByEmail(string email)

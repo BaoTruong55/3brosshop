@@ -20,7 +20,7 @@ namespace Shop.Data.Repositories
         }
         public IEnumerable<Items> GetAllApproved()
         {
-            return GetItemsApproved(_items.Include(b => b.Category).Include(b => b.Seller).Where(b => b.Approved).OrderByDescending(b => b.QuantityOrdered).AsNoTracking().ToList());
+            return GetItemsApproved(_items.Include(b => b.Category).Include(b => b.Seller).Where(b => b.Approved).OrderByDescending(b => b.QuantityOrdered).ToList());
         }
 
         public int getNumberofItemsRequests()
@@ -189,6 +189,7 @@ namespace Shop.Data.Repositories
         {
             _items.Add(items);
         }
+        
 
         public IEnumerable<Items> GetItemsNotyetApproved(IEnumerable<Items> inputList)
         {
@@ -211,7 +212,7 @@ namespace Shop.Data.Repositories
         }
         public IEnumerable<Items> GetAll()
         {
-            return _items.Include(b => b.Category).Include(b => b.Seller).OrderByDescending(b => b.QuantityOrdered).AsNoTracking().ToList();
+            return _items.Include(b => b.Category).Include(b => b.Seller).OrderByDescending(b => b.QuantityOrdered).ToList();
         }
     }
 }

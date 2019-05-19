@@ -27,6 +27,16 @@ namespace Shop.Models.AccountViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "{0} * bắt buộc.")]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Số điện thoại")]
+        public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "{0} * bắt buộc.")]
+        [Display(Name = "Địa chỉ")]
+        [DataType(DataType.Text)]
+        public string Address { get; set; }
+
+        [Required(ErrorMessage = "{0} * bắt buộc.")]
         [Display(Name = "Giới tính")]
         public Sex? Sex { get; set; }
 

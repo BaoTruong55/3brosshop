@@ -157,7 +157,7 @@ namespace Shop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ItemsRequest(GiftItemsAddViewModel model)
+        public async Task<IActionResult> ItemsRequest(ItemsAddViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -245,6 +245,20 @@ namespace Shop.Controllers
                 _userRepository.SaveChanges();
             }
 
+            var phoneNumber = _user.PhoneNumber;
+            if (model.PhoneNumber != phoneNumber)
+            {
+                _user.PhoneNumber = model.PhoneNumber;
+                _userRepository.SaveChanges();
+            }
+
+            var address = _user.Address;
+            if (model.Address != address)
+            {
+                _user.Address = model.Address;
+                _userRepository.SaveChanges();
+            }
+
             var _sex = _user.Sex;
             if (model.Sex != _sex)
             {
@@ -302,6 +316,14 @@ namespace Shop.Controllers
                 seller.Postcode = model.Postcode;
                 _sellerRepository.SaveChanges();
             }
+
+            var phoneNumber = seller.PhoneNumber;
+            if (model.PhoneNumber != phoneNumber)
+            {
+                seller.PhoneNumber = model.PhoneNumber;
+                _sellerRepository.SaveChanges();
+            }
+            
 
             StatusMessage = "Dữ liệu của bạn đã được cập nhật thành công.";
             return RedirectToAction(nameof(IndexSeller));
@@ -597,11 +619,165 @@ namespace Shop.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> ItemsUsed(string id)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var orderItem = _orderItemRepository.GetBy(id);
+            orderItem.Validity = Validity.Used;
+            _orderItemRepository.SaveChanges();
+            return  RedirectToAction("UsedOrderOverview");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> ItemsOverview()
+        {
+            ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
+            var user = await _userManager.GetUserAsync(User);
+            var seller = _sellerRepository.GetByEmail(user.Email);
+            return View(new ItemsOverviewViewModel(_itemsRepository.GetAllApproved().Where(item=>item.Seller.SellerId == seller.SellerId)));
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ItemsDelete(string Id)
+        {
+            ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
+            var user = await _userManager.GetUserAsync(User);
+            var seller = _sellerRepository.GetByEmail(user.Email);
+            if (user == null)
+                return RedirectToAction("Index","Home");
+            var itemsList = _itemsRepository.GetAllApproved().Where(item => item.Seller.SellerId == seller.SellerId && item.ItemsId == Convert.ToInt32(Id)).ToList();
+            
+            if (itemsList.Count > 0)
+            {
+                var items = itemsList[0];
+                _itemsRepository.Remove(items.ItemsId);
+                _itemsRepository.SaveChanges();
+            }
+            return RedirectToAction("ItemsOverview");
+        }
+
+        private SelectList Offers()
+        {
+            var offers = new List<Offer>();
+            foreach (Offer offerItem in Enum.GetValues(typeof(Offer)))
+            {
+                offers.Add(offerItem);
+            }
+            return new SelectList(offers);
+        }
+
+
+        [HttpGet]
+        public IActionResult ItemsEdit(int Id)
+        {
+            ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
+            Items geselecteerdeItems = _itemsRepository.GetByItemsId(Id);
+            if (geselecteerdeItems == null)
+            {
+                return RedirectToAction("ItemsOverview");
+            }
+            ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
+            ViewData["offer"] = Offers();
+            return View(new ItemsProcessViewModel(geselecteerdeItems));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ItemsEdit(ItemsProcessViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Items itemsInDb = _itemsRepository.GetByItemsId(model.ItemsId);
+
+                if (itemsInDb.Name != model.Name)
+                {
+                    itemsInDb.Name = model.Name;
+                }
+
+                if (itemsInDb.Description != model.Description)
+                {
+                    itemsInDb.Description = model.Description;
+                }
+
+                if (itemsInDb.Price != model.Price)
+                {
+                    itemsInDb.Price = model.Price;
+                }
+
+
+                if (itemsInDb.Category.Name != model.Category)
+                {
+                    itemsInDb.Category = _categoryRepository.GetByName(model.Category);
+                }
+
+                if (itemsInDb.Street != model.Street)
+                {
+                    itemsInDb.Street = model.Street;
+                }
+
+                if (itemsInDb.ApartmentNumber != model.ApartmentNumber)
+                {
+                    itemsInDb.ApartmentNumber = model.ApartmentNumber;
+                }
+
+                if (itemsInDb.Postcode != model.Postcode)
+                {
+                    itemsInDb.Postcode = model.Postcode;
+                }
+
+                if (itemsInDb.City != model.City)
+                {
+                    itemsInDb.City = model.City;
+                }
+
+                if (itemsInDb.Offer != model.Offer)
+                {
+                    itemsInDb.Offer = model.Offer;
+                }
+
+                _itemsRepository.SaveChanges();
+
+                if (model.Thumbnail != null)
+                {
+                    var filePath = @"wwwroot/" + itemsInDb.Image + "thumb.jpg";
+                    Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                    var fileStream = new FileStream(filePath, FileMode.Create);
+                    await model.Thumbnail.CopyToAsync(fileStream);
+                    fileStream.Close();
+                }
+
+                if (model.Image != null)
+                {
+                    System.IO.DirectoryInfo di = new DirectoryInfo(@"wwwroot/" + itemsInDb.Image + "Image/");
+
+                    foreach (FileInfo file in di.GetFiles())
+                    {
+                        file.Delete();
+                    }
+
+                    for (int i = 0; i < model.Image.Count; i++)
+                    {
+                        var filePath = @"wwwroot/" + itemsInDb.Image + "Image/" + (i + 1) + ".jpg";
+                        Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                        var fileStream = new FileStream(filePath, FileMode.Create);
+                        await model.Image[i].CopyToAsync(fileStream);
+                        fileStream.Close();
+                    }
+                }
+
+                return RedirectToAction("ItemsOverview");
+            }
+            return View(nameof(ItemsEdit), model);
+        }
+
+
         public void GenerateQR(string qrcode)
         {
             var itemsPath = @"wwwroot/images/temp/";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode("http://"+ Request.Host  + "/pdf/c_" + qrcode + ".pdf", QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("https://" + Request.Host + "/checkout/OrderQr?Id=" + qrcode, QRCodeGenerator.ECCLevel.Q);
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             qrCodeImage.Save(itemsPath + qrcode + ".png", ImageFormat.Png);

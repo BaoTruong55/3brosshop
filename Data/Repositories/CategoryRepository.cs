@@ -21,13 +21,14 @@ namespace Shop.Data.Repositories
 
         public IEnumerable<Category> GetAll()
         {
-            return _categories.OrderBy(c => c.Name).AsNoTracking().ToList();
+            return _categories.OrderBy(c => c.Name).ToList();
         }
 
         public Category GetByName(string naam)
         {
             return _categories.SingleOrDefault(c => c.Name.ToLower() == naam.ToLower());
         }
+       
 
         public Dictionary<Category, int> GetTop9WithAmount()
         {

@@ -135,7 +135,11 @@ namespace Shop.Controllers
             {
                 return RedirectToAction("Index");
             }
+
+            ViewData["GetTop30"] = _itemsRepository.GetTop30(_itemsRepository.GetAllApproved().ToList()).ToList();
+
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
+            
             return View(new DetailViewModel(clickedItems));
         }
 

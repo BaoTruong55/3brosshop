@@ -24,6 +24,11 @@ namespace Shop.Models.AdminViewModels
         public string Email { get; set; }
 
         [Required]
+        [EmailAddress]
+        [Display(Name = "Địa chỉ Email")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "Tên đường")]
         public string Street { get; set; }

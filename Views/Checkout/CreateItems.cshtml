@@ -42,6 +42,18 @@
                                     <input type="text" class="form-control" placeholder="Email" asp-for="Email" value="@UserRepository.GetBy(user.Email).EmailAddress">
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
+
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber">Số điện thoại</label>
+                                    <input type="text" class="form-control" placeholder="số điện thoại" asp-for="PhoneNumber" value="@UserRepository.GetBy(user.Email).PhoneNumber">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Address">Địa chỉ</label>
+                                    <input type="text" class="form-control" placeholder="Địa chỉ" asp-for="Address" value="@UserRepository.GetBy(user.Email).Address">
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
                             }
                             else
                             {
@@ -56,19 +68,29 @@
                                     <input type="text" class="form-control" placeholder="Địa chỉ Email" asp-for="Email">
                                     <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
-                            }
 
+                                <div class="form-group">
+                                    <label asp-for="PhoneNumber">Số điện thoại</label>
+                                    <input type="text" class="form-control" placeholder="số điện thoại" asp-for="PhoneNumber">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label asp-for="Address">Địa chỉ</label>
+                                    <input type="text" class="form-control" placeholder="Địa chỉ" asp-for="Address">
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                            }
                             <div class="form-group">
                                 <label asp-for="NameReciever">Tên người nhận <span class="color-mid"></span></label>
                                 <input type="text" class="form-control" placeholder="Tên người nhận" asp-for="NameReciever">
                                 <span asp-validation-for="NameReciever" class="text-danger"></span>
                             </div>
-
+                            
                             <div class="custom-checkbox mb-20">
                                 <input type="checkbox" id="ontvangerToevoegen">
                                 <label class="color-mid" for="ontvangerToevoegen">Gửi mặt hàng cho người nhận.</label>
                             </div>
-
                             <div id="receiver" class="collapse">
                                 <div class="form-group">
                                     <label asp-for="EmailReciever">Địa chỉ Email người nhận <span class="color-mid"></span></label>
@@ -76,12 +98,21 @@
                                     <span asp-validation-for="EmailReciever" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
+                                    <label asp-for="PhoneNumberReciever">Số điện thoại người nhận <span class="color-mid"></span></label>
+                                    <input type="text" class="form-control" placeholder="Số điện thọai người nhận" asp-for="PhoneNumberReciever">
+                                    <span asp-validation-for="PhoneNumberReciever" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="AddressReciever">Địa chỉ người nhận <span class="color-mid"></span></label>
+                                    <input type="text" class="form-control" placeholder="Số điện thoại người nhận" asp-for="AddressReciever">
+                                    <span asp-validation-for="AddressReciever" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
                                     <label asp-for="Message">Lời nhắn<span class="color-mid"></span></label>
                                     <textarea rows="4" type="text" class="form-control" placeholder="Lời nhắn của bạn" asp-for="Message"></textarea>
                                     <span asp-validation-for="Message" class="text-danger"></span>
                                 </div>
-                            </div>  
-
+                            </div>
                             @if (index == 0)
                             {
                                 <a asp-controller="ShoppingCart" asp-action="Checkout" class="btn btn-lg btn-warning btn-rounded mt-20">Hủy</a>
@@ -90,7 +121,6 @@
                             {
                                 <a asp-controller="Checkout" asp-action="CreateItems" asp-route-index="@(index - 1)" class="btn btn-lg btn-rounded ml-5 mt-20"><i class="fas fa-arrow-left"></i> Nhận quà trước</a>
                             }
-
                             @if ((index + 1) == orderItems.Count)
                             {
                                 <button type="submit" class="btn btn-lg btn-rounded ml-5 mt-20">Tiếp tục thanh toán</button>

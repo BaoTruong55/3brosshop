@@ -23,6 +23,14 @@ namespace Shop.Models.AccountViewModels
         [DataType(DataType.Text)]
         public string FamilyName { get; set; }
 
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [DataType(DataType.Text)]
+        public string Address { get; set; }
+
         public Sex Sex { get; set; }
     }
 }

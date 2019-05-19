@@ -14,15 +14,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\NewFolder\**" />
     <Compile Remove="Views\Handelaar\**" />
     <Compile Remove="wwwroot\NewFolder\**" />
     <Compile Remove="wwwroot\vendors\NewFolder\**" />
+    <Content Remove="Models\NewFolder\**" />
     <Content Remove="Views\Handelaar\**" />
     <Content Remove="wwwroot\NewFolder\**" />
     <Content Remove="wwwroot\vendors\NewFolder\**" />
+    <EmbeddedResource Remove="Models\NewFolder\**" />
     <EmbeddedResource Remove="Views\Handelaar\**" />
     <EmbeddedResource Remove="wwwroot\NewFolder\**" />
     <EmbeddedResource Remove="wwwroot\vendors\NewFolder\**" />
+    <None Remove="Models\NewFolder\**" />
     <None Remove="Views\Handelaar\**" />
     <None Remove="wwwroot\NewFolder\**" />
     <None Remove="wwwroot\vendors\NewFolder\**" />

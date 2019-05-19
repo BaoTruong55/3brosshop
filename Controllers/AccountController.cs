@@ -269,6 +269,8 @@ namespace Shop.Controllers
                         FirstName = model.FirstName,
                         FamilyName = model.FamilyName,
                         EmailAddress = model.Email,
+                        PhoneNumber = model.PhoneNumber,
+                        Address = model.Address,
                         Sex = model.Sex ?? Sex.Different
                     };
                     _userRepository.Add(gebruiker);
@@ -303,7 +305,7 @@ namespace Shop.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RegisterSeller(RegisterHandelaarViewModel model, string returnUrl = null)
+        public async Task<IActionResult> RegisterSeller(RegisterSellerViewModel model, string returnUrl = null)
         {
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
             ViewData["ReturnUrl"] = returnUrl;
@@ -321,14 +323,15 @@ namespace Shop.Controllers
                     message.Subject = "Một người bán mới vừa đăng ký thông qua hình thức đại lý";
                     message.Body = String.Format("Tên cửa hàng: {0}\n" +
                                             "Địa chỉ email: {1}\n" +
-                                            "Tên đường: {2}\n" +
-                                            "Số nhà: {3}\n" +
-                                            "Postcode: {4}\n" +
-                                            "Thành phố: {5}\n" +
-                                            "Mô tả: {6}\n",
-                                            model.NameOfBusiness, model.Email, model.Street, model.ApartmentNumber, model.Postcode, model.City, model.Description);
+                                            "Số điện thoại: {2}" + 
+                                            "Tên đường: {3}\n" +
+                                            "Số nhà: {4}\n" +
+                                            "Postcode: {5}\n" +
+                                            "Thành phố: {6}\n" +
+                                            "Mô tả: {7}\n",
+                                            model.NameOfBusiness, model.Email,model.PhoneNumber, model.Street, model.ApartmentNumber, model.Postcode, model.City, model.Description);
 
-                    Seller nieuweSeller = new Seller(model.NameOfBusiness, model.Email, model.Description, model.Street, model.ApartmentNumber, model.Postcode, model.City, false);
+                    Seller nieuweSeller = new Seller(model.NameOfBusiness, model.Email, model.PhoneNumber,  model.Description, model.Street, model.ApartmentNumber, model.Postcode, model.City, false);
                     _userRepository.Add(new User
                     {
                         EmailAddress = model.Email,
@@ -493,6 +496,8 @@ namespace Shop.Controllers
                         FirstName = model.FirstName,
                         FamilyName = model.FamilyName,
                         Sex = model.Sex,
+                        PhoneNumber = "",
+                        Address = "",
                         EmailAddress = model.Email
                     };
 

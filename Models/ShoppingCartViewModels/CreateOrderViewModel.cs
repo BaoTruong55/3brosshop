@@ -21,9 +21,27 @@ namespace Shop.Models.ShoppingCartViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "{0} * bắt buộc.")]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Số điện thoại người nhận")]
+        public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "{0} * bắt buộc.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Địa chỉ người nhận người nhận")]
+        public string Address { get; set; }
+
+        [Required(ErrorMessage = "{0} * bắt buộc.")]
         [DataType(DataType.Text)]
         [Display(Name = "Tên người nhận")]
         public string NameReciever { get; set; }
+        
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Số điện thoại người nhận")]
+        public string PhoneNumberReciever { get; set; }
+        
+        [DataType(DataType.Text)]
+        [Display(Name = "Địa chỉ người nhận người nhận")]
+        public string AddressReciever { get; set; }
 
         [EmailAddress]
         [Display(Name = "E-mail người nhận")]

@@ -11,5 +11,6 @@ namespace Shop.Models.Domain.Interface
         User GetByOrderId(int orderId);
         void Add(User user);
         void SaveChanges();
+        void SaveChangesAsync();
     }
 }

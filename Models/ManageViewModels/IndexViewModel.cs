@@ -21,12 +21,25 @@ namespace Shop.Models.ManageViewModels
 
         [Required(ErrorMessage = "{0} * bắt buộc.")]
         [DataType(DataType.Text)]
+        [Display(Name = "Tên")]
         public string FirstName { get; set; }
 
         [Required(ErrorMessage = "{0} * bắt buộc.")]
         [DataType(DataType.Text)]
+        [Display(Name = "Họ")]
         public string FamilyName { get; set; }
 
+        [Required(ErrorMessage = "{0} * bắt buộc.")]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Số điện thoại")]
+        public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "{0} * bắt buộc.")]
+        [DataType(DataType.Text)]
+        [Display(Name = "Địa chỉ")]
+        public string Address { get; set; }
+
+        [Display(Name = "Giới tính")]
         public Sex Sex { get; set; }
 
         public string StatusMessage { get; set; }

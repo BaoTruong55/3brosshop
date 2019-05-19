@@ -11,6 +11,7 @@ namespace Shop.Models.Domain
         public int SellerId { get; private set; }
         public string Name { get; set; }
         public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
         public string Description { get; set; }
         public string Image { get; set; }
         public ICollection<Items> Items { get; private set; }
@@ -25,7 +26,7 @@ namespace Shop.Models.Domain
 
         }
 
-        public Seller(string name, string emailAddress, string description, string street, string apartmentNumber, string postcode, string city, bool approved = false)
+        public Seller(string name, string emailAddress, string phoneNumber, string description, string street, string apartmentNumber, string postcode, string city, bool approved = false)
         {
             Approved = approved;
             Name = name;
@@ -35,6 +36,7 @@ namespace Shop.Models.Domain
             ApartmentNumber = apartmentNumber;
             Postcode = postcode;
             City = city;
+            PhoneNumber = phoneNumber;
             Items = new HashSet<Items>();
         }
 

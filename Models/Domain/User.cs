@@ -11,8 +11,10 @@ namespace Shop.Models.Domain
         public int UserId { get; private set; }
         public string FirstName { get; set; }
         public string FamilyName { get; set; }
-        public Sex Sex { get; set; }
+        public Sex Sex { get; set; } = Sex.Different;
         public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Address { get; set; }
         public ICollection<Order> Bills { get; set; }
 
         private string _image;

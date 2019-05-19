@@ -1,4 +1,4 @@
-﻿@model RegisterHandelaarViewModel
+﻿@model RegisterSellerViewModel
 @{
     ViewData["Title"] = "Đăng ký thành người bán hàng";
     ViewData["Navbar"] = "Seller";
@@ -22,6 +22,11 @@
                                 <label asp-for="Email" class="sr-only"></label>
                                 <input class="form-control input-lg" placeholder="Email" asp-for="Email" required>
                                 <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber" class="sr-only"></label>
+                                <input class="form-control input-lg" placeholder="Số điện thoại" asp-for="PhoneNumber" required>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
                             <div class="form-group col-sm-9 no-padding">
                                 <label asp-for="Street" class="sr-only"></label>
@@ -53,7 +58,6 @@
                                     <a class="force-whiteColor" id="fileselectionText">Chọn logo</a><input asp-for="Logo" accept=".jpg" id="fileToUpload" style="display: none;">
                                 </label>
                             </div>
-
                             <div class="custom-checkbox mb-20">
                                 <input type="checkbox" id="agree_terms" required>
                                 <label class="color-mid" for="agree_terms">Tôi đồng ý với <a href="~/downloads/Handelaarsovereenkomsten_-_Lekker_Lokaal.pdf" download class="color-blue">Thỏa thuận người bán</a>.</label>

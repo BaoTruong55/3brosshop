@@ -24,6 +24,11 @@ namespace Shop.Models.ManageViewModels
         public string Description { get; set; }
 
         [Required(ErrorMessage = "{0} * bắt buộc.")]
+        [DataType(DataType.PhoneNumber)]
+        [Display(Name = "Số điện thoại")]
+        public string PhoneNumber { get; set; }
+
+        [Required(ErrorMessage = "{0} * bắt buộc.")]
         [DataType(DataType.Text)]
         [Display(Name = "Tên đường")]
         public string Street { get; set; }

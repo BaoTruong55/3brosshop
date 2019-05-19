@@ -157,6 +157,7 @@
                 <div class="col-md-9 col-md-offset-3">
                     <a asp-controller="Admin" asp-action="ItemsOverview" class="btn btn-danger mr-20">Hủy</a>
                     <button type="submit" class="btn btn-success">Thay đổi</button>
+                    <a asp-controller="Admin" asp-action="ItemsDelete" asp-route-id="@Model.ItemsId" class="btn btn-danger mr-20">Xóa mặt hàng</a>
                 </div>
             </form>
         </div>
