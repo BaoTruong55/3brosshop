@@ -626,7 +626,7 @@ namespace Shop.Controllers
             var orderItem = _orderItemRepository.GetBy(id);
             orderItem.Validity = Validity.Used;
             _orderItemRepository.SaveChanges();
-            return  RedirectToAction("UsedOrderOverview");
+            return  RedirectToAction("UsedOrderItemOverview");
         }
 
 
