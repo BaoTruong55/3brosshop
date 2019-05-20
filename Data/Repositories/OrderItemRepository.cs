@@ -49,7 +49,26 @@ namespace Shop.Data.Repositories
 
         public OrderItem GetBy(string qrcode)
         {
-            return _orderItems.Include(b => b.Items).SingleOrDefault(g => g.QRCode == qrcode);
+            return _orderItems.Select(x => new OrderItem()
+            {
+                Validity = x.Validity,
+                CreationDate = x.CreationDate,
+                ExpirationDate = x.ExpirationDate,
+                QRCode = x.QRCode,
+                Seller = x.Seller,
+                SenderName = x.SenderName,
+                SenderEmail = x.SenderEmail,
+                SenderPhoneNumber = x.SenderPhoneNumber,
+                SenderAddress = x.SenderAddress,
+                RecipientName = x.RecipientName,
+                RecipientEmail = x.RecipientEmail,
+                RecipientPhoneNumber = x.RecipientPhoneNumber,
+                RecipientAddress = x.RecipientAddress,
+                Message = x.Message,
+                Items = x.Items,
+                Price = x.Price,
+                Count = x.Count
+            }).Include(b => b.Items).SingleOrDefault(g => g.QRCode == qrcode);
         }
 
         public OrderItem GetById(int orderItemId)
@@ -91,11 +110,6 @@ namespace Shop.Data.Repositories
             SaveChanges();
         }
 
-        public void deleteMe(OrderItem item)
-        {
-            _orderItems.Remove(item);
-            SaveChanges();
-        }
         
         public void SaveChanges()
         {

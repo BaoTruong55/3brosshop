@@ -19,7 +19,7 @@
         {
             @if (((IList<OrderItem>)ViewData["OrderItem"]).Count == 1)
             {
-                <p class="mt-20"><a class="btn btn-sm btn-small" target="_blank" href="~/pdf/c_@(((IList<OrderItem>)ViewData["OrderItem"])[0].QRCode).pdf">Tải xuống mã quà tặng đã mua.</a></p>
+                <p class="mt-20"><a class="btn btn-sm btn-small" target="_blank" href="~/pdf/c_@(((IList<OrderItem>)ViewData["OrderItem"])[0].QRCode).pdf">Tải về mã phiếu mua hàng đã mua</a></p>
             }
             else
             {

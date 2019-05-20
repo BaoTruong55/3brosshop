@@ -20,11 +20,14 @@ namespace Shop
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseKestrel()
+                .PreferHostingUrls(false)
+                .UseIISIntegration()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseConfiguration(new ConfigurationBuilder()
                     .SetBasePath(Directory.GetCurrentDirectory())
                     .AddJsonFile("hosting.json", optional: true)
                     .Build())
                 .UseStartup<Startup>();
+
     }
 }

@@ -23,7 +23,7 @@
                                 @foreach (var categorie in Model.Top9Category)
                                 {
                                     <li>
-                                        <a asp-controller="Home" asp-action="Search" asp-route-SearchType="Category" asp-route-SearchKey="@categorie.CategoryName" class="animatedCategorie"><i class="fa @categorie.Icon"></i>@categorie.CategoryName<span>@categorie.Number</span></a>
+                                        <a asp-controller="Home" asp-action="Search" asp-route-SearchType="All" asp-route-SearchKey="@categorie.CategoryName" class="animatedCategorie"><i class="fa @categorie.Icon"></i>@categorie.CategoryName<span>@categorie.Number</span></a>
                                     </li>
                                 }
                             </ul>

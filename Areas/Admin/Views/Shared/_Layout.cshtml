@@ -136,7 +136,8 @@
                                                 foreach (Category category in (IEnumerable<Category>) ViewData["AllCategories"])
                                                  {
                                                      <li>
-                                                         <a asp-controller="Home" asp-action="Search" asp-route-SearchType="Category" asp-route-SearchKey="@category.Name"><i class="fa @category.Icon"></i> - @category.Name</a>
+                                                         <a asp-controller="Home" asp-action="Search" asp-route-SearchType="All
+                                                            " asp-route-SearchKey="@category.Name"><i class="fa @category.Icon"></i> - @category.Name</a>
                                                      </li>
                                                  }
                                             }

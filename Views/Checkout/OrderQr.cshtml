@@ -1,7 +1,5 @@
 ﻿@model Shop.Models.CheckoutViewModels.OrderQrViewModel
-
 @using Shop.Models.Domain
-
 ﻿@{
     ViewData["Title"] = "Phiếu mua hàng";
 
@@ -12,21 +10,49 @@
         <h2><strong>Chi tiết phiếu mua hàng</strong></h2>
         <h4><strong>Mặt hàng</strong></h4>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Mặt hàng:</label>
+            <label class="col-sm-3 control-label text-right">Mặt hàng:</label>
             <div class="col-sm-9">
-                <label class="col-sm-9 control-label">@Model.ItemQr.Items.Name</label>
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.Items.Name</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Mô tả:</label>
+            <label class="col-sm-3 control-label text-right">Mô tả:</label>
             <div class="col-sm-9">
-                <label class="col-sm-9 control-label">@Model.ItemQr.Items.Description</label>
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.Items.Description</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Giá :</label>
+            <label class="col-sm-3 control-label text-right">Giá :</label>
             <div class="col-sm-9">
-                <label class="col-sm-9 control-label">@Model.ItemQr.Items.Price vnđ</label>
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.Items.Price vnđ</label>
+            </div>
+        </div>
+        <img src="/@Model.ItemQr.Items.GetThumbPath()" ></img>
+        <h4>
+            <strong>Người bán hàng</strong>
+        </h4>
+        <div class="form-group">
+            <label class="col-sm-3 control-label text-right">Người bán hàng:</label>
+            <div class="col-sm-9">
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.Seller.Name</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label text-right">Điện Thoại:</label>
+            <div class="col-sm-9">
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.Seller.PhoneNumber</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label text-right">Email:</label>
+            <div class="col-sm-9">
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.Seller.EmailAddress</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label text-right">Địa chỉ:</label>
+            <div class="col-sm-9">
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.Seller.ApartmentNumber @Model.ItemQr.Seller.Street , @Model.ItemQr.Seller.City</label>
             </div>
         </div>
 
@@ -34,58 +60,68 @@
             <strong>Người mua hàng</strong>
         </h4>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Người mua hàng:</label>
+            <label class="col-sm-3 control-label text-right">Người mua hàng:</label>
             <div class="col-sm-9">
-                <label class="col-sm-9 control-label">@Model.ItemQr.SenderName</label>
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.SenderName</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Điện Thoại:</label>
+            <label class="col-sm-3 control-label text-right">Điện Thoại:</label>
             <div class="col-sm-9">
-                <label class="col-sm-9 control-label">@Model.ItemQr.SenderPhoneNumber</label>
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.SenderPhoneNumber</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Email:</label>
+            <label class="col-sm-3 control-label text-right">Email:</label>
             <div class="col-sm-9">
-                <label class="col-sm-9 control-label">@Model.ItemQr.SenderEmail</label>
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.SenderEmail</label>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Địa chỉ:</label>
+            <label class="col-sm-3 control-label text-right">Địa chỉ:</label>
             <div class="col-sm-9">
-                <label class="col-sm-9 control-label">@Model.ItemQr.SenderAddress</label>
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.SenderAddress</label>
             </div>
         </div>
+
         <h4>
             <strong>Người nhận</strong>
         </h4>
         <div class="form-group">
-            <label class="col-sm-3 control-label">tên người nhận:</label>
+            <label class="col-sm-3 control-label text-right">tên người nhận:</label>
             <div class="col-sm-9">
-                <label class="col-sm-9 control-label">@Model.ItemQr.RecipientName</label>
+                <label class="col-sm-9 control-label text-left">@Model.ItemQr.RecipientName</label>
             </div>
         </div>
         @if (@Model.ItemQr.RecipientPhoneNumber != null)
         {
-            <div class="form-group">
-                <label class="col-sm-3 control-label">Số điện thoại:</label>
-                <div class="col-sm-9">
-                    <label class="col-sm-9 control-label">@Model.ItemQr.RecipientPhoneNumber</label>
+            @if (Model.ItemQr.RecipientPhoneNumber != null)
+            {
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">Số điện thoại:</label>
+                    <div class="col-sm-9">
+                        <label class="col-sm-9 control-label text-left">@Model.ItemQr.RecipientPhoneNumber</label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">Email:</label>
-                <div class="col-sm-9">
-                    <label class="col-sm-9 control-label">@Model.ItemQr.RecipientEmail</label>
+            }
+            @if (Model.ItemQr.RecipientEmail != null)
+            {
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">Email:</label>
+                    <div class="col-sm-9">
+                        <label class="col-sm-9 control-label text-left">@Model.ItemQr.RecipientEmail</label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-3 control-label">Địa chỉ:</label>
-                <div class="col-sm-9">
-                    <label class="col-sm-9 control-label">@Model.ItemQr.RecipientAddress</label>
+            }
+            @if (Model.ItemQr.RecipientAddress != null)
+            {
+                <div class="form-group">
+                    <label class="col-sm-3 control-label text-right">Địa chỉ:</label>
+                    <div class="col-sm-9">
+                        <label class="col-sm-9 control-label text-left">@Model.ItemQr.RecipientAddress</label>
+                    </div>
                 </div>
-            </div>
+            }
         }
     </form>
 </div>
