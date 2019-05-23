@@ -9,7 +9,7 @@ namespace Shop.Models.Domain
 {
     public class OrderItem : ShoppingCartItem
     {
-        public int OrderItemId { get; private set; }
+        public int OrderItemId { get; set; }
         public Validity Validity { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ExpirationDate { get; set; }

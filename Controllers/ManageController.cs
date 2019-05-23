@@ -23,6 +23,7 @@ using QRCoder;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Security.Claims;
+using Shop.Data;
 using Shop.Models.Domain.Enum;
 using Shop.Models.Domain.Interface;
 using Shop.Services;
@@ -44,22 +45,24 @@ namespace Shop.Controllers
         private readonly IOrderItemRepository _orderItemRepository;
         private readonly ISellerRepository _sellerRepository;
         private readonly IItemsRepository _itemsRepository;
+        private readonly ApplicationDbContext _dbContext;
 
         private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
         private const string RecoveryCodesKey = nameof(RecoveryCodesKey);
 
         public ManageController(
-          UserManager<ApplicationUser> userManager,
-          SignInManager<ApplicationUser> signInManager,
-          IEmailSender emailSender,
-          ILogger<ManageController> logger,
-          UrlEncoder urlEncoder,
-          ICategoryRepository categoryRepository,
-          IUserRepository userRepository,
-          IOrderRepository orderRepository,
-          IOrderItemRepository orderItemRepository,
-          ISellerRepository sellerRepository,
-          IItemsRepository itemsRepository)
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IEmailSender emailSender,
+            ILogger<ManageController> logger,
+            UrlEncoder urlEncoder,
+            ICategoryRepository categoryRepository,
+            IUserRepository userRepository,
+            IOrderRepository orderRepository,
+            IOrderItemRepository orderItemRepository,
+            ISellerRepository sellerRepository,
+            IItemsRepository itemsRepository,
+            ApplicationDbContext dbContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -72,10 +75,10 @@ namespace Shop.Controllers
             _orderItemRepository = orderItemRepository;
             _sellerRepository = sellerRepository;
             _itemsRepository = itemsRepository;
+            _dbContext = dbContext;
         }
 
-        [TempData]
-        public string StatusMessage { get; set; }
+        [TempData] public string StatusMessage { get; set; }
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -164,10 +167,14 @@ namespace Shop.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 if (user == null)
                 {
-                    throw new ApplicationException($"Không thể lấy thông tin người dùng '{_userManager.GetUserId(User)}'.");
+                    throw new ApplicationException(
+                        $"Không thể lấy thông tin người dùng '{_userManager.GetUserId(User)}'.");
                 }
+
                 var seller = _sellerRepository.GetByEmail(user.Email);
-                Items newItems = new Items(model.Name, model.Price, model.Description, 0, @"temp", _categoryRepository.GetByName(model.Category), model.Street, model.ApartmentNumber, model.Postcode, model.City, _sellerRepository.GetBySellerId(seller.SellerId), Offer.No, false);
+                Items newItems = new Items(model.Name, model.Price, model.Description, 0, @"temp",
+                    _categoryRepository.GetByName(model.Category), model.Street, model.ApartmentNumber, model.Postcode,
+                    model.City, _sellerRepository.GetBySellerId(seller.SellerId), Offer.No, false);
                 _itemsRepository.Add(newItems);
                 _itemsRepository.SaveChanges();
 
@@ -188,11 +195,13 @@ namespace Shop.Controllers
                     await model.Image[i].CopyToAsync(fileStream);
                     fileStream.Close();
                 }
+
                 ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
                 ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
                 return RedirectToAction(nameof(HomeController.Index), "Home");
 
             }
+
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
             ViewData["category"] = new SelectList(_categoryRepository.GetAll().Select(c => c.Name));
             return View(nameof(ItemsRequest), model);
@@ -208,6 +217,7 @@ namespace Shop.Controllers
             {
                 sexList.Add(sex);
             }
+
             return new SelectList(sexList);
         }
 
@@ -323,7 +333,7 @@ namespace Shop.Controllers
                 seller.PhoneNumber = model.PhoneNumber;
                 _sellerRepository.SaveChanges();
             }
-            
+
 
             StatusMessage = "Dữ liệu của bạn đã được cập nhật thành công.";
             return RedirectToAction(nameof(IndexSeller));
@@ -396,7 +406,8 @@ namespace Shop.Controllers
                 throw new ApplicationException($"Không thể lấy thông tin người dùng '{_userManager.GetUserId(User)}'.");
             }
 
-            var changePasswordResult = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+            var changePasswordResult =
+                await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
             if (!changePasswordResult.Succeeded)
             {
                 AddErrors(changePasswordResult);
@@ -503,7 +514,9 @@ namespace Shop.Controllers
 
             // Request a redirect to the external login provider to link a login for the current user
             var redirectUrl = Url.Action(nameof(LinkLoginCallback));
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
+            var properties =
+                _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl,
+                    _userManager.GetUserId(User));
             return new ChallengeResult(provider, properties);
         }
 
@@ -521,13 +534,15 @@ namespace Shop.Controllers
             var info = await _signInManager.GetExternalLoginInfoAsync(user.Id);
             if (info == null)
             {
-                throw new ApplicationException($"Xảy ra lỗi không mong muốn khi tải thông tin đăng nhập bên ngoài cho người dùng  '{user.Id}'.");
+                throw new ApplicationException(
+                    $"Xảy ra lỗi không mong muốn khi tải thông tin đăng nhập bên ngoài cho người dùng  '{user.Id}'.");
             }
 
             var result = await _userManager.AddLoginAsync(user, info);
             if (!result.Succeeded)
             {
-                throw new ApplicationException($"Xảy ra lỗi không mong muốn khi thêm đăng nhập bên ngoài cho người dùng  '{user.Id}'.");
+                throw new ApplicationException(
+                    $"Xảy ra lỗi không mong muốn khi thêm đăng nhập bên ngoài cho người dùng  '{user.Id}'.");
             }
 
             // Clear the existing external cookie to ensure a clean login process
@@ -552,7 +567,8 @@ namespace Shop.Controllers
             var result = await _userManager.RemoveLoginAsync(user, model.LoginProvider, model.ProviderKey);
             if (!result.Succeeded)
             {
-                throw new ApplicationException($"Xảy ra lỗi không mong muốn khi xóa đăng nhập bên ngoài cho người dùng '{user.Id}'.");
+                throw new ApplicationException(
+                    $"Xảy ra lỗi không mong muốn khi xóa đăng nhập bên ngoài cho người dùng '{user.Id}'.");
             }
 
             await _signInManager.SignInAsync(user, isPersistent: false);
@@ -576,8 +592,10 @@ namespace Shop.Controllers
                     if (Order.Orders.All(bl => bl.Validity != Validity.Invalid))
                         orders.Add(Order);
                 }
+
                 ViewData["Order"] = orders;
             }
+
             return View();
         }
 
@@ -600,10 +618,12 @@ namespace Shop.Controllers
                     ICollection<OrderItem> orderItems = new HashSet<OrderItem>();
 
                     //maak vervallen bonnen vervallen (visueel)
-                    foreach (OrderItem bon in Order.Orders.Where(bl => bl.Validity == Validity.Valid && DateTime.Today > bl.CreationDate.AddYears(1)))
+                    foreach (OrderItem bon in Order.Orders.Where(bl =>
+                        bl.Validity == Validity.Valid && DateTime.Today > bl.CreationDate.AddYears(1)))
                     {
                         bon.Validity = Validity.Expired;
                     }
+
                     _orderItemRepository.SaveChanges();
 
                     //toon bonnen in Order en maak bijhorende pdf's
@@ -612,10 +632,12 @@ namespace Shop.Controllers
                         GeneratePDF(bl.OrderItemId);
                         orderItems.Add(_orderItemRepository.GetById(bl.OrderItemId));
                     }
+
                     ViewData["OrderItem"] = orderItems;
                     ViewData["OrderId"] = Order.BillId;
                 }
             }
+
             return View();
         }
 
@@ -623,10 +645,16 @@ namespace Shop.Controllers
         public async Task<IActionResult> ItemsUsed(string id)
         {
             var user = await _userManager.GetUserAsync(User);
+
             var orderItem = _orderItemRepository.GetBy(id);
+
             orderItem.Validity = Validity.Used;
+
+            _dbContext.OrderItem.Update(orderItem);
+            _dbContext.SaveChanges();
             _orderItemRepository.SaveChanges();
-            return  RedirectToAction("UsedOrderItemOverview");
+            
+            return RedirectToAction("UsedOrderItemOverview");
         }
 
 
@@ -636,7 +664,7 @@ namespace Shop.Controllers
             ViewData["AllCategories"] = _categoryRepository.GetAll().ToList();
             var user = await _userManager.GetUserAsync(User);
             var seller = _sellerRepository.GetByEmail(user.Email);
-            return View(new ItemsOverviewViewModel(_itemsRepository.GetAllApproved().Where(item=>item.Seller.SellerId == seller.SellerId)));
+            return View(new ItemsOverviewViewModel(_itemsRepository.GetAllApproved().Where(item => item.Seller.SellerId == seller.SellerId)));
         }
 
         [HttpGet]
@@ -646,9 +674,9 @@ namespace Shop.Controllers
             var user = await _userManager.GetUserAsync(User);
             var seller = _sellerRepository.GetByEmail(user.Email);
             if (user == null)
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
             var itemsList = _itemsRepository.GetAllApproved().Where(item => item.Seller.SellerId == seller.SellerId && item.ItemsId == Convert.ToInt32(Id)).ToList();
-            
+
             if (itemsList.Count > 0)
             {
                 var items = itemsList[0];

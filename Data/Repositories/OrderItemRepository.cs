@@ -51,6 +51,7 @@ namespace Shop.Data.Repositories
         {
             return _orderItems.Select(x => new OrderItem()
             {
+                OrderItemId = x.OrderItemId,
                 Validity = x.Validity,
                 CreationDate = x.CreationDate,
                 ExpirationDate = x.ExpirationDate,
@@ -114,6 +115,11 @@ namespace Shop.Data.Repositories
         public void SaveChanges()
         {
             _dbContext.SaveChanges();
+        }
+
+        public async void SaveChangesAsync()
+        {
+            await _dbContext.SaveChangesAsync();
         }
 
 

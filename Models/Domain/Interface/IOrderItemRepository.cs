@@ -16,6 +16,7 @@ namespace Shop.Models.Domain.Interface
         IEnumerable<OrderItem> getUsedItemsFromSellerId(int id);
         IEnumerable<OrderItem> getSoldOrder();
         void SaveChanges();
+        void SaveChangesAsync();
         OrderItem GetById(int orderItemId);
     }
 }
